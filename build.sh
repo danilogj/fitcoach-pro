@@ -25,10 +25,10 @@ build_gpt() {
   cp "$src"/tools/*.py "$dest/"
   cp "$src"/data/exercises.json "$dest/"
   rm -f "$dest/__init__.py"
-  # dashboard.py and sheet.py stay out: the GPT Builder caps knowledge at 20
-  # files, and both operate on local HTML — work better done on the machine
-  # that holds the files.
-  rm -f "$dest/dashboard.py" "$dest/sheet.py"
+  # dashboard.py, sheet.py and cohort.py stay out: the GPT Builder caps
+  # knowledge at 20 files, and all three walk the local filesystem — work the
+  # machine holding the client folders does, not a chat sandbox.
+  rm -f "$dest/dashboard.py" "$dest/sheet.py" "$dest/cohort.py"
   local n; n=$(ls -1 "$dest" | wc -l)
   echo "$label: $n files"
   [ "$n" -le 20 ] || echo "WARNING: the GPT Builder accepts at most 20 knowledge files — trim before uploading."

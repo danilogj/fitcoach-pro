@@ -87,6 +87,7 @@ python3 tools/cli.py [--client DIR | --log FILE] [--json] <command>
 | Volume landmarks table | `volume landmarks` |
 | Find / filter / substitute exercises | `exercise find\|filter\|substitute` |
 | Acute:chronic training load | `load acwr` |
+| **Whole roster at a glance** | `cohort --root clients` |
 | Deload decision | `load deload --sleep-hours-avg .. --soreness-avg ..` |
 | Import a wearable export | `ingest <file> [--inspect] [--dry-run] [--map ..]` |
 | Render the HTML dashboard | `dashboard --name .. --goal .. --target-kg ..` |
@@ -98,6 +99,14 @@ python3 tools/cli.py [--client DIR | --log FILE] [--json] <command>
 **`metrics targets` defaults to the component method** — BMR plus NEAT plus training plus the thermic effect of food — rather than a single activity multiplier, because a multiplier hides which term is the guess. It is always NEAT. Pass `--sessions-per-week` and `--neat-pct`; use `--method multiplier` only when you have nothing better.
 
 **`metrics tdee-observed` is the one that matters at check-in.** It measures expenditure from real intake against real weight change and corrects a formula estimate that drifted. It refuses below 10 logged meal-days — do not lean on it early.
+
+**`load acwr` weights each set by systemic cost.** Four sets of heavy deadlift are not four sets of lateral raise, and counting them equally lets axial fatigue build without the ratio noticing. Axial compounds count 1.4, supported compounds 1.0, unilateral 0.8, isolation 0.5, core 0.4. `--flat` restores the unweighted count.
+
+**`cohort` answers the Monday-morning question** — not "how is Maria doing" but "which four of my twenty-five need me this week". It ranks every client folder by severity: load spikes, unsafe rate of change, stalled progress, and anyone who stopped logging.
+
+**`metrics targets` warns above BMI 30** that Mifflin-St Jeor takes total body weight and overestimates expenditure by 200-400 kcal at high adiposity — which turns a prescribed deficit into maintenance. With fat-free mass known it switches to Katch-McArdle alone; `--adjusted-weight` applies the clinical convention when composition is unknown.
+
+**`metrics 1rm` refuses above 10 reps.** A 15-rep set measures fatigue resistance, not maximal force. Note that Epley and Brzycki cross exactly at 10 reps, so their agreement there is arithmetic coincidence — the caution is driven by rep count, not by the spread.
 
 **`ingest` reads exported files, not APIs.** Samsung Health, Garmin, Apple Health, Strava, or any CSV. Re-importing the same file is a no-op. When an export does not match, `--inspect` prints the real columns and `--map` fixes it in one flag — see `references/06-body-assessment.md §5`.
 

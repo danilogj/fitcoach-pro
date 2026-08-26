@@ -43,7 +43,9 @@ glycogen noise dominates shorter windows.
 
 A manutenção usa o **método por componentes** — TMB + NEAT + treino + efeito térmico — em vez de um multiplicador único, porque o multiplicador esconde qual termo é o chute. É sempre o NEAT.
 
-O `volume check` soma as séries semanais por músculo a partir de um arquivo de programa, julga cada grupo contra o volume mínimo efetivo e o máximo recuperável, reporta as indiretas em coluna separada e nomeia qualquer padrão de movimento que a semana não cobre. São 77 exercícios em `data/exercises.json`, com cadeias de substituição para limitação de ombro, lombar, joelho, punho e cotovelo.
+O `volume check` soma as séries semanais por músculo a partir de um arquivo de programa, julga cada grupo contra o volume mínimo efetivo e o máximo recuperável, reporta as indiretas em coluna separada e nomeia qualquer padrão de movimento que a semana não cobre. São 110 exercícios em `data/exercises.json`, com cadeias de substituição para limitação de ombro, lombar, joelho, punho e cotovelo.
+
+O `cohort` ordena a lista inteira de alunos por quem precisa de atenção nesta semana — pico de carga, ritmo inseguro, progresso travado, quem parou de registrar. O `load acwr` pondera cada série pelo custo sistêmico, para uma semana de terra não parecer uma semana de rosca.
 
 Documentação completa em [`tools/README.md`](../claude/fitcoach-pro/tools/README.md). São 109 testes, só biblioteca padrão, sem instalação.
 

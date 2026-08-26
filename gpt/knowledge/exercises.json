@@ -1160,6 +1160,453 @@
     "hamstrings"
    ],
    "unilateral": true
+  },
+  {
+   "id": "adductor_machine",
+   "name": "Hip adductor machine (cadeira adutora)",
+   "pattern": "hip_dominant",
+   "equipment": [
+    "machine"
+   ],
+   "primary": [
+    "glutes"
+   ],
+   "secondary": []
+  },
+  {
+   "id": "abductor_machine",
+   "name": "Hip abductor machine (cadeira abdutora)",
+   "pattern": "hip_dominant",
+   "equipment": [
+    "machine"
+   ],
+   "primary": [
+    "glutes"
+   ],
+   "secondary": []
+  },
+  {
+   "id": "hip_thrust_machine",
+   "name": "Hip thrust machine (elevação pélvica na máquina)",
+   "pattern": "hip_dominant",
+   "equipment": [
+    "machine"
+   ],
+   "primary": [
+    "glutes"
+   ],
+   "secondary": [
+    "hamstrings"
+   ]
+  },
+  {
+   "id": "glute_kickback_cable",
+   "name": "Cable glute kickback (glúteo no cabo)",
+   "pattern": "hip_dominant",
+   "equipment": [
+    "cable"
+   ],
+   "primary": [
+    "glutes"
+   ],
+   "secondary": [
+    "hamstrings"
+   ],
+   "unilateral": true
+  },
+  {
+   "id": "leg_curl_standing",
+   "name": "Standing single-leg curl (flexora em pé)",
+   "pattern": "hip_dominant",
+   "equipment": [
+    "machine"
+   ],
+   "primary": [
+    "hamstrings"
+   ],
+   "secondary": [],
+   "unilateral": true
+  },
+  {
+   "id": "squat_smith",
+   "name": "Smith machine squat (agachamento no Smith)",
+   "pattern": "knee_dominant",
+   "equipment": [
+    "machine"
+   ],
+   "primary": [
+    "quads"
+   ],
+   "secondary": [
+    "glutes"
+   ],
+   "axial": true
+  },
+  {
+   "id": "bench_smith",
+   "name": "Smith machine bench press (supino no Smith)",
+   "pattern": "horizontal_push",
+   "equipment": [
+    "machine",
+    "bench"
+   ],
+   "primary": [
+    "chest"
+   ],
+   "secondary": [
+    "front_delt",
+    "triceps"
+   ]
+  },
+  {
+   "id": "ohp_smith",
+   "name": "Smith machine shoulder press",
+   "pattern": "vertical_push",
+   "equipment": [
+    "machine"
+   ],
+   "primary": [
+    "front_delt"
+   ],
+   "secondary": [
+    "triceps"
+   ]
+  },
+  {
+   "id": "split_squat_smith",
+   "name": "Smith machine split squat",
+   "pattern": "unilateral_lower",
+   "equipment": [
+    "machine"
+   ],
+   "primary": [
+    "quads",
+    "glutes"
+   ],
+   "secondary": [
+    "hamstrings"
+   ],
+   "unilateral": true
+  },
+  {
+   "id": "row_smith",
+   "name": "Smith machine bent-over row",
+   "pattern": "horizontal_pull",
+   "equipment": [
+    "machine"
+   ],
+   "primary": [
+    "back"
+   ],
+   "secondary": [
+    "rear_delt",
+    "biceps"
+   ],
+   "axial": true
+  },
+  {
+   "id": "row_tbar",
+   "name": "T-bar row (remada cavalinho)",
+   "pattern": "horizontal_pull",
+   "equipment": [
+    "barbell"
+   ],
+   "primary": [
+    "back"
+   ],
+   "secondary": [
+    "rear_delt",
+    "biceps"
+   ],
+   "axial": true
+  },
+  {
+   "id": "row_tbar_supported",
+   "name": "Chest-supported T-bar row",
+   "pattern": "horizontal_pull",
+   "equipment": [
+    "machine"
+   ],
+   "primary": [
+    "back"
+   ],
+   "secondary": [
+    "rear_delt",
+    "biceps"
+   ]
+  },
+  {
+   "id": "row_hammer_high",
+   "name": "High row machine",
+   "pattern": "vertical_pull",
+   "equipment": [
+    "machine"
+   ],
+   "primary": [
+    "back"
+   ],
+   "secondary": [
+    "biceps",
+    "rear_delt"
+   ]
+  },
+  {
+   "id": "pulldown_close_grip",
+   "name": "Close-grip pulldown (puxada triângulo)",
+   "pattern": "vertical_pull",
+   "equipment": [
+    "machine"
+   ],
+   "primary": [
+    "back"
+   ],
+   "secondary": [
+    "biceps"
+   ]
+  },
+  {
+   "id": "pullover_machine",
+   "name": "Machine pullover",
+   "pattern": "vertical_pull",
+   "equipment": [
+    "machine"
+   ],
+   "primary": [
+    "back"
+   ],
+   "secondary": []
+  },
+  {
+   "id": "curl_scott_bench",
+   "name": "Preacher curl bench (rosca scott no banco)",
+   "pattern": "isolation_arm",
+   "equipment": [
+    "barbell",
+    "bench"
+   ],
+   "primary": [
+    "biceps"
+   ],
+   "secondary": []
+  },
+  {
+   "id": "curl_scott_machine",
+   "name": "Preacher curl machine (rosca scott na máquina)",
+   "pattern": "isolation_arm",
+   "equipment": [
+    "machine"
+   ],
+   "primary": [
+    "biceps"
+   ],
+   "secondary": []
+  },
+  {
+   "id": "curl_cable",
+   "name": "Cable curl (rosca na polia)",
+   "pattern": "isolation_arm",
+   "equipment": [
+    "cable"
+   ],
+   "primary": [
+    "biceps"
+   ],
+   "secondary": [
+    "forearms"
+   ]
+  },
+  {
+   "id": "curl_concentration",
+   "name": "Concentration curl",
+   "pattern": "isolation_arm",
+   "equipment": [
+    "dumbbell"
+   ],
+   "primary": [
+    "biceps"
+   ],
+   "secondary": [],
+   "unilateral": true
+  },
+  {
+   "id": "triceps_french",
+   "name": "French press / overhead barbell extension (tríceps francês)",
+   "pattern": "isolation_arm",
+   "equipment": [
+    "barbell",
+    "bench"
+   ],
+   "primary": [
+    "triceps"
+   ],
+   "secondary": []
+  },
+  {
+   "id": "triceps_rope",
+   "name": "Rope pushdown (tríceps corda)",
+   "pattern": "isolation_arm",
+   "equipment": [
+    "cable"
+   ],
+   "primary": [
+    "triceps"
+   ],
+   "secondary": []
+  },
+  {
+   "id": "triceps_kickback",
+   "name": "Triceps kickback",
+   "pattern": "isolation_arm",
+   "equipment": [
+    "dumbbell"
+   ],
+   "primary": [
+    "triceps"
+   ],
+   "secondary": [],
+   "unilateral": true
+  },
+  {
+   "id": "triceps_machine",
+   "name": "Triceps extension machine",
+   "pattern": "isolation_arm",
+   "equipment": [
+    "machine"
+   ],
+   "primary": [
+    "triceps"
+   ],
+   "secondary": []
+  },
+  {
+   "id": "bench_decline",
+   "name": "Decline bench press",
+   "pattern": "horizontal_push",
+   "equipment": [
+    "barbell",
+    "bench"
+   ],
+   "primary": [
+    "chest"
+   ],
+   "secondary": [
+    "triceps"
+   ]
+  },
+  {
+   "id": "crossover_cable",
+   "name": "Cable crossover (crossover)",
+   "pattern": "horizontal_push",
+   "equipment": [
+    "cable"
+   ],
+   "primary": [
+    "chest"
+   ],
+   "secondary": []
+  },
+  {
+   "id": "lateral_raise_machine",
+   "name": "Lateral raise machine",
+   "pattern": "isolation_shoulder",
+   "equipment": [
+    "machine"
+   ],
+   "primary": [
+    "side_delt"
+   ],
+   "secondary": []
+  },
+  {
+   "id": "front_raise",
+   "name": "Front raise (elevação frontal)",
+   "pattern": "isolation_shoulder",
+   "equipment": [
+    "dumbbell"
+   ],
+   "primary": [
+    "front_delt"
+   ],
+   "secondary": []
+  },
+  {
+   "id": "arnold_press",
+   "name": "Arnold press",
+   "pattern": "vertical_push",
+   "equipment": [
+    "dumbbell",
+    "bench"
+   ],
+   "primary": [
+    "front_delt"
+   ],
+   "secondary": [
+    "side_delt",
+    "triceps"
+   ]
+  },
+  {
+   "id": "leg_press_45",
+   "name": "45° leg press (leg press 45)",
+   "pattern": "knee_dominant",
+   "equipment": [
+    "machine"
+   ],
+   "primary": [
+    "quads"
+   ],
+   "secondary": [
+    "glutes"
+   ]
+  },
+  {
+   "id": "sissy_squat",
+   "name": "Sissy squat",
+   "pattern": "knee_dominant",
+   "equipment": [
+    "bodyweight"
+   ],
+   "primary": [
+    "quads"
+   ],
+   "secondary": []
+  },
+  {
+   "id": "calf_donkey",
+   "name": "Donkey calf raise",
+   "pattern": "calf",
+   "equipment": [
+    "machine"
+   ],
+   "primary": [
+    "calves"
+   ],
+   "secondary": []
+  },
+  {
+   "id": "russian_twist",
+   "name": "Russian twist",
+   "pattern": "core",
+   "equipment": [
+    "bodyweight"
+   ],
+   "primary": [
+    "core"
+   ],
+   "secondary": []
+  },
+  {
+   "id": "side_plank",
+   "name": "Side plank (prancha lateral)",
+   "pattern": "core",
+   "equipment": [
+    "bodyweight"
+   ],
+   "primary": [
+    "core"
+   ],
+   "secondary": [],
+   "unilateral": true
   }
  ],
  "substitutions": {
@@ -1179,6 +1626,18 @@
     "pec_deck"
    ],
    "upright_row": [
+    "lateral_raise_db",
+    "face_pull"
+   ],
+   "bench_smith": [
+    "bench_dumbbell",
+    "chest_press_machine"
+   ],
+   "ohp_smith": [
+    "lateral_raise_machine",
+    "ohp_dumbbell"
+   ],
+   "front_raise": [
     "lateral_raise_db",
     "face_pull"
    ]
@@ -1207,6 +1666,20 @@
    "good_morning": [
     "hip_thrust",
     "leg_curl_lying"
+   ],
+   "row_tbar": [
+    "row_tbar_supported",
+    "row_chest_supported",
+    "row_cable_seated"
+   ],
+   "squat_smith": [
+    "leg_press_45",
+    "split_squat_bulgarian",
+    "hip_thrust_machine"
+   ],
+   "row_smith": [
+    "row_chest_supported",
+    "row_machine"
    ]
   },
   "knee_pain": {
@@ -1225,6 +1698,18 @@
    "squat_bodyweight": [
     "glute_bridge",
     "hip_thrust"
+   ],
+   "leg_press_45": [
+    "hip_thrust_machine",
+    "leg_curl_lying"
+   ],
+   "sissy_squat": [
+    "leg_press_45",
+    "leg_extension"
+   ],
+   "squat_smith": [
+    "hip_thrust_machine",
+    "leg_press_45"
    ]
   },
   "wrist_pain": {
@@ -1245,6 +1730,14 @@
    "curl_barbell": [
     "curl_hammer",
     "curl_dumbbell"
+   ],
+   "triceps_french": [
+    "triceps_rope",
+    "triceps_machine"
+   ],
+   "curl_scott_bench": [
+    "curl_hammer",
+    "curl_cable"
    ]
   }
  }

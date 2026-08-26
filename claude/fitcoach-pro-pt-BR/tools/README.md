@@ -31,8 +31,9 @@ Everything here is deterministic, tested, and refuses when the data cannot suppo
 | `ingest.py` | Import Samsung Health, Garmin, Apple Health, Strava and generic CSV exports |
 | `dashboard.py` | Render the log as a self-contained HTML page, inline SVG, no dependencies |
 | `sheet.py` | Validate a filled-in client sheet against the program it should render |
+| `cohort.py` | Rank an entire client roster by who needs attention this week |
 | `cli.py` | Single entry point |
-| `../data/exercises.json` | 77 exercises: movement pattern, equipment, primary and secondary muscles, axial flag, substitution chains |
+| `../data/exercises.json` | 110 exercises: movement pattern, equipment, primary and secondary muscles, axial flag, substitution chains |
 
 ## Design notes worth knowing
 
@@ -41,6 +42,12 @@ Everything here is deterministic, tested, and refuses when the data cannot suppo
 **The weight trend is an EMA on a daily grid**, alpha 0.25, which behaves like a 7-day window. Missing days carry the previous value forward, so a skipped weigh-in does not tilt the slope. Rate of change is a least-squares fit over the smoothed series, not first-value-minus-last.
 
 **Measured TDEE uses 7,700 kcal/kg**, which is a working convention rather than a constant, and a 28-day window because early weight change is mostly glycogen and water at a very different energy cost.
+
+**Training load is weighted by systemic cost, not counted flat.** An axial compound set costs 1.4, a supported compound 1.0, unilateral 0.8, isolation 0.5, core 0.4. Counting them equally lets a client trade curls for deadlifts without the acute:chronic ratio ever flagging it — the exact spike it exists to catch. Unknown exercises weigh 1.0, never zero, so an uncatalogued lift is never invisible to load monitoring.
+
+**Expenditure is corrected for high adiposity.** Above BMI 30 with no body-composition data, Mifflin-St Jeor is flagged as overestimating by 200-400 kcal; with fat-free mass known, Katch-McArdle takes over alone. Left uncorrected, a prescribed deficit lands near maintenance and the first weeks read as a failure of adherence.
+
+**1RM refuses above 10 reps** — and note that Epley and Brzycki intersect exactly at 10, so their agreement there is arithmetic coincidence rather than evidence. The caution is driven by rep count.
 
 **Indirect sets are reported in their own column at half weight.** That is a reporting convention from the literature, not validated physiological equivalence, and the tool keeps them separate so nobody can quietly use them to justify low direct volume.
 
@@ -64,6 +71,6 @@ python3 -m unittest discover -s tools/tests -t tools
 
 The suite ships inside both language skills and runs from either — it discovers which copy it is in and adapts. `build.sh` runs it from both, so a trainer who installed only the translated skill can verify their install with the same command.
 
-137 tests covering hand-checked BMR fixtures, macro arithmetic, EMA smoothing, every rate verdict, the refusal thresholds, append-only and idempotency guarantees, volume landmarks by profile, ACWR bands, deload signal counting, each import adapter, re-import idempotency, the dashboard's degradation, escaping and self-containment, sheet validation, local-catalog merging and validation, and structural parity between the two language versions.
+172 tests covering hand-checked BMR fixtures, macro arithmetic, EMA smoothing, every rate verdict, the refusal thresholds, append-only and idempotency guarantees, volume landmarks by profile, ACWR bands, deload signal counting, each import adapter, re-import idempotency, the dashboard's degradation, escaping and self-containment, sheet validation, local-catalog merging and validation, and structural parity between the two language versions.
 
 The repository's `build.sh` runs them. If they fail, the numbers cannot be trusted and nothing downstream matters.

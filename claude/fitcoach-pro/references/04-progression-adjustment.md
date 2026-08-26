@@ -73,6 +73,8 @@ Judging load by feel works until the client's week gets strange. The acute:chron
 python3 tools/cli.py --client clients/<name> load acwr
 ```
 
+**Sets are weighted by systemic cost**, not counted flat. Four sets of heavy deadlift and four of lateral raise are not the same week: axial compounds count 1.4, supported compounds 1.0, unilateral 0.8, isolation 0.5, core 0.4. A flat count lets a client swap arm work for deadlifts and never trip the ratio — which is the exact spike it exists to catch. `--flat` restores the unweighted version if you want to compare.
+
 | Ratio | Reading | Action |
 | :--- | :--- | :--- |
 | Under 0.8 | Acute load below the recent norm | A missed week, not a recovery problem. Resume at the previous week's volume |

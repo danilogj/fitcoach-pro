@@ -50,7 +50,9 @@ glycogen noise dominates shorter windows.
 
 Maintenance defaults to the **component method** — BMR plus NEAT plus training plus the thermic effect of food — instead of one activity multiplier, because a multiplier hides which term is the guess. It is always NEAT.
 
-`volume check` sums weekly sets per muscle from a program file, judges each group against minimum effective and maximum recoverable volume, reports indirect sets in a separate column, and names any movement pattern the week does not cover. 77 exercises in [`data/exercises.json`](claude/fitcoach-pro/data/exercises.json), with substitution chains for shoulder, back, knee, wrist and elbow limitations.
+`volume check` sums weekly sets per muscle from a program file, judges each group against minimum effective and maximum recoverable volume, reports indirect sets in a separate column, and names any movement pattern the week does not cover. 110 exercises in [`data/exercises.json`](claude/fitcoach-pro/data/exercises.json), with substitution chains for shoulder, back, knee, wrist and elbow limitations.
+
+`cohort` ranks an entire roster by who needs attention this week — load spikes, unsafe rate of change, stalled progress, clients who stopped logging. `load acwr` weights each set by systemic cost, so a week of deadlifts does not read like a week of curls.
 
 Full documentation in [`tools/README.md`](claude/fitcoach-pro/tools/README.md). 109 tests, standard library only, no install step.
 

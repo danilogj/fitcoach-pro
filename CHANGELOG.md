@@ -1,5 +1,27 @@
 # Changelog
 
+## 2.4.0 — 2026-08-26
+
+Six blind spots closed, from a physiological and operational review.
+
+**ACWR now weights sets by systemic cost.** Four sets of heavy deadlift and four of lateral raise were counted identically, so a client could trade arm work for axial loading and never trip the ratio — the exact spike it exists to catch. Axial compounds count 1.4, supported compounds 1.0, unilateral 0.8, isolation 0.5, core 0.4; unknown exercises weigh 1.0, never zero. A regression test swaps three weeks of curls for a week of deadlifts: flat counting reads 1.00, weighted reads a spike.
+
+**Expenditure corrected for high adiposity.** Above BMI 30 with no body-composition data, `metrics targets` now warns that Mifflin-St Jeor takes total body weight and overestimates by 200-400 kcal — enough to turn a prescribed deficit into maintenance. With fat-free mass known it uses Katch-McArdle alone; `--adjusted-weight` applies the Devine-based clinical convention otherwise.
+
+**1RM refuses above 10 reps** instead of 12, with an explanation: a 15-rep set measures fatigue resistance, not maximal force. Writing the test surfaced that Epley and Brzycki intersect exactly at 10 reps, so formula agreement is worthless as a confidence signal there — the caution is now driven by rep count, and the crossing point is documented in the test.
+
+**Hydration, fibre and per-meal protein** now come out of `metrics targets`. They were in the reference file and computed by nobody, so they quietly got dropped. A protein split too thin across too many meals raises a warning.
+
+**Catalog grown from 77 to 110 exercises** — adductor and abductor machines, hip thrust machine, Smith variations, T-bar rows, preacher curls, rope pushdowns, French press, 45° leg press, standing leg curl and more, with Portuguese names where a Brazilian gym uses them. Substitution chains extended to match.
+
+**`cohort`** — one screen for every client. The rest of the CLI operates on one at a time, which is right for prescribing and wrong for Monday morning. It ranks the whole roster by severity: load spikes, unsafe rate of change, stalled progress, and anyone who stopped logging. Measured against a roster-wide reference date, because using each client's own last entry reported everyone as current — including the one who disappeared three weeks ago.
+
+**Client sheet gained backup and restore.** The record lived only in `localStorage`, which the browser clears without warning and which does not survive a new phone — and outside claude.ai there was no export route at all. A copy-and-paste text panel works in every browser, and the `.md` export falls back to it instead of just reporting failure.
+
+**Portion equivalence tables** in the nutrition reference: what delivers 20 g of protein, 30 g of carbohydrate, 10 g of fat, in the foods people actually buy. A macro target is useless to a client who cannot turn it into a plate. Marked as education, not prescription, with the 10-20% variation stated.
+
+35 new tests (172 total).
+
 ## 2.3.1 — 2026-08-26
 
 **The test suite now runs from either language copy.** It ships inside both skills, but had the English template filename, placeholder names and folder layout hard-coded — so running it from `fitcoach-pro-pt-BR` produced 16 errors and a failure, and the parity class silently compared the translated copy against itself.

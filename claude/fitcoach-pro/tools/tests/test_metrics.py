@@ -178,14 +178,17 @@ class TestOneRepMax(unittest.TestCase):
         r = m.one_rep_max(100, 5)
         self.assertAlmostEqual(r.epley, 116.7, places=1)      # 100*(1+5/30)
         self.assertAlmostEqual(r.brzycki, 112.5, places=1)    # 100*36/32
-        self.assertIsNone(r.caution)
+        # the two formulas disagree by 4.2 kg at 5 reps, and the caution says so
+        self.assertIn("range", r.caution)
 
     def test_high_reps_get_a_caution(self):
-        self.assertIsNotNone(m.one_rep_max(60, 10).caution)
+        self.assertIn("least reliable", m.one_rep_max(60, 10).caution)
 
-    def test_refuses_beyond_twelve_reps(self):
+    def test_refuses_beyond_ten_reps(self):
         with self.assertRaises(m.InsufficientData):
             m.one_rep_max(60, 15)
+        with self.assertRaises(m.InsufficientData):
+            m.one_rep_max(60, 12)
 
 
 class TestProjection(unittest.TestCase):

@@ -73,6 +73,8 @@ Julgar carga por sensação funciona até a semana do aluno ficar estranha. A ra
 python3 tools/cli.py --client alunos/<nome> load acwr
 ```
 
+**As séries são ponderadas pelo custo sistêmico**, não contadas de forma plana. Quatro séries de terra pesado e quatro de elevação lateral não são a mesma semana: composto axial conta 1,4; composto apoiado 1,0; unilateral 0,8; isolado 0,5; core 0,4. Contagem plana permite ao aluno trocar trabalho de braço por terra sem a razão acusar nada — que é exatamente o pico que ela existe para pegar. O `--flat` volta à versão sem peso, se quiser comparar.
+
 | Razão | Leitura | Ação |
 | :--- | :--- | :--- |
 | Abaixo de 0,8 | Carga aguda abaixo da norma recente | Semana furada, não problema de recuperação. Retoma no volume da semana anterior |

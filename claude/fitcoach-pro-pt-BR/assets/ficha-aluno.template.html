@@ -312,6 +312,10 @@
   .foot { margin-top: 1.125rem; padding: 0 .25rem; color: var(--ink-3); font-family: var(--mono); font-size: .625rem; line-height: 1.6; }
 
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+.backup-box{width:100%;min-height:120px;font:12px/1.45 ui-monospace,SFMono-Regular,Menlo,monospace;
+padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--field);color:var(--ink);
+resize:vertical;-webkit-user-select:text;user-select:text}
+.backup-actions{display:flex;gap:8px;margin-top:8px}
 </style>
 
 <div class="wrap">
@@ -336,9 +340,23 @@
   <div class="actions">
     <button class="btn primary" id="save" type="button">Salvar</button>
     <button class="btn" id="export" type="button">Exportar .md</button>
+    <button class="btn" id="backup" type="button">Backup</button>
   </div>
 
   <p class="note" id="note" hidden></p>
+
+  <details class="rules" id="backup-panel" hidden>
+    <summary>Backup e restauração</summary>
+    <div class="rules-body">
+      <p>Seu registro fica no navegador deste celular. Limpar os dados do site, trocar de aparelho ou usar aba anônima apaga tudo. Copie este texto para algum lugar seguro — uma nota para você mesmo, uma mensagem para o professor — e dá para restaurar sempre.</p>
+      <textarea id="backup-text" class="backup-box" spellcheck="false" placeholder="Cole aqui um backup para restaurar"></textarea>
+      <div class="backup-actions">
+        <button class="btn" id="backup-copy" type="button">Copiar</button>
+        <button class="btn" id="backup-restore" type="button">Restaurar do texto</button>
+      </div>
+    </div>
+  </details>
+
 
   <details class="rules">
     <summary>Regras que valem mais que a escolha dos exercícios</summary>
@@ -1069,7 +1087,8 @@
     var nome = "log-treino-bloco1.md";
 
     if (!baixar) {
-      aviso("Download indisponível neste modo de visualização. Abra a página no claude.ai para exportar o arquivo.");
+      aviso("Download indisponível nesta visualização. O .md está na caixa abaixo — selecione e copie.");
+      mostrarBackup(md);
       return;
     }
 
@@ -1078,6 +1097,68 @@
       if (code === "declined") return;
       aviso("Não consegui entregar o arquivo (" + (code || "erro") + ").");
     });
+  });
+
+
+  /* ============ backup ============ */
+
+  // O registro vive no localStorage, que o navegador pode limpar sem avisar e
+  // que não viaja entre aparelhos. Um bloco de texto copiável é a única rota
+  // de exportação que funciona em qualquer navegador, inclusive num celular
+  // sem suporte a download.
+
+  var elBackupPanel = document.getElementById("backup-panel");
+  var elBackupText = document.getElementById("backup-text");
+
+  function mostrarBackup(texto) {
+    elBackupPanel.hidden = false;
+    elBackupPanel.open = true;
+    elBackupText.value = texto;
+    elBackupText.focus();
+    elBackupText.setSelectionRange(0, 0);
+    elBackupPanel.scrollIntoView({ block: "nearest" });
+  }
+
+  document.getElementById("backup").addEventListener("click", function () {
+    gravarLocal();
+    mostrarBackup(JSON.stringify(estado));
+  });
+
+  document.getElementById("backup-copy").addEventListener("click", function () {
+    elBackupText.select();
+    var pronto = function () {
+      var b = document.getElementById("backup-copy");
+      var antes = b.textContent;
+      b.textContent = "copiado";
+      setTimeout(function () { b.textContent = antes; }, 1500);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(elBackupText.value).then(pronto, function () {
+        try { document.execCommand("copy"); pronto(); } catch (e) {}
+      });
+    } else {
+      try { document.execCommand("copy"); pronto(); } catch (e) {}
+    }
+  });
+
+  document.getElementById("backup-restore").addEventListener("click", function () {
+    var bruto = (elBackupText.value || "").trim();
+    var lido;
+    try {
+      lido = JSON.parse(bruto);
+    } catch (e) {
+      aviso("Esse texto não é um backup válido.");
+      return;
+    }
+    if (!lido || typeof lido !== "object" || !lido.semanas) {
+      aviso("Esse texto não é um backup válido.");
+      return;
+    }
+    if (!window.confirm("Substituir o registro deste aparelho pelo backup colado?")) return;
+    estado = migrar(lido);
+    gravarLocal();
+    aviso("Registro restaurado. Recarregando.", false);
+    setTimeout(function () { window.location.reload(); }, 800);
   });
 
   document.getElementById("save").addEventListener("click", function () { salvar(); });

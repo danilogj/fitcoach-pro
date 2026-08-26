@@ -14,6 +14,41 @@ from typing import Dict, List, Optional, Sequence
 
 from metrics import InsufficientData
 
+# How much systemic cost a set carries, relative to a supported compound.
+# Four sets of heavy deadlift and four sets of lateral raise are not the same
+# week of training, and counting them equally lets axial fatigue accumulate
+# without the ratio ever flagging it.
+FATIGUE_WEIGHTS = {
+    "axial_compound": 1.4,      # bar on the back or in the hands: squat, deadlift, RDL
+    "compound": 1.0,            # supported or machine-based multi-joint work
+    "unilateral": 0.8,          # meaningful load, half the systemic cost per set
+    "isolation": 0.5,           # curls, raises, extensions
+    "core": 0.4,
+}
+
+_PATTERN_CLASS = {
+    "horizontal_push": "compound", "vertical_push": "compound",
+    "horizontal_pull": "compound", "vertical_pull": "compound",
+    "knee_dominant": "compound", "hip_dominant": "compound",
+    "unilateral_lower": "unilateral", "calf": "isolation",
+    "isolation_shoulder": "isolation", "isolation_arm": "isolation",
+    "core": "core",
+}
+
+
+def fatigue_weight(exercise: Optional[dict]) -> float:
+    """Systemic cost multiplier for one set of a given exercise.
+
+    Unknown exercises weigh 1.0 — the neutral assumption, not zero, so an
+    uncatalogued lift is never invisible to load monitoring.
+    """
+    if not exercise:
+        return FATIGUE_WEIGHTS["compound"]
+    if exercise.get("axial"):
+        return FATIGUE_WEIGHTS["axial_compound"]
+    klass = _PATTERN_CLASS.get(exercise.get("pattern"), "compound")
+    return FATIGUE_WEIGHTS[klass]
+
 
 @dataclass(frozen=True)
 class Acwr:
@@ -137,17 +172,37 @@ def deload_check(*, weeks_since_deload: Optional[int] = None,
     return DeloadCheck(False, [], "no deload indicated; keep progressing")
 
 
-def session_load(exercises: Sequence[dict], mode: str = "sets") -> float:
-    """Load for one session: hard sets, or tonnage when loads were logged."""
+def session_load(exercises: Sequence[dict], mode: str = "weighted",
+                 catalog=None) -> float:
+    """Load for one session.
+
+    "weighted" (the default) counts sets scaled by systemic cost, so a session
+    of heavy squats and deadlifts outweighs the same set count of arm work.
+    "sets" counts them flat, and "tonnage" multiplies load by reps.
+    """
     if mode == "sets":
         return float(sum(len(e.get("sets", [])) for e in exercises))
+
     if mode == "tonnage":
         total = 0.0
         for exercise in exercises:
-            for s in exercise.get("sets", []):
-                load = s.get("load_kg")
-                reps = s.get("reps")
+            for item in exercise.get("sets", []):
+                load = item.get("load_kg")
+                reps = item.get("reps")
                 if load and reps:
                     total += float(load) * float(reps)
         return total
-    raise InsufficientData("mode must be 'sets' or 'tonnage'")
+
+    if mode == "weighted":
+        total = 0.0
+        for exercise in exercises:
+            entry = None
+            if catalog is not None and exercise.get("name"):
+                try:
+                    entry = catalog.find(exercise["name"])
+                except Exception:
+                    entry = None      # uncatalogued lifts fall back to neutral weight
+            total += len(exercise.get("sets", [])) * fatigue_weight(entry)
+        return round(total, 2)
+
+    raise InsufficientData("mode must be 'weighted', 'sets' or 'tonnage'")

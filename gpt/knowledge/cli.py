@@ -14,6 +14,7 @@ Commands:
     sheet       validate a filled-in client sheet before handing it over
     dashboard   render the log as a self-contained HTML page
     checkin     everything the weekly check-in needs, in one call
+    cohort      one screen for every client: who needs attention this week
 
 Every command exits 2 when the data cannot support an honest answer, printing
 what is missing. That is a feature: a guessed number is worse than no number.
@@ -28,6 +29,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+import cohort as cohort_mod  # noqa: E402
 import dashboard as dash_mod  # noqa: E402
 import ingest as ingest_mod  # noqa: E402
 import load as load_mod  # noqa: E402
@@ -76,6 +78,9 @@ def main(argv=None) -> int:
     t.add_argument("--delta", type=float, help="kcal above/below maintenance (overrides goal default)")
     t.add_argument("--protein-g-kg", type=float, default=1.8)
     t.add_argument("--fat-g-kg", type=float, default=0.9)
+    t.add_argument("--meals", type=int, default=4)
+    t.add_argument("--adjusted-weight", action="store_true",
+                   help="compute Mifflin on adjusted body weight (high adiposity)")
     tr = msub.add_parser("trend")
     tr.add_argument("--alpha", type=float, default=0.25)
     ra = msub.add_parser("rate")
@@ -116,6 +121,9 @@ def main(argv=None) -> int:
     la = lsub.add_parser("acwr")
     la.add_argument("--acute-days", type=int, default=7)
     la.add_argument("--chronic-days", type=int, default=28)
+    la.add_argument("--flat", action="store_true",
+                    help="count sets flat instead of weighting them by systemic cost")
+    la.add_argument("--catalog", type=Path)
     ld = lsub.add_parser("deload")
     ld.add_argument("--weeks-since-deload", type=int)
     ld.add_argument("--performance-dropping-weeks", type=int, default=0)
@@ -146,6 +154,13 @@ def main(argv=None) -> int:
     p.add_argument("--name", default="Client")
     p.add_argument("--goal", default="loss", choices=["loss", "gain", "maintain"])
     p.add_argument("--target-kg", type=float)
+
+    p = sub.add_parser("cohort", help="status of every client at once")
+    p.add_argument("--root", type=Path, default=Path("clients"),
+                   help="folder holding one directory per client (default: clients)")
+    p.add_argument("--stale-days", type=int, default=10)
+    p.add_argument("--goal", default="loss", choices=["loss", "gain", "maintain"],
+                   help="default goal when a client folder does not state one")
 
     p = sub.add_parser("checkin")
     _profile_args(p, required=False)
@@ -198,6 +213,8 @@ def _dispatch(args) -> int:
         return _cmd_sheet(args)
     if args.command == "dashboard":
         return _cmd_dashboard(args)
+    if args.command == "cohort":
+        return _cmd_cohort(args)
     if args.command == "checkin":
         return _cmd_checkin(args)
     raise SystemExit("unknown command")
@@ -263,9 +280,13 @@ def _cmd_metrics(args) -> int:
         return 0
 
     if args.metric in ("bmr", "targets"):
-        b = m.bmr(args.weight_kg, args.height_cm, args.age, args.sex, args.ffm_kg)
+        b = m.bmr(args.weight_kg, args.height_cm, args.age, args.sex, args.ffm_kg,
+                  use_adjusted_weight=getattr(args, "adjusted_weight", False))
         if args.metric == "bmr":
-            _emit(args, b.as_dict(), _fmt_bmr(b))
+            text = _fmt_bmr(b)
+            if b.warning:
+                text += "\nNOTE: " + b.warning
+            _emit(args, b.as_dict(), text)
             return 0
         if args.method == "components":
             breakdown = m.tdee_components(b.used, args.neat_pct, args.sessions_per_week)
@@ -276,7 +297,8 @@ def _cmd_metrics(args) -> int:
         lo, hi = m.tdee_range(maint)
         delta = args.delta if args.delta is not None else {"loss": -400.0, "gain": 300.0, "maintain": 0.0}[args.goal]
         target = maint + delta
-        mac = m.macros(target, args.weight_kg, args.sex, args.protein_g_kg, args.fat_g_kg)
+        mac = m.macros(target, args.weight_kg, args.sex, args.protein_g_kg, args.fat_g_kg,
+                       meals=args.meals)
         payload = {"bmr": b.as_dict(), "maintenance_kcal": maint,
                    "maintenance_range": [lo, hi], "delta_kcal": delta, "macros": mac.as_dict(),
                    "breakdown": breakdown.as_dict() if breakdown else None}
@@ -285,7 +307,11 @@ def _cmd_metrics(args) -> int:
                  if breakdown else "") +
                 "\nmaintenance ~%d kcal (likely %d-%d)\ntarget %d kcal (%+d)"
                 "\nprotein %d g · fat %d g · carbs %d g"
-                % (maint, lo, hi, mac.kcal, delta, mac.protein_g, mac.fat_g, mac.carb_g))
+                "\nfibre %d g · water %.1f L · %d meals of ~%d g protein"
+                % (maint, lo, hi, mac.kcal, delta, mac.protein_g, mac.fat_g, mac.carb_g,
+                   mac.fibre_g, mac.water_ml / 1000.0, mac.meals, mac.protein_per_meal_g))
+        if b.warning:
+            text += "\nNOTE: " + b.warning
         if mac.floor_warning:
             text += "\nWARNING: " + mac.floor_warning
         _emit(args, payload, text)
@@ -423,11 +449,16 @@ def _fmt_exercise(e: dict) -> str:
 def _cmd_load(args) -> int:
     if args.load_command == "acwr":
         path = _log_path(args)
-        by_day = {d: float(v) for d, v in logstore.hard_sets_by_day(path).items()}
+        if args.flat:
+            by_day = {d: float(v) for d, v in logstore.hard_sets_by_day(path).items()}
+            unit = "sets/day"
+        else:
+            by_day = logstore.weighted_load_by_day(path, _catalog(args))
+            unit = "load/day"
         r = load_mod.acwr(by_day, acute_days=args.acute_days, chronic_days=args.chronic_days)
         _emit(args, r.as_dict(),
-              "ACWR %.2f (acute %.1f vs chronic %.1f sets/day) — %s: %s"
-              % (r.ratio, r.acute_per_day, r.chronic_per_day, r.verdict, r.note))
+              "ACWR %.2f (acute %.1f vs chronic %.1f %s) — %s: %s"
+              % (r.ratio, r.acute_per_day, r.chronic_per_day, unit, r.verdict, r.note))
         return 0
 
     r = load_mod.deload_check(
@@ -494,6 +525,14 @@ def _cmd_dashboard(args) -> int:
     return 0
 
 
+def _cmd_cohort(args) -> int:
+    root = args.root if args.root.is_absolute() or args.root.exists() else (args.client or Path(".")) / args.root
+    rows = cohort_mod.scan(root if root.exists() else args.root,
+                           goal_by_client=None, stale_days=args.stale_days)
+    _emit(args, [r.as_dict() for r in rows], cohort_mod.render(rows))
+    return 0
+
+
 def _cmd_checkin(args) -> int:
     """Everything the weekly check-in needs, with each piece degrading on its own."""
     path = _log_path(args)
@@ -532,7 +571,7 @@ def _cmd_checkin(args) -> int:
                 out["projection"] = {"unavailable": str(exc)}
 
     try:
-        by_day = {d: float(v) for d, v in logstore.hard_sets_by_day(path).items()}
+        by_day = logstore.weighted_load_by_day(path, vol.Catalog())
         out["acwr"] = load_mod.acwr(by_day).as_dict()
     except m.InsufficientData as exc:
         out["acwr"] = {"unavailable": str(exc)}

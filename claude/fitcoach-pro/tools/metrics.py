@@ -42,13 +42,43 @@ class BmrResult:
     used: float
     method: str
     spread: Optional[float]
+    bmi: Optional[float] = None
+    warning: Optional[str] = None
 
     def as_dict(self) -> dict:
         return asdict(self)
 
 
+def bmi(weight_kg: float, height_cm: float) -> float:
+    if weight_kg <= 0 or height_cm <= 0:
+        raise InsufficientData("weight and height must be positive")
+    return round(weight_kg / (height_cm / 100.0) ** 2, 1)
+
+
+def adjusted_weight(weight_kg: float, height_cm: float, sex: str,
+                    factor: float = 0.4) -> float:
+    """Adjusted body weight for high-adiposity cases.
+
+    Mifflin-St Jeor takes total body weight, and adipose tissue is far less
+    metabolically active than lean tissue. Above roughly BMI 30 that inflates
+    the estimate by a few hundred kcal, which turns a prescribed deficit into
+    maintenance and makes the first weeks look like a failure of adherence.
+
+    Ideal weight by the Devine equation, plus 40% of the excess. This is a
+    clinical convention, not a measurement — when body composition is known,
+    Katch-McArdle beats it and should be used instead.
+    """
+    sex = _normalize_sex(sex)
+    inches_over_5ft = max(0.0, (height_cm - 152.4) / 2.54)
+    ideal = (50.0 if sex == SEX_MALE else 45.5) + 2.3 * inches_over_5ft
+    if weight_kg <= ideal:
+        return round(weight_kg, 1)
+    return round(ideal + factor * (weight_kg - ideal), 1)
+
+
 def bmr(weight_kg: float, height_cm: float, age: int, sex: str,
-        fat_free_mass_kg: Optional[float] = None) -> BmrResult:
+        fat_free_mass_kg: Optional[float] = None,
+        use_adjusted_weight: bool = False) -> BmrResult:
     """Mifflin-St Jeor, plus Katch-McArdle when fat-free mass is known.
 
     When both are available the mean is used and the spread reported. A wide
@@ -58,18 +88,39 @@ def bmr(weight_kg: float, height_cm: float, age: int, sex: str,
     if weight_kg <= 0 or height_cm <= 0 or age <= 0:
         raise InsufficientData("weight, height and age must be positive")
 
-    mif = 10.0 * weight_kg + 6.25 * height_cm - 5.0 * age + (5.0 if sex == SEX_MALE else -161.0)
+    index = bmi(weight_kg, height_cm)
+    mif_weight = weight_kg
+    warning = None
+
+    if use_adjusted_weight:
+        mif_weight = adjusted_weight(weight_kg, height_cm, sex)
+        warning = ("Mifflin computed on adjusted body weight %.1f kg instead of %.1f kg "
+                   "(clinical convention for high adiposity, not a measurement)"
+                   % (mif_weight, weight_kg))
+    elif index >= 30 and fat_free_mass_kg is None:
+        warning = ("BMI %.1f with no body-composition data: Mifflin uses total body weight and "
+                   "overestimates expenditure by roughly 200-400 kcal at this adiposity. Measure "
+                   "fat-free mass and let Katch-McArdle take over, or pass --adjusted-weight. "
+                   "Either way, the weekly weight average settles it in three weeks." % index)
+
+    mif = 10.0 * mif_weight + 6.25 * height_cm - 5.0 * age + (5.0 if sex == SEX_MALE else -161.0)
 
     if fat_free_mass_kg is None:
-        return BmrResult(round(mif, 1), None, round(mif, 1), "mifflin", None)
+        return BmrResult(round(mif, 1), None, round(mif, 1), "mifflin", None, index, warning)
 
     if not 0 < fat_free_mass_kg < weight_kg:
         raise InsufficientData("fat-free mass must be positive and below body weight")
 
     katch = 370.0 + 21.6 * fat_free_mass_kg
     used = (mif + katch) / 2.0
-    return BmrResult(round(mif, 1), round(katch, 1), round(used, 1), "mean(mifflin,katch)",
-                     round(abs(mif - katch), 1))
+    if index >= 30:
+        # with real body composition, the equation built on lean mass is the better one
+        used = katch
+        warning = ("BMI %.1f: using Katch-McArdle alone. Mifflin takes total body weight and "
+                   "overestimates at this adiposity." % index)
+    return BmrResult(round(mif, 1), round(katch, 1), round(used, 1),
+                     "katch" if index >= 30 else "mean(mifflin,katch)",
+                     round(abs(mif - katch), 1), index, warning)
 
 
 def tdee(bmr_kcal: float, activity: str) -> float:
@@ -142,14 +193,23 @@ class MacroTarget:
     fat_g_per_kg: float
     carb_g_per_kg: float
     floor_warning: Optional[str]
+    fibre_g: float = 0.0
+    water_ml: float = 0.0
+    meals: int = 4
+    protein_per_meal_g: float = 0.0
 
     def as_dict(self) -> dict:
         return asdict(self)
 
 
 def macros(target_kcal: float, weight_kg: float, sex: str,
-           protein_g_kg: float = 1.8, fat_g_kg: float = 0.9) -> MacroTarget:
-    """Protein and fat by body weight; carbohydrate takes the remainder."""
+           protein_g_kg: float = 1.8, fat_g_kg: float = 0.9,
+           meals: int = 4, water_ml_per_kg: float = 35.0) -> MacroTarget:
+    """Protein and fat by body weight; carbohydrate takes the remainder.
+
+    Also returns fibre, water and per-meal protein — targets the reference file
+    documents but that nobody computes by hand, so they quietly get dropped.
+    """
     sex = _normalize_sex(sex)
     if target_kcal <= 0 or weight_kg <= 0:
         raise InsufficientData("target calories and weight must be positive")
@@ -173,6 +233,17 @@ def macros(target_kcal: float, weight_kg: float, sex: str,
         warning = ("target of %d kcal is below the %d kcal floor for %s without clinical "
                    "supervision" % (round(target_kcal), round(floor), sex))
 
+    if not 2 <= meals <= 8:
+        raise InsufficientData("meals per day must be between 2 and 8")
+
+    # 14 g of fibre per 1000 kcal, the usual population guideline, held inside 25-40 g
+    fibre = min(40.0, max(25.0, target_kcal / 1000.0 * 14.0))
+    per_meal = protein_g / meals
+    if per_meal < 0.25 * weight_kg and meals > 3:
+        warning = (warning + " · " if warning else "") + (
+            "%.0f g of protein per meal is below the ~0.3 g/kg that maximises the response; "
+            "fewer, larger meals would work better" % per_meal)
+
     return MacroTarget(
         kcal=round(target_kcal, 0),
         protein_g=round(protein_g, 0),
@@ -182,6 +253,10 @@ def macros(target_kcal: float, weight_kg: float, sex: str,
         fat_g_per_kg=round(fat_g_kg, 2),
         carb_g_per_kg=round(carb_g / weight_kg, 2),
         floor_warning=warning,
+        fibre_g=round(fibre, 0),
+        water_ml=round(weight_kg * water_ml_per_kg, -1),
+        meals=meals,
+        protein_per_meal_g=round(per_meal, 0),
     )
 
 
@@ -358,16 +433,29 @@ def one_rep_max(load_kg: float, reps: int) -> OneRepMax:
     """Estimated 1RM by Epley and Brzycki. Estimate, never a prescription."""
     if load_kg <= 0 or reps <= 0:
         raise InsufficientData("load and reps must be positive")
-    if reps > 12:
+    if reps > 10:
         raise InsufficientData(
-            "1RM estimates degrade badly above 12 reps; use a heavier set"
+            "1RM formulas are validated on low-rep sets and inflate badly above 10 reps — "
+            "a 15-rep set measures resistance to acidosis, not maximal force. Test with a "
+            "set of 3-8 reps instead."
         )
     epley = load_kg * (1 + reps / 30.0)
     brzycki = load_kg * 36.0 / (37.0 - reps)
+    spread = abs(epley - brzycki)
+    mean = (epley + brzycki) / 2
+
     caution = None
-    if reps > 8:
-        caution = "estimated from a high-rep set; treat the number as a wide range"
-    return OneRepMax(round(epley, 1), round(brzycki, 1), round((epley + brzycki) / 2, 1), reps, caution)
+    if reps > 6:
+        # the two equations happen to cross near 10 reps, so agreement here is
+        # arithmetic coincidence, not evidence that the estimate is good
+        caution = ("estimated from a %d-rep set, where these formulas are least reliable — "
+                   "high-rep performance reflects fatigue resistance as much as maximal force. "
+                   "Treat it as a wide range and re-test with 3-6 reps when the number matters."
+                   % reps)
+    elif spread > 0.02 * mean:
+        caution = ("Epley and Brzycki differ by %.1f kg here — use the range %.1f-%.1f, not the "
+                   "midpoint" % (spread, min(epley, brzycki), max(epley, brzycki)))
+    return OneRepMax(round(epley, 1), round(brzycki, 1), round(mean, 1), reps, caution)
 
 
 def projection(trend: Sequence[TrendPoint], target_kg: float,

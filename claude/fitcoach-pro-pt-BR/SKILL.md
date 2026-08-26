@@ -83,6 +83,7 @@ python3 tools/cli.py [--client DIR | --log ARQUIVO] [--json] <comando>
 | Tabela de landmarks | `volume landmarks` |
 | Buscar / filtrar / substituir exercício | `exercise find\|filter\|substitute` |
 | Carga aguda:crônica | `load acwr` |
+| **Todos os alunos numa tela** | `cohort --root alunos` |
 | Decisão de deload | `load deload --sleep-hours-avg .. --soreness-avg ..` |
 | Importar export de wearable | `ingest <arquivo> [--inspect] [--dry-run] [--map ..]` |
 | Gerar o dashboard HTML | `dashboard --name .. --goal .. --target-kg ..` |
@@ -94,6 +95,14 @@ python3 tools/cli.py [--client DIR | --log ARQUIVO] [--json] <comando>
 **`metrics targets` usa o método por componentes por padrão** — TMB + NEAT + treino + efeito térmico — em vez de um multiplicador único, porque o multiplicador esconde qual termo é o chute. É sempre o NEAT.
 
 **`metrics tdee-observed` é o que importa no check-in.** Mede o gasto pela ingestão real contra a variação real de peso. Recusa abaixo de 10 dias de refeição registrada.
+
+**O `load acwr` pondera cada série pelo custo sistêmico.** Quatro séries de terra pesado não são quatro séries de elevação lateral, e contar igual deixa a fadiga axial subir sem a razão perceber. Composto axial conta 1,4; composto apoiado 1,0; unilateral 0,8; isolado 0,5; core 0,4. O `--flat` volta à contagem simples.
+
+**O `cohort` responde a pergunta de segunda de manhã** — não "como está a Maria", e sim "quais quatro dos meus vinte e cinco precisam de mim esta semana". Ele ordena as pastas por gravidade: pico de carga, ritmo inseguro, progresso travado, e quem parou de registrar.
+
+**O `metrics targets` avisa acima de IMC 30** que a Mifflin-St Jeor usa o peso corporal total e superestima o gasto em 200-400 kcal nessa adiposidade — o que transforma o déficit prescrito em manutenção. Com massa magra conhecida ele passa a usar só Katch-McArdle; o `--adjusted-weight` aplica a convenção clínica quando não há composição.
+
+**O `metrics 1rm` recusa acima de 10 repetições.** Série de 15 mede resistência à acidose, não força máxima. Repare que Epley e Brzycki se cruzam exatamente em 10 reps, então concordância ali é coincidência aritmética — a ressalva vem do número de repetições, não da divergência.
 
 **O `ingest` lê arquivos exportados, não APIs.** Samsung Health, Garmin, Apple Health, Strava, ou qualquer CSV. Reimportar o mesmo arquivo não duplica nada. Quando um export não casar, `--inspect` mostra as colunas reais e `--map` resolve numa flag — ver `references/06-avaliacao-corporal.md §5`.
 

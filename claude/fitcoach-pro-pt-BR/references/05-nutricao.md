@@ -89,7 +89,56 @@ Nunca monte cardápio antes de ter as respostas do Bloco 4 da anamnese — quem 
 | −200 kcal | Corta ~30 g de castanha e ~100 g de arroz cozido |
 | Bater a proteína sem enjoar da mesma carne | 1 scoop de whey substitui parte de uma refeição |
 
-**Substituições por grupo** valem mais que a lista fechada: qualquer carne magra ≈ qualquer outra em porção equivalente; arroz, batata, macarrão e aveia são intercambiáveis por peso cozido aproximado. Ensine a troca em vez de reescrever o plano.
+**Substituições por grupo** valem mais que a lista fechada. Ensine a troca em vez de reescrever o plano.
+
+### Tabela de equivalência de porções
+
+Alvo de macro não serve para quem não sabe transformar "150 g de proteína" em comida. Estas são as porções que entregam uma unidade de cada macro, para o aluno remontar a refeição sozinho.
+
+**≈ 20 g de proteína**
+
+| Alimento | Porção |
+| :--- | :--- |
+| Peito de frango cru | 90 g |
+| Carne bovina magra crua (patinho, coxão mole) | 95 g |
+| Peixe branco (tilápia, merluza) | 100 g |
+| Atum em lata, escorrido | 80 g |
+| Ovos inteiros | 3 |
+| Claras | 6 |
+| Whey protein | 1 scoop (~28 g) |
+| Queijo cottage | 150 g |
+| Iogurte grego (natural, coado) | 200 g |
+| Feijão ou lentilha cozidos | 400 g *(traz junto ~55 g de carboidrato)* |
+| Tofu firme | 180 g |
+
+**≈ 30 g de carboidrato**
+
+| Alimento | Porção |
+| :--- | :--- |
+| Arroz branco cozido | 100 g |
+| Batata doce cozida | 130 g |
+| Batata inglesa cozida | 150 g |
+| Macarrão cozido | 110 g |
+| Aveia em flocos, crua | 45 g |
+| Pão | 60 g (um pão francês) |
+| Goma de tapioca | 45 g |
+| Banana | 1 grande |
+| Feijão cozido | 220 g *(traz junto ~10 g de proteína)* |
+
+**≈ 10 g de gordura**
+
+| Alimento | Porção |
+| :--- | :--- |
+| Azeite | 1 colher de sopa rasa |
+| Castanhas (do-pará, de caju, amêndoa) | 15 g |
+| Pasta de amendoim | 20 g |
+| Abacate | 60 g |
+| Manteiga | 12 g |
+| Ovo inteiro | 2 |
+
+**Leia como aproximação.** Os valores vêm de tabelas de composição (TACO, USDA) e variam 10-20 % conforme o corte, a marca e o preparo. Carne está em peso cru porque é assim que se pesa. Aluno que acerta essas porções chega perto o bastante — a média semanal de peso conta o resto.
+
+**Isto é educação alimentar, não dieta.** Entregar uma tabela de equivalências para o aluno comer o que gosta dentro do alvo é trabalho de personal. Prescrever dieta individualizada não é — ver a nota de escopo no topo deste arquivo.
 
 ---
 

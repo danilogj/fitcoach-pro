@@ -89,7 +89,56 @@ Never build a meal plan before you have the answers from Block 4 of the intake �
 | −200 kcal | Cut ~30 g of nuts and ~100 g of cooked rice |
 | Hit protein without eating the same meat again | 1 scoop of whey replaces part of a meal |
 
-**Swaps by food group** are worth more than a fixed list: any lean meat ≈ any other at an equivalent portion; rice, potato, pasta and oats are interchangeable by approximate cooked weight. Teach the swap instead of rewriting the plan.
+**Swaps by food group** are worth more than a fixed list. Teach the swap instead of rewriting the plan.
+
+### Portion equivalents
+
+A macro target is useless to a client who cannot turn "150 g of protein" into food. These are the portions that deliver one unit of each macro, so a client can rebuild a meal without asking.
+
+**≈ 20 g of protein**
+
+| Food | Portion |
+| :--- | :--- |
+| Chicken breast, raw | 90 g |
+| Lean beef, raw | 95 g |
+| White fish | 100 g |
+| Canned tuna, drained | 80 g |
+| Whole eggs | 3 |
+| Egg whites | 6 |
+| Whey protein | 1 scoop (~28 g) |
+| Cottage cheese | 150 g |
+| Greek yogurt (strained) | 200 g |
+| Cooked beans or lentils | 400 g *(brings ~55 g carbohydrate with it)* |
+| Firm tofu | 180 g |
+
+**≈ 30 g of carbohydrate**
+
+| Food | Portion |
+| :--- | :--- |
+| White rice, cooked | 100 g |
+| Sweet potato, cooked | 130 g |
+| Potato, cooked | 150 g |
+| Pasta, cooked | 110 g |
+| Rolled oats, dry | 45 g |
+| Bread | 60 g (about one roll) |
+| Cassava starch (tapioca) | 45 g |
+| Banana | 1 large |
+| Cooked beans | 220 g *(brings ~10 g protein with it)* |
+
+**≈ 10 g of fat**
+
+| Food | Portion |
+| :--- | :--- |
+| Olive oil | 1 level tablespoon |
+| Nuts (almonds, cashews, brazil) | 15 g |
+| Peanut butter | 20 g |
+| Avocado | 60 g |
+| Butter | 12 g |
+| Whole egg | 2 |
+
+**Read these as approximations.** Values come from food composition tables (TACO, USDA) and vary by 10-20% with the cut, the brand and how it was cooked. Meat is listed raw because that is how it is weighed. A client hitting these portions lands close enough that the weekly weight average will tell you the rest.
+
+**This is education, not a diet.** Handing a client a table of equivalents so they can eat what they like within a target is trainer work. Prescribing an individualized diet is not — see the scope note at the top of this file.
 
 ---
 

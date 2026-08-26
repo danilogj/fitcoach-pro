@@ -267,11 +267,34 @@ def intake_by_day(path: Path, since: Optional[date] = None) -> Dict[date, float]
 
 
 def hard_sets_by_day(path: Path, since: Optional[date] = None) -> Dict[date, int]:
-    """Sets actually performed per day — the training-load input for ACWR."""
+    """Sets actually performed per day — flat count, no fatigue weighting."""
     totals: Dict[date, int] = {}
     for event in read(path, "session", since=since):
         count = 0
         for exercise in event.data.get("exercises", []):
             count += len(exercise.get("sets", []))
         totals[event.day] = totals.get(event.day, 0) + count
+    return totals
+
+
+def weighted_load_by_day(path: Path, catalog=None,
+                         since: Optional[date] = None) -> Dict[date, float]:
+    """Daily training load with each set scaled by its systemic cost.
+
+    This is the ACWR input: four sets of heavy deadlift cost more than four
+    sets of lateral raise, and a flat count hides exactly the axial spike the
+    ratio is supposed to catch.
+    """
+    import load as load_mod  # local import keeps the modules independent
+
+    totals: Dict[date, float] = {}
+    for event in read(path, "session", since=since):
+        exercises = event.data.get("exercises", [])
+        if exercises:
+            value = load_mod.session_load(exercises, "weighted", catalog)
+        else:
+            # a logged cardio session with no sets still costs something
+            minutes = float(event.data.get("duration_min") or 0)
+            value = round(minutes / 12.0, 2) if minutes else 0.0
+        totals[event.day] = round(totals.get(event.day, 0.0) + value, 2)
     return totals

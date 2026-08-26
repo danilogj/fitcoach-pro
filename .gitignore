@@ -1,0 +1,20 @@
+# Fichas preenchidas e dados de aluno nunca entram no repositório
+alunos/
+students/
+*-preenchida.html
+*-filled.html
+
+# Sistema
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Editores
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/

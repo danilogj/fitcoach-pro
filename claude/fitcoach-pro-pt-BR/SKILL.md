@@ -86,6 +86,7 @@ python3 tools/cli.py [--client DIR | --log ARQUIVO] [--json] <comando>
 | Decisão de deload | `load deload --sleep-hours-avg .. --soreness-avg ..` |
 | Importar export de wearable | `ingest <arquivo> [--inspect] [--dry-run] [--map ..]` |
 | Gerar o dashboard HTML | `dashboard --name .. --goal .. --target-kg ..` |
+| **Conferir uma ficha preenchida** | `sheet check <arquivo.html> [--program ARQUIVO.json]` |
 | Tudo que o check-in precisa | `checkin --goal .. --target-kg ..` |
 
 **Tipos de evento:** `weight`, `session`, `meal`, `sleep`, `steps`, `recovery`, `measurement`, `body_comp`, `note`. Valores fora de faixa são recusados, não gravados.
@@ -98,7 +99,11 @@ python3 tools/cli.py [--client DIR | --log ARQUIVO] [--json] <comando>
 
 **O `dashboard` gera um HTML autocontido** com tendência de peso, volume por músculo contra os limiares daquele músculo, carga, sono, passos e progressão de carga — mais um bloco "Not shown yet" nomeando o que não conseguiu calcular. Regenere depois de cada importação ou check-in; ele não se atualiza sozinho.
 
+**Nunca entregue uma ficha sem rodar `sheet check` nela.** Ele pega marcador que ficou sem preencher, o programa de exemplo do template que não foi trocado, campo de carga em exercício de peso corporal, data de início que não é segunda-feira, e qualquer divergência em relação ao `programa.md`. Código de saída 3 significa não enviar.
+
 **Para `volume check`**, escreva o programa em JSON: `[{"exercises": [{"name": "Barbell bench press", "sets": 4}, …]}, …]`. Os nomes vêm de `data/exercises.json` (77 exercícios, em inglês); a ferramenta recusa nome desconhecido em vez de sumir com ele da contagem.
+
+**O catálogo é extensível.** Máquina que a academia tem e ninguém catalogou, ou variação que você prescreve com nome próprio, vai em `alunos/<nome>/exercises.json` — lido automaticamente — ou num arquivo passado com `--catalog`. As entradas locais somam ou sobrescrevem as do pacote e sobrevivem a atualizações. Formato em `examples/local-catalog-example.json`.
 
 ---
 
@@ -127,7 +132,7 @@ Carregue o arquivo quando a tarefa cair no tema. `references/INDEX.md` é o rote
 3. `cli.py init` a pasta, registre a linha de base com `log add`.
 4. Monte o bloco (`03`) e **confira com `volume check`** antes de mostrar para alguém.
 5. Alvo nutricional via `metrics targets` (`05`).
-6. Ficha e entrega (`08`).
+6. Ficha e entrega (`08`), depois `sheet check` antes de chegar em alguém.
 
 ### Check-in semanal
 1. Se o aluno usa relógio ou app, rode o `ingest` no export mais recente antes de tudo — o check-in vale o que vale o log.

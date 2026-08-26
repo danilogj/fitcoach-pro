@@ -8,6 +8,7 @@ Standard library only.
 from __future__ import annotations
 
 import json
+import re
 from dataclasses import dataclass, asdict
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Sequence
@@ -58,30 +59,109 @@ class MuscleVolume:
 
 
 class Catalog:
-    def __init__(self, path: Optional[Path] = None):
+    """The bundled exercise catalog, optionally extended by a local one.
+
+    No packaged list survives contact with a real gym: machines vary by brand,
+    trainers have their own variations, and a client's shoulder may need a grip
+    nobody catalogued. A local file adds or overrides entries without touching
+    the package, so an update never wipes the trainer's additions.
+    """
+
+    def __init__(self, path: Optional[Path] = None, extra: Optional[Path] = None):
         self.path = Path(path) if path else DATA
         if not self.path.exists():
             raise InsufficientData("exercise catalog not found at %s" % self.path)
         doc = json.loads(self.path.read_text(encoding="utf-8"))
         self.exercises = {e["id"]: e for e in doc["exercises"]}
-        self.by_name = {e["name"].lower(): e for e in doc["exercises"]}
-        self.substitutions = doc.get("substitutions", {})
+        self.substitutions = dict(doc.get("substitutions", {}))
         self.muscles = doc["muscles"]
         self.patterns = doc["patterns"]
+        self.local_ids: List[str] = []
+        self.overridden_ids: List[str] = []
+
+        if extra:
+            self._merge(Path(extra))
+
+        self.by_name = {e["name"].lower(): e for e in self.exercises.values()}
+
+    def _merge(self, path: Path) -> None:
+        """Add or override entries from a trainer- or gym-specific catalog."""
+        if not path.exists():
+            raise InsufficientData(
+                "local catalog not found at %s. Create it as {\"exercises\": [...]} using "
+                "the same fields as data/exercises.json." % path)
+        try:
+            doc = json.loads(path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            raise InsufficientData("local catalog %s is not valid JSON: %s" % (path.name, exc))
+
+        for raw in doc.get("exercises", []):
+            entry = self._validate(raw, path.name)
+            if entry["id"] in self.exercises:
+                self.overridden_ids.append(entry["id"])
+            else:
+                self.local_ids.append(entry["id"])
+            self.exercises[entry["id"]] = entry
+
+        for reason, table in doc.get("substitutions", {}).items():
+            merged = dict(self.substitutions.get(reason, {}))
+            merged.update(table)
+            self.substitutions[reason] = merged
+
+    def _validate(self, raw: dict, source: str) -> dict:
+        """A local entry gets the same scrutiny as a bundled one."""
+        for field in ("id", "name", "pattern", "equipment", "primary"):
+            if field not in raw:
+                raise InsufficientData(
+                    "%s: exercise %r is missing %r. Required fields: id, name, pattern, "
+                    "equipment, primary." % (source, raw.get("name", raw.get("id", "?")), field))
+        if raw["pattern"] not in self.patterns:
+            raise InsufficientData(
+                "%s: exercise %r has pattern %r, which is not one of: %s"
+                % (source, raw["name"], raw["pattern"], ", ".join(self.patterns)))
+        for group in list(raw["primary"]) + list(raw.get("secondary", [])):
+            if group not in self.muscles:
+                raise InsufficientData(
+                    "%s: exercise %r lists muscle %r, which is not one of: %s"
+                    % (source, raw["name"], group, ", ".join(self.muscles)))
+        if not raw["primary"]:
+            raise InsufficientData(
+                "%s: exercise %r has no primary muscle — it would count toward no volume "
+                "at all." % (source, raw["name"]))
+        return raw
 
     def find(self, key: str) -> dict:
+        """Resolve an exercise by id, exact name, substring, or word overlap.
+
+        Trainers write "one-arm dumbbell row" for what the catalog calls
+        "One-arm supported dumbbell row". Requiring a contiguous substring
+        would reject it and silently drop those sets from the volume audit, so
+        an all-words-present match is tried before giving up.
+        """
         k = (key or "").strip().lower()
+        if not k:
+            raise InsufficientData("no exercise name given")
         if k in self.exercises:
             return self.exercises[k]
         if k in self.by_name:
             return self.by_name[k]
-        matches = [e for n, e in self.by_name.items() if k and k in n]
+
+        matches = [e for n, e in self.by_name.items() if k in n]
         if len(matches) == 1:
             return matches[0]
         if not matches:
+            words = [w for w in re.split(r"[^a-z0-9]+", k) if len(w) > 2]
+            if words:
+                matches = [e for n, e in self.by_name.items()
+                           if all(w in n for w in words)]
+                if len(matches) == 1:
+                    return matches[0]
+
+        if not matches:
             raise InsufficientData(
-                "exercise %r is not in the catalog. Add it to data/exercises.json with its "
-                "primary and secondary muscles, or use a catalog name." % key
+                "exercise %r is not in the catalog. Add it to a local catalog "
+                "(clients/<name>/exercises.json) with its primary and secondary muscles, "
+                "or use a catalog name." % key
             )
         raise InsufficientData(
             "%r matches %d exercises: %s" % (key, len(matches), ", ".join(m["name"] for m in matches[:6]))

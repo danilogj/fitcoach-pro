@@ -55,6 +55,8 @@ Só depois de fechar os padrões escolha o exercício — e escolha pelo que a a
 | Quadril dominante | Terra romeno | Terra romeno com halteres, elevação pélvica | Mesa flexora, extensão de quadril na polia | Elevação pélvica, stiff unilateral |
 | Unilateral | Afundo com barra | Búlgaro, afundo, passada | Leg press unilateral | Búlgaro no sofá, agachamento pistol assistido |
 
+**Quando a academia tem algo que o catálogo não tem** — marca de máquina, variação que você prescreve com nome próprio — acrescente em `alunos/<nome>/exercises.json` e ele é lido automaticamente. As entradas locais somam ou sobrescrevem as do pacote e sobrevivem a atualizações; o formato está em `examples/local-catalog-example.json`. Exercício que o catálogo não resolve fica de fora da auditoria de volume em silêncio, que é exatamente o erro que a auditoria existe para evitar.
+
 **Regra de substituição:** troque dentro do mesmo padrão, nunca entre padrões. Substituir agachamento por leg press é aceitável; substituir agachamento por extensora não é — some o quadril e o core da conta.
 
 ### Substituições por dor ou limitação

@@ -55,6 +55,8 @@ Only after the patterns are closed do you pick exercises — and you pick from w
 | Hip-dominant | Romanian deadlift | Dumbbell RDL, hip thrust | Lying leg curl, cable pull-through | Hip thrust, single-leg RDL |
 | Unilateral | Barbell lunge | Bulgarian split squat, lunge, walking lunge | Single-leg press | Split squat on a couch, assisted pistol |
 
+**When the gym has something the catalog does not** — a machine brand, a variation you prescribe under your own name — add it to `clients/<name>/exercises.json` and it is picked up automatically. Local entries add to or override the bundled catalog and survive package updates; the format is in `examples/local-catalog-example.json`. An exercise the catalog cannot resolve is silently absent from the volume audit, which is exactly the error the audit exists to prevent.
+
 **Substitution rule:** swap inside the same pattern, never across patterns. Replacing a squat with a leg press is acceptable; replacing a squat with a leg extension is not — that removes the hips and the core from the equation.
 
 ### Substitutions for pain or limitation

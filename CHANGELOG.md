@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.3.0 — 2026-08-26
+
+Three gaps closed, from an external review of the package structure.
+
+**`sheet check`** — validates a filled-in client sheet before it reaches anyone. Until now nothing verified the rendered file: a `{{PLACEHOLDER}}` that was never substituted, the template's bundled example program left in place, a load field on a bodyweight exercise, an isometric asking for repetitions, a start date that is not a Monday, or an exercise that diverges from `program.md` all reached the client looking finished. Exit code 3 means do not send it.
+
+**Extensible exercise catalog** — a local `clients/<name>/exercises.json` (picked up automatically) or a file passed with `--catalog` adds to or overrides the bundled 77 entries and survives package updates. No packaged list survives contact with a real gym: machines vary by brand and trainers have their own variations. Local entries are validated against the same pattern and muscle vocabularies as bundled ones, and refuse with the valid list when they do not match. Example in `examples/local-catalog-example.json`.
+
+**Better exercise-name resolution** — "one-arm dumbbell row" now resolves to "One-arm supported dumbbell row" through word-overlap matching when a contiguous substring fails. Previously it was rejected, and those sets vanished from the volume audit — the exact failure the audit exists to prevent.
+
+**Translation parity tests** — the two language versions are now guarded against drifting apart: same file count, same section count per file, identical tool copies, and both skills declaring the three hard rules. The test caught a stale copy on its first run.
+
+28 new tests (137 total).
+
 ## 2.2.0 — 2026-08-26
 
 Documentation for the people this was built for.

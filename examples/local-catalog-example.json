@@ -1,0 +1,44 @@
+{
+  "_comment": [
+    "A local catalog: exercises your gym has that the bundled one does not, and",
+    "overrides for entries you want to behave differently. Save it as",
+    "clients/<name>/exercises.json (picked up automatically) or pass it with",
+    "--catalog. A package update never touches this file.",
+    "",
+    "Required fields: id, name, pattern, equipment, primary.",
+    "Optional: secondary, axial, unilateral.",
+    "Valid patterns and muscles are listed in data/exercises.json."
+  ],
+  "exercises": [
+    {
+      "id": "row_hammer_gym",
+      "name": "Hammer Strength high row",
+      "pattern": "vertical_pull",
+      "equipment": ["machine"],
+      "primary": ["back"],
+      "secondary": ["biceps", "rear_delt"]
+    },
+    {
+      "id": "belt_squat",
+      "name": "Belt squat",
+      "pattern": "knee_dominant",
+      "equipment": ["machine"],
+      "primary": ["quads"],
+      "secondary": ["glutes"]
+    },
+    {
+      "id": "row_dumbbell",
+      "name": "One-arm supported dumbbell row (remada serrote)",
+      "pattern": "horizontal_pull",
+      "equipment": ["dumbbell", "bench"],
+      "primary": ["back"],
+      "secondary": ["rear_delt", "biceps"],
+      "unilateral": true
+    }
+  ],
+  "substitutions": {
+    "shoulder_impingement": {
+      "row_hammer_gym": ["row_chest_supported", "lat_pulldown"]
+    }
+  }
+}

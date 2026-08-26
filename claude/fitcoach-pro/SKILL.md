@@ -90,6 +90,7 @@ python3 tools/cli.py [--client DIR | --log FILE] [--json] <command>
 | Deload decision | `load deload --sleep-hours-avg .. --soreness-avg ..` |
 | Import a wearable export | `ingest <file> [--inspect] [--dry-run] [--map ..]` |
 | Render the HTML dashboard | `dashboard --name .. --goal .. --target-kg ..` |
+| **Validate a filled-in sheet** | `sheet check <file.html> [--program FILE.json]` |
 | Everything the check-in needs | `checkin --goal .. --target-kg ..` |
 
 **Event types for `log add`:** `weight` (kg), `session` (session_id, exercises), `meal` (kcal, protein_g…), `sleep` (hours, quality), `steps` (count), `recovery` (soreness, stress, readiness, hrv_ms, rhr_bpm), `measurement` (waist_cm…), `body_comp` (weight_kg, fat_mass_kg…), `note` (text). Out-of-range values are rejected, not stored.
@@ -102,7 +103,11 @@ python3 tools/cli.py [--client DIR | --log FILE] [--json] <command>
 
 **`dashboard` writes one self-contained HTML file** with the weight trend, per-muscle volume against its landmarks, load, sleep, steps and lift progression — plus a "Not shown yet" block naming whatever it could not compute. Regenerate it after every import or check-in; it does not update itself.
 
+**Never hand over a sheet you have not run `sheet check` on.** It catches placeholders that were never filled, the bundled example program left in place, load fields on bodyweight exercises, a start date that is not a Monday, and any divergence from `program.md`. Exit code 3 means do not send it.
+
 **For `volume check`**, write the program as JSON: `[{"exercises": [{"name": "Barbell bench press", "sets": 4}, …]}, …]`. Exercise names come from `data/exercises.json` (77 entries); the tool refuses names it does not know rather than silently dropping them from the count.
+
+**The catalog is extensible.** A gym with a machine nobody catalogued, or a variation you prescribe by your own name, goes in `clients/<name>/exercises.json` — picked up automatically — or in a file passed with `--catalog`. Local entries add or override bundled ones and survive package updates. Format in `examples/local-catalog-example.json`.
 
 ---
 
@@ -133,7 +138,7 @@ Templates in `assets/`; the client sheet is `assets/client-sheet.template.html`.
 3. `cli.py init` the folder, record the baseline through `log add`.
 4. Build the block (`03`), then **verify it with `volume check`** before showing it to anyone.
 5. Nutrition target via `metrics targets` (`05`).
-6. Sheet and handoff (`08`).
+6. Sheet and handoff (`08`), then `sheet check` before it reaches anyone.
 
 ### Weekly check-in
 1. If the client uses a watch or an app, `ingest` their latest export first — the check-in is only as good as the log.

@@ -30,6 +30,7 @@ Everything here is deterministic, tested, and refuses when the data cannot suppo
 | `logstore.py` | Append-only JSONL event log with typed schema, range checks and newest-wins dedup |
 | `ingest.py` | Import Samsung Health, Garmin, Apple Health, Strava and generic CSV exports |
 | `dashboard.py` | Render the log as a self-contained HTML page, inline SVG, no dependencies |
+| `sheet.py` | Validate a filled-in client sheet against the program it should render |
 | `cli.py` | Single entry point |
 | `../data/exercises.json` | 77 exercises: movement pattern, equipment, primary and secondary muscles, axial flag, substitution chains |
 
@@ -61,6 +62,6 @@ Column names do drift between vendor releases, so every adapter matches by alias
 python3 -m unittest discover -s tools/tests -t tools
 ```
 
-109 tests covering hand-checked BMR fixtures, macro arithmetic, EMA smoothing, every rate verdict, the refusal thresholds, append-only and idempotency guarantees, volume landmarks by profile, ACWR bands, deload signal counting, each import adapter, re-import idempotency, and the dashboard's degradation, escaping and self-containment.
+137 tests covering hand-checked BMR fixtures, macro arithmetic, EMA smoothing, every rate verdict, the refusal thresholds, append-only and idempotency guarantees, volume landmarks by profile, ACWR bands, deload signal counting, each import adapter, re-import idempotency, the dashboard's degradation, escaping and self-containment, sheet validation, local-catalog merging and validation, and structural parity between the two language versions.
 
 The repository's `build.sh` runs them. If they fail, the numbers cannot be trusted and nothing downstream matters.

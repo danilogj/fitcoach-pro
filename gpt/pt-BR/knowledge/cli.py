@@ -11,6 +11,7 @@ Commands:
     exercise    find, filter by equipment, substitute for a limitation
     load        acute:chronic workload, deload check
     ingest      import a wearable or app export into the log
+    sheet       validate a filled-in client sheet before handing it over
     dashboard   render the log as a self-contained HTML page
     checkin     everything the weekly check-in needs, in one call
 
@@ -31,6 +32,7 @@ import dashboard as dash_mod  # noqa: E402
 import ingest as ingest_mod  # noqa: E402
 import load as load_mod  # noqa: E402
 import logstore  # noqa: E402
+import sheet as sheet_mod  # noqa: E402
 import metrics as m  # noqa: E402
 import volume as vol  # noqa: E402
 
@@ -94,9 +96,11 @@ def main(argv=None) -> int:
     vc = vsub.add_parser("check")
     vc.add_argument("--program", type=Path, required=True, help="JSON: [{'exercises':[{'name':..,'sets':N}]}]")
     vc.add_argument("--profile", default="intermediate")
+    vc.add_argument("--catalog", type=Path, help="local exercise catalog to add on top of the bundled one")
     vsub.add_parser("landmarks")
 
     p = sub.add_parser("exercise")
+    p.add_argument("--catalog", type=Path, help="local exercise catalog to add on top of the bundled one")
     esub = p.add_subparsers(dest="exercise_command", required=True)
     ef = esub.add_parser("find")
     ef.add_argument("query")
@@ -129,6 +133,13 @@ def main(argv=None) -> int:
     p.add_argument("--inspect", action="store_true", help="show the file's columns and stop")
     p.add_argument("--dry-run", action="store_true", help="report what would be written, write nothing")
     p.add_argument("--map", dest="mapping", help="canonical=Column,canonical=Column for odd exports")
+
+    p = sub.add_parser("sheet", help="validate a filled-in client sheet")
+    ssub = p.add_subparsers(dest="sheet_command", required=True)
+    sc = ssub.add_parser("check")
+    sc.add_argument("file", type=Path)
+    sc.add_argument("--program", type=Path, help="the program JSON the sheet should render")
+    sc.add_argument("--catalog", type=Path)
 
     p = sub.add_parser("dashboard", help="render the log as HTML")
     p.add_argument("--out", type=Path, help="output path (default: <client>/dashboard.html)")
@@ -183,6 +194,8 @@ def _dispatch(args) -> int:
         return _cmd_load(args)
     if args.command == "ingest":
         return _cmd_ingest(args)
+    if args.command == "sheet":
+        return _cmd_sheet(args)
     if args.command == "dashboard":
         return _cmd_dashboard(args)
     if args.command == "checkin":
@@ -326,6 +339,34 @@ def _fmt_bmr(b) -> str:
             % (b.used, b.mifflin, b.katch, b.spread))
 
 
+def _catalog(args):
+    """Bundled catalog, plus the client's or gym's own when one is present."""
+    extra = getattr(args, "catalog", None)
+    if extra is None and getattr(args, "client", None):
+        candidate = args.client / "exercises.json"
+        if candidate.exists():
+            extra = candidate
+    cat = vol.Catalog(extra=extra)
+    if cat.local_ids or cat.overridden_ids:
+        parts = []
+        if cat.local_ids:
+            parts.append("%d added" % len(cat.local_ids))
+        if cat.overridden_ids:
+            parts.append("%d overridden" % len(cat.overridden_ids))
+        print("local catalog: %s" % ", ".join(parts), file=sys.stderr)
+    return cat
+
+
+def _cmd_sheet(args) -> int:
+    program = None
+    if args.program:
+        raw = json.loads(args.program.read_text(encoding="utf-8"))
+        program = raw.get("sessions", []) if isinstance(raw, dict) else raw
+    report = sheet_mod.check(args.file, program, _catalog(args))
+    _emit(args, report.as_dict(), report.summary())
+    return 0 if report.ok else EXIT_INVALID
+
+
 def _cmd_volume(args) -> int:
     if args.volume_command == "landmarks":
         _emit(args, vol.LANDMARKS,
@@ -337,7 +378,7 @@ def _cmd_volume(args) -> int:
     program = json.loads(args.program.read_text(encoding="utf-8"))
     if isinstance(program, dict):
         program = program.get("sessions", [])
-    cat = vol.Catalog()
+    cat = _catalog(args)
     rows = vol.weekly_volume(program, cat, args.profile)
     coverage = vol.check_coverage(program, cat)
     total = sum(r.direct for r in rows)
@@ -353,7 +394,7 @@ def _cmd_volume(args) -> int:
 
 
 def _cmd_exercise(args) -> int:
-    cat = vol.Catalog()
+    cat = _catalog(args)
     if args.exercise_command == "find":
         ex = cat.find(args.query)
         _emit(args, ex, _fmt_exercise(ex))

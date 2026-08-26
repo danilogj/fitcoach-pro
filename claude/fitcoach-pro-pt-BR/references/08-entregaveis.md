@@ -60,7 +60,15 @@ Esquema de cada exercício no `PROGRAMA`:
 }
 ```
 
-**Antes de entregar, confira:** o `PROGRAMA` bate com o `programa.md` do aluno, o `INICIO` é uma segunda-feira, e os exercícios com `f: "pc"` realmente não têm carga externa (campo de carga em exercício de peso corporal é o erro que o aluno reporta primeiro).
+**Não confira no olho — rode:**
+
+```
+python3 tools/cli.py sheet check alunos/<nome>/ficha.html --program programa.json
+```
+
+Ele pega todas as falhas que este arquivo pedia para você vigiar: `{{MARCADOR}}` que ficou sem preencher e vai aparecer literalmente no celular do aluno, o programa de exemplo do template que não foi trocado, campo de carga em exercício de peso corporal, isometria pedindo repetição, data de início que não é segunda, e qualquer exercício ou número de séries que divirja do `programa.md`. Código de saída 3 significa não enviar.
+
+Marcadores dentro de comentário do template — `{{PROGRAMA}}`, `{{REGRAS}}`, `{{METAS}}` — devem permanecer e não são apontados.
 
 ### Se a ficha for publicada como Artifact — regra que evita perda de dados
 

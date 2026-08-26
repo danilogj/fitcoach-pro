@@ -60,7 +60,15 @@ Schema for each exercise in `PROGRAM`:
 }
 ```
 
-**Before handing it over, check:** the `PROGRAM` matches the client's `program.md`, `START` is a Monday, and the exercises marked `f: "pc"` genuinely have no external load (a load field on a bodyweight exercise is the first error clients report).
+**Do not check this by eye — run it:**
+
+```
+python3 tools/cli.py sheet check clients/<name>/sheet.html --program program.json
+```
+
+It catches every failure this file used to ask you to watch for: a `{{PLACEHOLDER}}` that was never filled and will show literally on the client's phone, the template's example program left in place, a load field on a bodyweight exercise, an isometric asking for repetitions, a start date that is not a Monday, and any exercise or set count that diverges from `program.md`. Exit code 3 means do not send it.
+
+Markers inside template comments — `{{PROGRAM}}`, `{{RULES}}`, `{{TARGETS}}` — are meant to stay and are not flagged.
 
 ### If the sheet is published as an Artifact — the rule that prevents data loss
 

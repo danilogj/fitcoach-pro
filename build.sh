@@ -25,9 +25,10 @@ build_gpt() {
   cp "$src"/tools/*.py "$dest/"
   cp "$src"/data/exercises.json "$dest/"
   rm -f "$dest/__init__.py"
-  # dashboard.py stays out: the GPT Builder caps knowledge at 20 files, and
-  # rendering an HTML page is the one job better done on the trainer's machine.
-  rm -f "$dest/dashboard.py"
+  # dashboard.py and sheet.py stay out: the GPT Builder caps knowledge at 20
+  # files, and both operate on local HTML — work better done on the machine
+  # that holds the files.
+  rm -f "$dest/dashboard.py" "$dest/sheet.py"
   local n; n=$(ls -1 "$dest" | wc -l)
   echo "$label: $n files"
   [ "$n" -le 20 ] || echo "WARNING: the GPT Builder accepts at most 20 knowledge files — trim before uploading."

@@ -37,6 +37,9 @@ build_gpt() {
 build_gpt "$en" "$root/gpt/knowledge"       "gpt/knowledge (en)"
 build_gpt "$pt" "$root/gpt/pt-BR/knowledge" "gpt/pt-BR/knowledge"
 
-# 3. the tests must pass, or the numbers cannot be trusted
+# 3. the tests must pass, or the numbers cannot be trusted — and they must pass
+#    from either copy, since a trainer who installs only the translated skill
+#    should be able to verify their install
 echo
-( cd "$en" && python3 -m unittest discover -s tools/tests -t tools -q ) && echo "tests: OK"
+( cd "$en" && python3 -m unittest discover -s tools/tests -t tools -q ) && echo "tests (en): OK"
+( cd "$pt" && python3 -m unittest discover -s tools/tests -t tools -q ) && echo "tests (pt-BR): OK"

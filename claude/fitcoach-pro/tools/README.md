@@ -62,6 +62,8 @@ Column names do drift between vendor releases, so every adapter matches by alias
 python3 -m unittest discover -s tools/tests -t tools
 ```
 
+The suite ships inside both language skills and runs from either — it discovers which copy it is in and adapts. `build.sh` runs it from both, so a trainer who installed only the translated skill can verify their install with the same command.
+
 137 tests covering hand-checked BMR fixtures, macro arithmetic, EMA smoothing, every rate verdict, the refusal thresholds, append-only and idempotency guarantees, volume landmarks by profile, ACWR bands, deload signal counting, each import adapter, re-import idempotency, the dashboard's degradation, escaping and self-containment, sheet validation, local-catalog merging and validation, and structural parity between the two language versions.
 
 The repository's `build.sh` runs them. If they fail, the numbers cannot be trusted and nothing downstream matters.

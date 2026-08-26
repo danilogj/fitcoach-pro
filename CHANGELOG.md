@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.3.1 — 2026-08-26
+
+**The test suite now runs from either language copy.** It ships inside both skills, but had the English template filename, placeholder names and folder layout hard-coded — so running it from `fitcoach-pro-pt-BR` produced 16 errors and a failure, and the parity class silently compared the translated copy against itself.
+
+The suite now discovers which copy it is running in, picks the matching template and placeholder set, and locates both skills explicitly rather than relative to itself. When only one language version is installed, the parity tests skip with a reason instead of passing vacuously.
+
+`build.sh` runs the suite from **both** copies, so this cannot regress. A trainer who installs only the Portuguese skill can verify their install.
+
+Reported by an external review; the failure was larger than described.
+
 ## 2.3.0 — 2026-08-26
 
 Three gaps closed, from an external review of the package structure.

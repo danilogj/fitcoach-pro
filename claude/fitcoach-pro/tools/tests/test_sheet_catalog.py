@@ -21,16 +21,42 @@ import sheet as sheet_mod
 import volume as vol
 
 ROOT = Path(__file__).resolve().parents[2]
-TEMPLATE = ROOT / "assets" / "client-sheet.template.html"
+SKILLS = ROOT.parent          # the folder holding both language versions
 
-FILLED = {
-    "{{CLIENT}}": "Maria Silva", "{{SUBTITLE}}": "Upper/Lower", "{{START}}": "2026-08-31",
-    "{{TOTAL_WEEKS}}": "8", "{{INTRO_UNTIL}}": "3", "{{DELOAD_WEEK}}": "7",
-    "{{SLUG}}": "maria", "{{CLIENT_SUMMARY}}": "F, 34", "{{TRAINER}}": "John Coach",
-    "{{CERT}}": "NSCA-CPT",
+# The same suite ships inside both skills. Which one is running decides the
+# template filename and the placeholder names, so both are discovered rather
+# than hard-coded — otherwise running the tests from the translated copy fails
+# on filenames that only exist in the other one.
+_TEMPLATES = {
+    "client-sheet.template.html": {
+        "{{CLIENT}}": "Maria Silva", "{{SUBTITLE}}": "Upper/Lower", "{{START}}": "2026-08-31",
+        "{{TOTAL_WEEKS}}": "8", "{{INTRO_UNTIL}}": "3", "{{DELOAD_WEEK}}": "7",
+        "{{SLUG}}": "maria", "{{CLIENT_SUMMARY}}": "F, 34", "{{TRAINER}}": "John Coach",
+        "{{CERT}}": "NSCA-CPT",
+    },
+    "ficha-aluno.template.html": {
+        "{{ALUNO}}": "Maria Silva", "{{SUBTITULO}}": "Upper/Lower", "{{INICIO}}": "2026-08-31",
+        "{{TOTAL_SEMANAS}}": "8", "{{ENTRADA_ATE}}": "3", "{{DELOAD_EM}}": "7",
+        "{{SLUG}}": "maria", "{{RESUMO_ALUNO}}": "F, 34", "{{PROFISSIONAL}}": "John Coach",
+        "{{CREF}}": "CREF 000000-G/SP",
+    },
 }
 
-REAL_PROGRAM = '''  var PROGRAM = [
+
+def _discover_template():
+    for name, values in _TEMPLATES.items():
+        candidate = ROOT / "assets" / name
+        if candidate.exists():
+            return candidate, values
+    raise unittest.SkipTest("no client sheet template found in %s" % (ROOT / "assets"))
+
+
+TEMPLATE, FILLED = _discover_template()
+PROGRAM_VAR = "PROGRAM" if TEMPLATE.name.startswith("client-sheet") else "PROGRAMA"
+TRAINER_KEY = "{{TRAINER}}" if "{{TRAINER}}" in FILLED else "{{PROFISSIONAL}}"
+START_KEY = "{{START}}" if "{{START}}" in FILLED else "{{INICIO}}"
+
+REAL_PROGRAM = '''  var %s = [
     {
       id: "supA", dia: "Mon", nome: "Upper A", foco: "Push and pull",
       ex: [
@@ -40,13 +66,14 @@ REAL_PROGRAM = '''  var PROGRAM = [
       ]
     }
   ];
-'''
+''' % PROGRAM_VAR
 
 
 def _sheet(tmp: Path, *, fill=True, program=REAL_PROGRAM, **overrides) -> Path:
     text = TEMPLATE.read_text(encoding="utf-8")
-    text = re.sub(r"  var PROGRAM = \[.*?\n  \];\n", program, text, count=1, flags=re.S)
-    text = text.replace("The example below exists only so the page opens; replace it.", "")
+    text = re.sub(r"  var (?:PROGRAM|PROGRAMA) = \[.*?\n  \];\n", program, text, count=1, flags=re.S)
+    for marker in sheet_mod.EXAMPLE_MARKERS:
+        text = text.replace(marker, "")
     if fill:
         values = dict(FILLED)
         values.update(overrides)
@@ -77,16 +104,16 @@ class TestSheetCheck(SheetTestCase):
 
     def test_unfilled_placeholder_is_an_error(self):
         path = _sheet(self.tmp)
-        path.write_text(path.read_text(encoding="utf-8").replace("John Coach", "{{TRAINER}}"),
+        path.write_text(path.read_text(encoding="utf-8").replace("John Coach", TRAINER_KEY),
                         encoding="utf-8")
         report = sheet_mod.check(path)
         self.assertFalse(report.ok)
-        self.assertIn("{{TRAINER}}", self._messages(report))
+        self.assertIn(TRAINER_KEY, self._messages(report))
 
     def test_template_comment_markers_are_not_flagged(self):
         report = sheet_mod.check(_sheet(self.tmp))
         # {{RULES}} and friends live in comments and are meant to stay
-        for marker in ("{{RULES}}", "{{TARGETS}}", "{{DAYS}}"):
+        for marker in ("{{RULES}}", "{{TARGETS}}", "{{DAYS}}", "{{REGRAS}}", "{{METAS}}", "{{DIAS}}"):
             self.assertNotIn(marker, self._messages(report))
 
     def test_leftover_example_program_is_an_error(self):
@@ -112,7 +139,7 @@ class TestSheetCheck(SheetTestCase):
         self.assertIn("ask for repetitions", self._messages(report))
 
     def test_start_date_that_is_not_a_monday_warns(self):
-        report = sheet_mod.check(_sheet(self.tmp, **{"{{START}}": "2026-09-02"}))
+        report = sheet_mod.check(_sheet(self.tmp, **{START_KEY: "2026-09-02"}))
         self.assertIn("not a Monday", self._messages(report))
 
     def test_sheet_missing_an_exercise_from_the_program(self):
@@ -202,7 +229,10 @@ class TestLocalCatalog(SheetTestCase):
         self.assertIn("exercises", str(ctx.exception))
 
     def test_the_shipped_example_is_valid(self):
-        cat = vol.Catalog(extra=ROOT.parent.parent / "examples" / "local-catalog-example.json")
+        example = SKILLS.parent / "examples" / "local-catalog-example.json"
+        if not example.exists():
+            self.skipTest("example catalog not present in this install")
+        cat = vol.Catalog(extra=example)
         self.assertTrue(cat.local_ids)
         self.assertEqual(cat.find("belt squat")["name"], "Belt squat")
 
@@ -239,8 +269,13 @@ class TestTranslationParity(unittest.TestCase):
              ("07-cardio", "07-cardio"), ("08-deliverables", "08-entregaveis")]
 
     def setUp(self):
-        self.en = ROOT / "references"
-        self.pt = ROOT.parent / "fitcoach-pro-pt-BR" / "references"
+        """Locate both skills explicitly, never relative to whichever copy runs."""
+        self.en_root = SKILLS / "fitcoach-pro"
+        self.pt_root = SKILLS / "fitcoach-pro-pt-BR"
+        if not (self.en_root.exists() and self.pt_root.exists()):
+            self.skipTest("only one language version is installed; parity cannot be checked")
+        self.en = self.en_root / "references"
+        self.pt = self.pt_root / "references"
 
     def test_both_versions_have_the_same_files(self):
         self.assertEqual(len(list(self.en.glob("*.md"))), len(list(self.pt.glob("*.md"))))
@@ -256,16 +291,16 @@ class TestTranslationParity(unittest.TestCase):
                                  "edited without the other" % (en_name, pt_name))
 
     def test_tools_are_identical_copies(self):
-        for f in sorted((ROOT / "tools").glob("*.py")):
+        for f in sorted((self.en_root / "tools").glob("*.py")):
             with self.subTest(file=f.name):
-                twin = ROOT.parent / "fitcoach-pro-pt-BR" / "tools" / f.name
+                twin = self.pt_root / "tools" / f.name
                 self.assertTrue(twin.exists(), "%s missing from the pt-BR skill" % f.name)
                 self.assertEqual(f.read_bytes(), twin.read_bytes(),
                                  "%s differs — run ./build.sh" % f.name)
 
     def test_both_skills_declare_the_three_hard_rules(self):
-        en = (ROOT / "SKILL.md").read_text(encoding="utf-8")
-        pt = (ROOT.parent / "fitcoach-pro-pt-BR" / "SKILL.md").read_text(encoding="utf-8")
+        en = (self.en_root / "SKILL.md").read_text(encoding="utf-8")
+        pt = (self.pt_root / "SKILL.md").read_text(encoding="utf-8")
         self.assertIn("Never do mental math", en)
         self.assertIn("Nunca faça conta de cabeça", pt)
 

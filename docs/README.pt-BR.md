@@ -2,6 +2,9 @@
 
 **Uma metodologia de prescrição para personal trainers, empacotada como skill de IA — com a aritmética tirada das mãos do modelo.** Roda no Claude e no ChatGPT. English: [`../README.md`](../README.md).
 
+>  ### 👋 Não é programador?
+> **[Leia o guia do personal trainer](GUIA-DO-PERSONAL.md)** — instalação sem terminal, uma conversa real do primeiro aluno até a ficha pronta, e um glossário. Escrito para quem nunca instalou nada parecido.
+
 ---
 
 A maioria dos prompts de "personal trainer com IA" falha do mesmo jeito: você pede um programa e recebe doze exercícios, quatro séries cada, sem saber em que academia o aluno treina, sem triagem nenhuma, e um percentual de gordura com uma casa decimal saído de um sensor de pulso.
@@ -75,6 +78,8 @@ O gráfico que justifica a existência dele é o de **séries diretas por múscu
 Nada é inventado: o que não puder ser calculado vai para um bloco "Not shown yet" nomeando o dado que falta.
 
 ## Instalar
+
+Não se sente à vontade com terminal? Use o **[guia do personal trainer](GUIA-DO-PERSONAL.md)** — ele cobre Claude e ChatGPT sem um único comando.
 
 ### Claude Code
 

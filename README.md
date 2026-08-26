@@ -4,6 +4,10 @@
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 
+> ### 👋 Not a developer?
+> **[Read the trainer's guide](docs/TRAINER-GUIDE.md)** — installation with no terminal, a real conversation from first client to finished sheet, and a glossary. Written for people who have never installed anything like this.
+> Em português: **[Guia do personal trainer](docs/GUIA-DO-PERSONAL.md)**.
+
 ---
 
 Most "AI personal trainer" prompts fail the same way: ask for a program and you get twelve exercises, four sets each, no idea which gym the client trains at, no screening, and a body fat percentage quoted to one decimal place from a wrist sensor.
@@ -81,6 +85,8 @@ The chart that earns its place is **direct sets per muscle against that muscle's
 Nothing is invented: whatever cannot be computed goes into a "Not shown yet" block naming the data it needs.
 
 ## Install
+
+Not comfortable with a terminal? Use the **[trainer's guide](docs/TRAINER-GUIDE.md)** instead — it covers Claude and ChatGPT without a single command.
 
 ### Claude Code
 

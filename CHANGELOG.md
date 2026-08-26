@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.2.0 — 2026-08-26
+
+Documentation for the people this was built for.
+
+**[`docs/TRAINER-GUIDE.md`](docs/TRAINER-GUIDE.md)** and **[`docs/GUIA-DO-PERSONAL.md`](docs/GUIA-DO-PERSONAL.md)** — a guide for personal trainers with no technical background. Every other document in this repository assumes a terminal, JSON and Python; the audience assumes none of them.
+
+Covers: what the package changes about an AI assistant's behaviour, an honest comparison of the three ways to run it, step-by-step installation on Claude and ChatGPT with no command line, a full first-client conversation showing exactly what to type, the weekly routine, why the tool sometimes refuses to answer, a troubleshooting table, and a glossary of every term that appears in output — RIR, MEV, ACWR, EMA, NEAT.
+
+Includes the honest caveat that ChatGPT cannot always execute the bundled calculators, and what to do about it.
+
+Both guides are linked from the top of both READMEs, above the technical install instructions.
+
 ## 2.1.0 — 2026-08-26
 
 Data goes in without typing, and comes out as a page.

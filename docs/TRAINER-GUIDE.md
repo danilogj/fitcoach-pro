@@ -1,0 +1,234 @@
+# Trainer's guide
+
+**For people who have never installed anything like this.** It does not assume you know what a terminal, a `.zip` file or a command line is. If you get stuck anywhere, the guide is at fault, not you — open an issue saying where.
+
+Versão em português: [`GUIA-DO-PERSONAL.md`](GUIA-DO-PERSONAL.md)
+
+---
+
+## 1. What this is, in one page
+
+You have probably asked ChatGPT or Claude for a workout. You probably got twelve exercises at four sets each, with no questions about which gym your client trains at, how many days they have, or whether their shoulder hurts. Nice to read, useless to apply.
+
+This changes how the assistant behaves. It is a set of instructions and tools you install once, and it makes the AI work your way: **ask before prescribing, pick exercises from equipment that actually exists, audit volume per muscle group, and admit when it does not know.**
+
+Three things it starts doing that an ordinary chat never does:
+
+**It refuses to prescribe without an intake.** Ask for a program without giving days, equipment, history and injuries, and it asks first. Annoying? Yes. It is also why the plan fits a real client instead of an imaginary one.
+
+**It does not do the math in its head.** Calories, macros, set counts — those come from tested programs bundled with it, not from the AI's "head". This matters because **AI gets arithmetic wrong while looking completely confident**, and you cannot spot it by reading.
+
+**It tells you when it lacks data.** Instead of inventing a number it says things like: *"I can't measure real expenditure yet — 6 of the last 28 days have meals logged and this needs 10."* That looks like a limitation. It is the opposite: it is the only reason to trust the numbers it does give.
+
+### What it never does
+
+It is not the responsible professional. **You prescribe.** It does not diagnose, read lab work, clear anyone to train, or replace a dietitian. And despite everything above, **it can still be wrong** — which is why you review everything before it reaches a client. Read [`DISCLAIMER.md`](../DISCLAIMER.md) once, properly.
+
+---
+
+## 2. Pick your path
+
+There are three ways to use this. Pick one — you do not need all three.
+
+| | **ChatGPT** | **Claude** | **Claude Code** |
+| :--- | :--- | :--- | :--- |
+| Difficulty | Easy | Easy | Needs a terminal |
+| Install software? | No | No | Yes |
+| Paid plan needed? | Yes | Yes | Yes |
+| Runs the calculations itself? | Sometimes | Almost always | Always |
+| Stores client data | You attach the files | You attach the files | On your computer, automatically |
+| Generates the chart dashboard | No | No | Yes |
+
+**Honest recommendation:** start with **Claude**. It is where the instructions were written and where the most works without effort. If you already pay for ChatGPT and would rather not switch, the ChatGPT path covers most of it.
+
+**Claude Code** is for people comfortable typing commands. It is the only one that does everything, including the dashboard and guaranteed calculation. If you know someone who "is good with computers", this is where they can help you in twenty minutes.
+
+---
+
+## 3. Download the files
+
+Same for every path.
+
+1. Open **https://github.com/danilogj/fitcoach-pro**
+2. Click the green **`Code`** button
+3. Click **`Download ZIP`**
+4. It lands in your Downloads folder. **Double-click it** to unpack — on Windows, right-click and choose "Extract all"
+
+You will see a folder called `fitcoach-pro-main` with several folders inside. The ones that matter:
+
+```
+claude/
+   fitcoach-pro/     ← the skill, English
+gpt/                 ← for ChatGPT, English
+```
+
+You can ignore the rest.
+
+---
+
+## 4. Install on Claude
+
+1. Go to **claude.ai** and sign in
+2. Click your picture (bottom left), open **Settings**, look for **Capabilities** or **Skills**
+3. Find the option to **upload a skill**
+4. It asks for a `.zip` file. You need to compress **the `fitcoach-pro` folder** (the one inside `claude`):
+   - **Windows:** right-click the folder → *Send to* → *Compressed folder*
+   - **Mac:** right-click the folder → *Compress*
+5. Upload the `.zip` that appears
+6. Confirm the skill shows in the list, enabled
+
+> Claude's interface changes from time to time. If the menu names differ, look for **Skills** in settings — it is always around there.
+
+### Check that it worked
+
+Open a new conversation and type exactly this:
+
+> intake for a new client
+
+**It worked** if the reply starts with health screening questions — chest pain, dizziness, medication, pregnancy.
+**It did not** if it goes straight to building a workout. The skill is not active; check step 6.
+
+---
+
+## 5. Install on ChatGPT
+
+Here you build a "custom GPT" — a version of ChatGPT with the instructions already inside.
+
+1. Go to **chatgpt.com** and sign in
+2. In the sidebar, click **Explore GPTs** → **Create** (top right)
+3. Click the **Configure** tab
+4. Fill in:
+   - **Name:** `FitCoach Pro`
+   - **Description:** `Technical assistant for training and nutrition prescription`
+5. **Instructions** — the most important step:
+   - In the folder you downloaded, open `gpt` → `instructions.md`
+   - Open it with Notepad (Windows) or TextEdit (Mac)
+   - Select all (Ctrl+A or Cmd+A), copy (Ctrl+C or Cmd+C)
+   - Paste into the **Instructions** box
+6. **Conversation starters** — open `conversation-starters.md` in the same folder and copy the four lines, one per field
+7. **Knowledge** — click *Upload files* and send **every file** inside `gpt/knowledge/`. There are 19; select them all at once
+8. **Capabilities** — leave only **Code Interpreter & Data Analysis** ticked. Untick web browsing and image generation: here they only add noise
+9. Click **Create** / **Save** and choose whether it stays private
+
+### An honest warning about ChatGPT
+
+The programs that do the calculations are among the files you uploaded, but ChatGPT cannot always run them. **When it cannot, it has been instructed to say so and give ranges instead of exact numbers** — "maintenance somewhere around 2,200 to 2,400 kcal" rather than "2,273 kcal".
+
+To force the calculation in a specific conversation, attach `cli.py` and `metrics.py` directly in the chat and ask: *"run the calculation using these files"*.
+
+On Claude this tends to work by itself. That is the reason for the recommendation.
+
+---
+
+## 6. Your first client, start to finish
+
+Here is a real conversation. **What you type is in bold.**
+
+---
+
+**> I have a new client, let's start the intake**
+
+It replies with seven health screening questions. You ask the client and bring the answers back.
+
+---
+
+**> all answers were no. Male, 34, 175cm, 92kg. Wants to lose fat. Never trained consistently. Can do 3 days, an hour per session. The gym has dumbbells to 40kg, barbell, bench, high and low pulley, leg press, leg extension, leg curl and a pull-up bar. Desk job, sleeps 6 hours.**
+
+It classifies him as a beginner, builds the three-day split, picks exercises from the equipment you listed, audits volume per muscle group and presents the program. It will also flag the 6 hours of sleep — because that changes the prescription.
+
+---
+
+**> what do I need to check before I finalize this?**
+
+It names what it estimated and what you must verify: starting loads, whether the dumbbells really go to 40 kg, the calorie target.
+
+---
+
+**> build his nutrition target**
+
+It calculates (or asks for what is missing) and gives calories and macros as a range, not as a magic number.
+
+---
+
+**> write the sheet he takes to the gym**
+
+You get the finished sheet.
+
+**That is all there is to it.** You talk in plain language. There are no commands to memorise.
+
+---
+
+## 7. The weekly routine
+
+**Once a week, per client:**
+
+> **> check-in for John. Did 3 of 3 sessions, recovery good, added load on bench and leg press. Weekly average weight 91.2 kg, last week 91.8.**
+
+It gives you a diagnosis and **one specific adjustment** — not a list of suggestions.
+
+**If your client wears a watch or uses an app** (Samsung Health, Garmin, Apple Health, Strava), you can export their data and the assistant reads it all at once: weight, steps, sleep, heart rate. It is covered in the technical guide; have someone set it up once, then it is drag-and-drop.
+
+**Every 8 weeks:**
+
+> **> John finished the block. Analyze it and build the next one.**
+
+---
+
+## 8. Why it sometimes refuses to answer
+
+You will run into replies like:
+
+> I can't measure his real expenditure yet — 6 of the last 28 days have meals logged and this needs 10.
+
+> I need at least 14 days of weigh-ins to compute a trend. At 5 days, what the scale shows is water and salt, not fat.
+
+**This is not a fault.** It is the difference between this and an ordinary chat. An ordinary chat would give you a number — and the number would be wrong, would look right, and you would pass it to your client.
+
+When it happens, the right move is to log a few more days, or work from the estimate **while telling the client it is an estimate**.
+
+---
+
+## 9. When something goes wrong
+
+| What happens | What to do |
+| :--- | :--- |
+| It builds a workout without an intake | The skill is not active. On Claude, check settings. On ChatGPT, confirm you pasted the text into *Instructions* |
+| It gives numbers with decimals ("2,347.5 kcal") | Ask: *"did that number come from the tools or did you calculate it?"* If it calculated, ask for the range |
+| It answers in the wrong language | Write in your language and ask it to reply in it. It adjusts |
+| It forgot what you agreed earlier | Long conversations lose the beginning. Start a new one and attach the client's file |
+| It prescribes equipment the gym does not have | The equipment list did not reach it. Repeat what exists and ask it to rebuild |
+| It suggests something you know is wrong | **You are right until proven otherwise.** Say it is wrong and why — it was instructed to correct itself, not defend itself |
+
+---
+
+## 10. Words that will come up
+
+| Term | What it means |
+| :--- | :--- |
+| **RIR** | Reps you could still have done when you stopped. RIR 2 = stopped two short |
+| **Hard set** | A set taken near failure. Warm-ups do not count |
+| **Volume** | Hard sets per muscle group per week. The count that decides results more than any other |
+| **MEV / MRV** | The minimum that does anything and the maximum you can recover from, per muscle |
+| **Deload** | A week of reduced volume with load held. Scheduled recovery, not time off |
+| **Double progression** | Only add load once they hit the top of the rep range on every set |
+| **TDEE** | How much a person burns per day. The formula guesses; with logged data it can be measured |
+| **BMR** | What the body burns at complete rest |
+| **NEAT** | Movement outside training — walking, standing. The single largest source of error in the calculation |
+| **EMA** | A smoothing average that cuts daily noise and shows the real trend |
+| **ACWR** | Last 7 days of load against the last 28. Above 1.5 is where injuries cluster |
+| **Log** | The record of everything: loads, weight, sleep, food |
+| **Skill** | The instruction package you installed |
+
+---
+
+## 11. Before anything reaches a client
+
+One last time, because it is what matters:
+
+**Read what it wrote.** Every exercise, every load, every calculation. You know your client; the tool knows what you told it about your client.
+
+It exists so you spend your time on the decision instead of adding up sets and dividing calories. It does not exist to decide for you — and if something goes wrong with a client, it is your professional registration that answers, not this repository.
+
+---
+
+**Stuck on a step?** Open an issue at https://github.com/danilogj/fitcoach-pro/issues saying exactly where you stopped. A guide that gets people stuck is a badly written guide.

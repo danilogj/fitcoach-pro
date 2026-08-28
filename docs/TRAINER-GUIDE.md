@@ -10,6 +10,8 @@ Versão em português: [`GUIA-DO-PERSONAL.md`](GUIA-DO-PERSONAL.md)
 
 You have probably asked ChatGPT or Claude for a workout. You probably got twelve exercises at four sets each, with no questions about which gym your client trains at, how many days they have, or whether their shoulder hurts. Nice to read, useless to apply.
 
+![Generic AI vs FitCoach Pro](assets/ai-vs-fitcoach.jpg)
+
 This changes how the assistant behaves. It is a set of instructions and tools you install once, and it makes the AI work your way: **ask before prescribing, pick exercises from equipment that actually exists, audit volume per muscle group, and admit when it does not know.**
 
 Three things it starts doing that an ordinary chat never does:
@@ -46,6 +48,8 @@ There are three ways to use this. Pick one — you do not need all three.
 ---
 
 ## 3. Download the files
+
+![Quickstart Visual Guide](assets/quickstart-guide.jpg)
 
 Same for every path.
 
@@ -122,6 +126,8 @@ On Claude this tends to work by itself. That is the reason for the recommendatio
 
 ## 6. Your first client, start to finish
 
+![Personal Trainer Workflow](assets/trainer-workflow.jpg)
+
 Here is a real conversation. **What you type is in bold.**
 
 ---
@@ -159,6 +165,8 @@ You get the finished sheet.
 ---
 
 ## 7. The weekly routine
+
+![Volume Dashboard and Mobile Workout App](assets/dashboard-mobile-preview.jpg)
 
 **Once a week, per client:**
 

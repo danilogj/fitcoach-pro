@@ -7,9 +7,13 @@
 
 ---
 
+![IA Genérica vs FitCoach Pro](assets/ai-vs-fitcoach.jpg)
+
 A maioria dos prompts de "personal trainer com IA" falha do mesmo jeito: você pede um programa e recebe doze exercícios, quatro séries cada, sem saber em que academia o aluno treina, sem triagem nenhuma, e um percentual de gordura com uma casa decimal saído de um sensor de pulso.
 
 Este repositório aposta no contrário. Ele não tenta substituir o julgamento do profissional — organiza o julgamento. Triagem antes da prescrição. Divisão escolhida pela agenda real do aluno, semana ruim incluída. Exercícios escolhidos pelo equipamento que existe de fato. Volume semanal auditado por grupo muscular. Progressão por critério explícito, não por sensação. E, o tempo todo, uma instrução que o modelo não segue sozinho: **diga quando um número é estimativa.**
+
+![Fluxo de Trabalho do Personal Trainer](assets/trainer-workflow.jpg)
 
 ## O que muda aqui
 
@@ -72,6 +76,8 @@ re-running this import is a no-op.
 Reimportar o mesmo arquivo não duplica nada. Quando um export não casar, `ingest --inspect` mostra os nomes reais das colunas e `--map 'weight_kg=Massa (kg)'` resolve numa flag.
 
 ## O dashboard
+
+![Painel de Volume e Diário no Celular](assets/dashboard-mobile-preview.jpg)
 
 O `dashboard` renderiza o log num único HTML autocontido — SVG inline, sem CDN, sem JavaScript, abre offline.
 

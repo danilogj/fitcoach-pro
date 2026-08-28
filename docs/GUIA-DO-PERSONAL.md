@@ -10,6 +10,8 @@ English version: [`TRAINER-GUIDE.md`](TRAINER-GUIDE.md)
 
 Você já deve ter pedido um treino ao ChatGPT ou ao Claude. Provavelmente veio uma lista de doze exercícios, quatro séries cada, sem perguntar em que academia o aluno treina, quantos dias ele tem, ou se o ombro dele dói. Bonito de ler, inútil de aplicar.
 
+![IA Genérica vs FitCoach Pro](assets/ai-vs-fitcoach.jpg)
+
 Isto aqui muda o comportamento do assistente. É um conjunto de instruções e ferramentas que você instala uma vez e que faz a inteligência artificial trabalhar do seu jeito: **perguntar antes de prescrever, escolher exercício pelo equipamento que existe de verdade, conferir o volume por grupo muscular, e admitir quando não sabe.**
 
 Três coisas que ele passa a fazer e que nenhum chat comum faz:
@@ -46,6 +48,8 @@ Existem três formas de usar. Escolha uma — não precisa das três.
 ---
 
 ## 3. Baixar os arquivos
+
+![Guia de Instalação Rápida](assets/quickstart-guide.jpg)
 
 Vale para qualquer caminho.
 
@@ -123,6 +127,8 @@ No Claude isso costuma funcionar sozinho. É a razão da recomendação.
 
 ## 6. Seu primeiro aluno, do começo ao fim
 
+![Fluxo de Trabalho do Personal Trainer](assets/trainer-workflow.jpg)
+
 Aqui está uma conversa real, do jeito que acontece. **O que você digita está em negrito.**
 
 ---
@@ -160,6 +166,8 @@ Você recebe a ficha pronta.
 ---
 
 ## 7. A rotina de cada semana
+
+![Painel de Volume e Diário no Celular](assets/dashboard-mobile-preview.jpg)
 
 **Uma vez por semana, por aluno:**
 

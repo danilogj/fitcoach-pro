@@ -10,9 +10,13 @@
 
 ---
 
+![Generic AI vs FitCoach Pro](docs/assets/ai-vs-fitcoach.jpg)
+
 Most "AI personal trainer" prompts fail the same way: ask for a program and you get twelve exercises, four sets each, no idea which gym the client trains at, no screening, and a body fat percentage quoted to one decimal place from a wrist sensor.
 
 This repository is the opposite bet. It does not try to replace the trainer's judgment — it structures it. Screening before prescription. Split chosen from the client's real schedule, including the bad week. Exercises chosen from equipment that actually exists. Weekly volume audited per muscle group. Progression by an explicit criterion instead of vibes. And, throughout, an instruction the model does not follow on its own: **say when a number is an estimate.**
+
+![Personal Trainer Workflow](docs/assets/trainer-workflow.jpg)
 
 ## What makes it different
 
@@ -79,6 +83,8 @@ re-running this import is a no-op.
 Re-importing the same file is a no-op. When an export does not match, `ingest --inspect` prints the real column names and `--map 'weight_kg=Massa (kg)'` fixes it in one flag.
 
 ## The dashboard
+
+![Volume Dashboard and Mobile Workout App](docs/assets/dashboard-mobile-preview.jpg)
 
 `dashboard` renders the log as one self-contained HTML file — inline SVG, no CDN, no JavaScript, opens offline.
 

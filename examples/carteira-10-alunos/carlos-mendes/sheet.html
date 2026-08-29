@@ -1,0 +1,1227 @@
+<title>Training diary — Carlos Mendes</title>
+
+<style>
+  :root {
+    --bg: #E7E9EC;
+    --surface: #FFFFFF;
+    --surface-2: #F2F4F7;
+    --field: #FFFFFF;
+    --ink: #14171B;
+    --ink-2: #5C6570;
+    --ink-3: #8B939D;
+    --line: #D3D8DE;
+    --line-2: #BFC6CF;
+    --accent: #1F5876;
+    --accent-ink: #FFFFFF;
+    --accent-soft: #DDE9F0;
+    --hold: #855508;
+    --hold-bg: #FAEFD9;
+    --hold-line: #E8D2A5;
+    --go: #2A6647;
+    --go-bg: #DCEDE3;
+    --go-line: #A9CFBA;
+    --shadow: 0 1px 2px rgba(20,23,27,.06), 0 6px 16px -8px rgba(20,23,27,.14);
+
+    --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    --r: 12px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #101316; --surface: #191D22; --surface-2: #21262D; --field: #23292F;
+      --ink: #E9ECEF; --ink-2: #98A2AE; --ink-3: #6E7885;
+      --line: #2B323A; --line-2: #3A434D;
+      --accent: #7CB6D8; --accent-ink: #0E1418; --accent-soft: #1A2E3B;
+      --hold: #E2B061; --hold-bg: #2F2410; --hold-line: #4A3A18;
+      --go: #7CC79C; --go-bg: #142E20; --go-line: #234A34;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 6px 16px -8px rgba(0,0,0,.6);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #101316; --surface: #191D22; --surface-2: #21262D; --field: #23292F;
+    --ink: #E9ECEF; --ink-2: #98A2AE; --ink-3: #6E7885;
+    --line: #2B323A; --line-2: #3A434D;
+    --accent: #7CB6D8; --accent-ink: #0E1418; --accent-soft: #1A2E3B;
+    --hold: #E2B061; --hold-bg: #2F2410; --hold-line: #4A3A18;
+    --go: #7CC79C; --go-bg: #142E20; --go-line: #234A34;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 6px 16px -8px rgba(0,0,0,.6);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: .9375rem;
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .wrap { max-width: 46rem; margin: 0 auto; padding: 0 .875rem 4rem; }
+
+  /* ---------- topo ---------- */
+
+  .top { display: flex; align-items: center; gap: .625rem; padding: 1.125rem 0 .875rem; }
+
+  .mark {
+    display: grid; place-items: center; width: 2.25rem; height: 2.25rem;
+    border-radius: 9px; background: var(--accent); color: var(--accent-ink);
+    font-family: var(--mono); font-size: .8125rem; font-weight: 700; flex: none;
+  }
+
+  h1 { margin: 0; font-size: 1.0625rem; font-weight: 650; letter-spacing: -.015em; line-height: 1.15; }
+  .sub { margin: .125rem 0 0; color: var(--ink-2); font-family: var(--mono); font-size: .6875rem; }
+
+  .saveflag {
+    margin-left: auto; display: inline-flex; align-items: center; gap: .375rem;
+    color: var(--ink-3); font-family: var(--mono); font-size: .625rem;
+    letter-spacing: .03em; text-transform: uppercase; white-space: nowrap;
+  }
+  .saveflag .led { width: .5rem; height: .5rem; border-radius: 50%; background: var(--line-2); flex: none; }
+  .saveflag[data-state="dirty"] { color: var(--hold); }
+  .saveflag[data-state="dirty"] .led { background: var(--hold); }
+  .saveflag[data-state="saving"] .led { background: var(--accent); }
+  .saveflag[data-state="saved"] { color: var(--go); }
+  .saveflag[data-state="saved"] .led { background: var(--go); }
+  .saveflag[data-state="local"] { color: var(--ink-3); }
+
+  /* ---------- semanas ---------- */
+
+  .weeks {
+    display: flex; gap: .375rem; overflow-x: auto; padding: .125rem .125rem .5rem;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .weeks::-webkit-scrollbar { display: none; }
+
+  .wk {
+    flex: none; display: flex; flex-direction: column; align-items: center; gap: .0625rem;
+    min-width: 3.75rem; padding: .4375rem .5rem;
+    border: 1px solid var(--line); border-radius: 9px;
+    background: var(--surface); color: var(--ink-2);
+    font-family: inherit; cursor: pointer;
+  }
+  .wk .w { font-family: var(--mono); font-size: .5625rem; letter-spacing: .08em; text-transform: uppercase; }
+  .wk .n { font-size: .9375rem; font-weight: 680; font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+  .wk[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .wk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .wk .dotmark { width: .3125rem; height: .3125rem; border-radius: 50%; background: var(--go); margin-top: .125rem; }
+  .wk[aria-pressed="true"] .dotmark { background: var(--accent-ink); }
+
+  .phase {
+    display: flex; align-items: center; gap: .5rem; flex-wrap: wrap;
+    margin: 0 0 .75rem; padding: .5rem .6875rem;
+    border: 1px solid var(--line); border-radius: 9px;
+    background: var(--surface-2);
+    font-size: .8125rem; color: var(--ink-2);
+  }
+  .phase .tag {
+    padding: .125rem .375rem; border-radius: 5px;
+    font-family: var(--mono); font-size: .625rem; font-weight: 700;
+    letter-spacing: .05em; text-transform: uppercase;
+  }
+  .phase .tag.entrada { background: var(--accent-soft); color: var(--accent); }
+  .phase .tag.cheio { background: var(--go-bg); color: var(--go); }
+  .phase .tag.deload { background: var(--hold-bg); color: var(--hold); }
+  .phase .dates { margin-left: auto; font-family: var(--mono); font-size: .6875rem; color: var(--ink-3); }
+
+  /* ---------- abas de dia ---------- */
+
+  .tabs {
+    position: sticky; top: 0; z-index: 10;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: .25rem;
+    padding: .375rem; margin-bottom: .875rem;
+    border: 1px solid var(--line); border-radius: var(--r);
+    background: var(--surface); box-shadow: var(--shadow);
+  }
+  .tab {
+    display: flex; flex-direction: column; align-items: center; gap: .0625rem;
+    padding: .5rem .25rem; border: 0; border-radius: 8px;
+    background: transparent; color: var(--ink-2); font-family: inherit; cursor: pointer;
+  }
+  .tab .d { font-family: var(--mono); font-size: .625rem; letter-spacing: .09em; text-transform: uppercase; }
+  .tab .n { font-size: .8125rem; font-weight: 620; letter-spacing: -.01em; }
+  .tab[aria-selected="true"] { background: var(--accent); color: var(--accent-ink); }
+  .tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* ---------- dia ---------- */
+
+  .day-bar {
+    display: flex; align-items: center; gap: .5rem; flex-wrap: wrap;
+    padding: 0 .25rem .625rem;
+    color: var(--ink-2); font-family: var(--mono); font-size: .6875rem;
+    letter-spacing: .03em; text-transform: uppercase;
+  }
+  .day-bar .focus { color: var(--ink); font-weight: 600; }
+  .day-bar .datefield { margin-left: auto; display: inline-flex; align-items: center; gap: .375rem; text-transform: none; letter-spacing: 0; }
+
+  input[type="date"] {
+    padding: .1875rem .375rem; border: 1px solid var(--line); border-radius: 6px;
+    background: var(--field); color: var(--ink); font-family: var(--mono); font-size: .6875rem;
+  }
+
+  .list { display: flex; flex-direction: column; gap: .5rem; }
+
+  .ex {
+    border: 1px solid var(--line); border-radius: var(--r);
+    background: var(--surface); padding: .75rem .875rem .8125rem; box-shadow: var(--shadow);
+  }
+  .ex.filled { border-color: var(--go-line); }
+
+  .ex-head { display: flex; align-items: baseline; gap: .5rem; }
+  .idx { flex: none; min-width: 1.375rem; color: var(--ink-3); font-family: var(--mono); font-size: .75rem; font-variant-numeric: tabular-nums; }
+  .ex h3 { margin: 0; font-size: .9375rem; font-weight: 600; letter-spacing: -.012em; line-height: 1.3; text-wrap: balance; }
+
+  .ss {
+    display: inline-block; margin-left: .375rem; padding: .0625rem .3125rem; border-radius: 4px;
+    background: var(--accent-soft); color: var(--accent);
+    font-family: var(--mono); font-size: .5625rem; font-weight: 700; letter-spacing: .06em; vertical-align: .1em;
+  }
+
+  .ex-data { display: flex; flex-wrap: wrap; align-items: center; gap: .375rem; margin: .625rem 0 0; padding-left: 1.875rem; }
+  .prescr { font-family: var(--mono); font-size: .9375rem; font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+  .prescr b { font-weight: 700; }
+  .prescr .side { opacity: .6; }
+
+  .rir {
+    padding: .1875rem .4375rem; border-radius: 6px; border: 1px solid transparent;
+    font-family: var(--mono); font-size: .6875rem; font-weight: 600; white-space: nowrap;
+  }
+  .rir-hold { background: var(--hold-bg); border-color: var(--hold-line); color: var(--hold); }
+  .rir-go { background: var(--go-bg); border-color: var(--go-line); color: var(--go); }
+
+  .rest {
+    margin-left: auto; padding: .25rem .5rem;
+    border: 1px solid var(--line); border-radius: 6px;
+    background: var(--surface-2); color: var(--ink-2);
+    font-family: var(--mono); font-size: .6875rem; font-variant-numeric: tabular-nums;
+    cursor: pointer; white-space: nowrap;
+  }
+  .rest:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .rest.running { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .rest.done { background: var(--go-bg); border-color: var(--go-line); color: var(--go); }
+
+  /* ---------- log de carga e reps ---------- */
+
+  .log { margin: .6875rem 0 0; padding-left: 1.875rem; }
+
+  .setshead {
+    display: grid; grid-template-columns: 1.25rem 5rem .75rem 4rem; gap: .25rem;
+    margin-bottom: .1875rem;
+    color: var(--ink-3); font-family: var(--mono);
+    font-size: .5625rem; letter-spacing: .08em; text-transform: uppercase;
+  }
+  .setshead span:nth-child(2) { padding-left: .125rem; }
+  .setshead span:nth-child(4) { padding-left: .125rem; }
+
+  .sets { display: flex; flex-direction: column; gap: .25rem; }
+
+  .setrow { display: grid; grid-template-columns: 1.25rem 5rem .75rem 4rem; gap: .25rem; align-items: center; }
+  .setshead.tempo, .setrow.tempo { grid-template-columns: 1.25rem 6rem; }
+
+  .rest.estatico {
+    cursor: default; background: transparent; border-color: transparent;
+    color: var(--ink-3); font-weight: 600;
+  }
+
+  .sn {
+    color: var(--ink-3); font-family: var(--mono); font-size: .6875rem;
+    font-variant-numeric: tabular-nums; text-align: center;
+  }
+  .xs { color: var(--ink-3); font-family: var(--mono); font-size: .75rem; text-align: center; }
+
+  .cin, .rin {
+    width: 100%; padding: .375rem .4375rem;
+    border: 1px solid var(--line-2); border-radius: 7px;
+    background: var(--field); color: var(--ink);
+    font-family: var(--mono); font-size: .875rem; font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .rin { text-align: center; }
+
+  .cin:focus, .rin:focus, input[type="date"]:focus, .obs-in:focus {
+    outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent);
+  }
+  .cin:not(:placeholder-shown), .rin:not(:placeholder-shown) {
+    background: var(--go-bg); border-color: var(--go-line);
+  }
+  .cin.ghost:placeholder-shown { color: var(--ink-3); }
+
+  .prev {
+    margin: .4375rem 0 0;
+    color: var(--ink-3); font-family: var(--mono); font-size: .6875rem; line-height: 1.5;
+  }
+  .prev b { color: var(--ink-2); font-weight: 600; }
+
+  .cue { margin: .625rem 0 0; padding-left: 1.875rem; color: var(--ink-2); font-size: .8125rem; line-height: 1.45; }
+  .cue strong { color: var(--ink); font-weight: 600; }
+
+  .obs-in {
+    width: 100%; margin-top: .5rem; padding: .5rem .625rem; min-height: 3.25rem;
+    border: 1px solid var(--line); border-radius: 9px;
+    background: var(--surface); color: var(--ink);
+    font-family: inherit; font-size: .8125rem; line-height: 1.45; resize: vertical;
+  }
+
+  /* ---------- ações ---------- */
+
+  .actions { display: flex; gap: .5rem; margin-top: 1rem; }
+
+  .btn {
+    flex: 1; padding: .6875rem .75rem;
+    border: 1px solid var(--line); border-radius: 10px;
+    background: var(--surface); color: var(--ink);
+    font-family: inherit; font-size: .8125rem; font-weight: 600; cursor: pointer;
+  }
+  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .btn[disabled] { opacity: .45; cursor: default; }
+
+  .note {
+    margin: .625rem 0 0; padding: .5rem .6875rem;
+    border: 1px solid var(--line); border-radius: 9px;
+    background: var(--surface-2); color: var(--ink-2);
+    font-size: .75rem; line-height: 1.45;
+  }
+  .note strong { color: var(--ink); font-weight: 600; }
+  .note.alerta { border-color: var(--hold-line); background: var(--hold-bg); color: var(--hold); }
+  .note.alerta strong { color: var(--hold); }
+  .note[hidden] { display: none; }
+
+  /* ---------- regras ---------- */
+
+  .rules { margin-top: 1rem; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); overflow: hidden; }
+  .rules summary { padding: .75rem .875rem; font-size: .8125rem; font-weight: 600; cursor: pointer; list-style: none; }
+  .rules summary::-webkit-details-marker { display: none; }
+  .rules summary::after { content: " ▾"; color: var(--ink-3); }
+  .rules[open] summary::after { content: " ▴"; }
+  .rules summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .rules-body { padding: .75rem .875rem .875rem; border-top: 1px solid var(--line); }
+  .rules-body p { margin: 0 0 .625rem; font-size: .8125rem; color: var(--ink-2); line-height: 1.5; }
+  .rules-body p:last-child { margin-bottom: 0; }
+  .rules-body strong { color: var(--ink); font-weight: 600; }
+
+  .targets { display: grid; grid-template-columns: repeat(auto-fit, minmax(6.25rem, 1fr)); gap: .5rem; margin-top: .75rem; }
+  .t { padding: .5rem .625rem; border: 1px solid var(--line); border-radius: 9px; background: var(--surface-2); }
+  .t dt { color: var(--ink-3); font-family: var(--mono); font-size: .5625rem; letter-spacing: .07em; text-transform: uppercase; }
+  .t dd { margin: .1875rem 0 0; font-family: var(--mono); font-size: .9375rem; font-weight: 650; font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+
+  .foot { margin-top: 1.125rem; padding: 0 .25rem; color: var(--ink-3); font-family: var(--mono); font-size: .625rem; line-height: 1.6; }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+.backup-box{width:100%;min-height:120px;font:12px/1.45 ui-monospace,SFMono-Regular,Menlo,monospace;
+padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--field);color:var(--ink);
+resize:vertical;-webkit-user-select:text;user-select:text}
+.backup-actions{display:flex;gap:8px;margin-top:8px}
+</style>
+
+<div class="wrap">
+
+  <header class="top">
+    <span class="mark">FC</span>
+    <div>
+      <h1>Carlos Mendes</h1>
+      <p class="sub">Full Body 3x + 150 min Cardio Z2 · Bloco de 8 Semanas</p>
+    </div>
+    <span class="saveflag" id="flag" data-state="idle"><span class="led"></span><span id="flagtxt">ready</span></span>
+  </header>
+
+  <div class="weeks" id="weeks" role="group" aria-label="Block weeks"></div>
+
+  <div class="phase" id="phase"></div>
+
+  <nav class="tabs" id="tabs" role="tablist" aria-label="Training days"></nav>
+
+  <main id="day"></main>
+
+  <div class="actions">
+    <button class="btn primary" id="save" type="button">Save</button>
+    <button class="btn" id="export" type="button">Export .md</button>
+    <button class="btn" id="backup" type="button">Backup</button>
+  </div>
+
+  <p class="note" id="note" hidden></p>
+
+  <details class="rules" id="backup-panel" hidden>
+    <summary>Backup and restore</summary>
+    <div class="rules-body">
+      <p>Your record lives in this phone's browser. Clearing site data, switching phones or using a private tab loses it. Copy this text somewhere safe — a note to yourself, a message to your trainer — and it can always be restored.</p>
+      <textarea id="backup-text" class="backup-box" spellcheck="false" placeholder="Paste a backup here to restore it"></textarea>
+      <div class="backup-actions">
+        <button class="btn" id="backup-copy" type="button">Copy</button>
+        <button class="btn" id="backup-restore" type="button">Restore from text</button>
+      </div>
+    </div>
+  </details>
+
+
+  <details class="rules">
+    <summary>Rules that matter more than exercise selection</summary>
+    <div class="rules-body">
+      <!-- {{RULES}} — the block rules. Keep them short: this is read standing up, at the gym. -->
+      <p><strong>Amber RIR (1-2)</strong> — heavy compounds and pull-ups. Hold back. Failure here costs the whole week.</p>
+      <p><strong>Green RIR (0-1)</strong> — isolation, machines and cables. Go to failure freely.</p>
+      <p><strong>Progression.</strong> Hit the top of the rep range on <em>every</em> sets while holding the target RIR → add load next session. Not before.</p>
+      <p><strong>Warm-up ramp</strong> on heavy compounds: 50% · 70% · 85%, 3-5 reps.</p>
+
+      <dl class="targets">
+        <!-- {{TARGETS}} — the client's nutrition targets. Remove the whole block if there are none. -->
+        <div class="t"><dt>Calories</dt><dd>—</dd></div>
+        <div class="t"><dt>Protein</dt><dd>—</dd></div>
+        <div class="t"><dt>Carbs</dt><dd>—</dd></div>
+        <div class="t"><dt>Fat</dt><dd>—</dd></div>
+      </dl>
+    </div>
+  </details>
+
+  <p class="foot" id="foot">
+    Tap the rest time to start the timer · last week's numbers appear under each set<br>
+    Your record is saved on this phone as you type · export the .md at the end of each week<br>
+    <br>
+    Program prescribed and reviewed by <strong>Danilo Jorge</strong>, CREF 123456-G/SP.<br>
+    Sharp pain, dizziness, shortness of breath or chest pain: <strong>stop the set and tell me.</strong> Never train through pain.
+  </p>
+
+</div>
+
+<script id="initial-state" type="application/json">{"v":1,"semanas":{},"savedAt":null}</script>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ============ programa ============ */
+
+  /* {{PROGRAM}} — replace the whole array with the client's sessions.
+     Schema for each exercise in references/08-deliverables.md.
+     The example below exists only so the page opens; replace it. */
+
+  var PROGRAM = [
+    {
+      id: "supA", dia: "Seg", nome: "Upper A", foco: "Horizontal push + vertical pull",
+      ex: [
+        { n: "Barbell bench press", s: 4, r: "6-8", rir: "1-2", t: "hold", d: 150, dl: "2-3 min", cue: "Ramp first: <strong>50% · 70% · 85%</strong>, 3-5 reps. Never to failure." },
+        { n: "Pull-up", s: 4, r: "max", rir: "1-2", t: "hold", f: "pc", d: 150, dl: "2-3 min" },
+        { n: "One-arm dumbbell row", s: 3, r: "8-10", side: "/side", rir: "1-2", t: "hold", d: 90, dl: "90 s" },
+        { n: "Dumbbell lateral raise", s: 3, r: "12-15", rir: "0-1", t: "go", d: 75, dl: "60-90 s" }
+      ]
+    },
+    {
+      id: "infA", dia: "Ter", nome: "Lower A", foco: "Knee-dominant emphasis",
+      ex: [
+        { n: "Barbell back squat", s: 4, r: "6-8", rir: "1-2", t: "hold", d: 180, dl: "3 min" },
+        { n: "Romanian deadlift", s: 3, r: "8-10", rir: "1-2", t: "hold", d: 150, dl: "2-3 min" },
+        { n: "Lying leg curl", s: 3, r: "10-12", rir: "0-1", t: "go", d: 90, dl: "90 s" },
+        { n: "Plank", s: 3, r: "45-60 s", rir: "", t: "", f: "tempo", d: 45, dl: "45 s" }
+      ]
+    }
+  ];
+
+  var START = "2026-08-03";              // Monday of week 1, YYYY-MM-DD
+  var TOTAL_WEEKS = 8;
+  var INTRO_UNTIL = 2;      // last week of the introduction phase · 0 disables
+  var DELOAD_WEEK = 8;          // deload week · 0 disables
+  var STORAGE_KEY = "fitcoach-log-carlos-mendes";
+
+  /* ============ utilidades ============ */
+
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+
+  function mondayOf(sem) {
+    var d = new Date(START + "T12:00:00");
+    d.setDate(d.getDate() + (sem - 1) * 7);
+    return d;
+  }
+
+  function dateOfDay(sem, idDia) {
+    var offset = { supA: 0, infA: 1, supB: 3, infB: 4 }[idDia];
+    var d = mondayOf(sem);
+    d.setDate(d.getDate() + offset);
+    return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate());
+  }
+
+  function shortDate(iso) { var p = iso.split("-"); return p[2] + "/" + p[1]; }
+
+  function weekRange(sem) {
+    var a = mondayOf(sem), b = new Date(a); b.setDate(b.getDate() + 6);
+    return pad(a.getDate()) + "/" + pad(a.getMonth() + 1) + " a " + pad(b.getDate()) + "/" + pad(b.getMonth() + 1);
+  }
+
+  function phase(sem) {
+    if (INTRO_UNTIL && sem <= INTRO_UNTIL) return { k: "entrada", txt: "Introduction — one set fewer, never below 2" };
+    if (DELOAD_WEEK && sem === DELOAD_WEEK) return { k: "deload", txt: "Deload — sets at the floor, load held, everything at RIR 3-4" };
+    if (sem === TOTAL_WEEKS) return { k: "cheio", txt: "Full volume — reassessment week" };
+    return { k: "cheio", txt: "Full volume" };
+  }
+
+  function setsFor(base, sem) {
+    // floor of 2 sets: cutting a 2-set exercise to 1 is not reduced volume, it is no volume
+    if (INTRO_UNTIL && sem <= INTRO_UNTIL) return Math.max(2, base - 1);
+    if (DELOAD_WEEK && sem === DELOAD_WEEK) return Math.max(2, Math.round(base * 0.6));
+    return base;
+  }
+
+  function rirFor(ex, sem) {
+    if (!ex.rir) return "";
+    return (DELOAD_WEEK && sem === DELOAD_WEEK) ? "3-4" : ex.rir;
+  }
+
+  function currentWeek() {
+    var hoje = new Date();
+    var ini = new Date(START + "T12:00:00");
+    var dias = Math.floor((hoje - ini) / 86400000);
+    var s = Math.floor(dias / 7) + 1;
+    return Math.min(TOTAL_WEEKS, Math.max(1, s));
+  }
+
+  function currentDay() {
+    /* {{DAYS}} — JS getDay() (0=Sun … 6=Sat) mapped to the session index in PROGRAM */
+    var m = { 1: 0, 2: 1, 4: 2, 5: 3 };
+    var v = m[new Date().getDay()];
+    return v === undefined ? 0 : v;
+  }
+
+  /* ============ state ============ */
+
+  var state = { v: 1, savedAt: null, semanas: {} };
+  var activeWeek = currentWeek();
+  var activeDay = currentDay();
+
+  (function restorePosition() {
+    try {
+      var raw = window.sessionStorage.getItem("fitcoach-pos");
+      if (!raw) return;
+      window.sessionStorage.removeItem("fitcoach-pos");
+      var p = JSON.parse(raw);
+      if (p && p.s >= 1 && p.s <= TOTAL_WEEKS) activeWeek = p.s;
+      if (p && p.d >= 0 && p.d <= 3) activeDay = p.d;
+    } catch (e) {}
+  })();
+  var dirty = false;
+  var artifactApi = null;       // namespace de publicação, quando disponível
+  var modo = null;              // "files" = salva sem recarregar · "html" = salva reloading
+  var htmlSource = null;         // documento original, base para o salvamento em modo html
+  var baixar = null;
+
+  function readEmbedded() {
+    try {
+      var raw = document.getElementById("initial-state").textContent;
+      var o = JSON.parse(raw);
+      if (o && o.semanas) return o;
+    } catch (e) {}
+    return null;
+  }
+
+  function readLocal() {
+    try {
+      var raw = window.localStorage.getItem(STORAGE_KEY);
+      if (!raw) return null;
+      var o = JSON.parse(raw);
+      if (o && o.semanas) return o;
+    } catch (e) {}
+    return null;
+  }
+
+  function writeLocal() {
+    try { window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+  }
+
+  function newerOf(a, b) {
+    if (!a) return b;
+    if (!b) return a;
+    return (b.savedAt || "") > (a.savedAt || "") ? b : a;
+  }
+
+  function slot(sem, idDia) {
+    var k = String(sem);
+    if (!state.semanas[k]) state.semanas[k] = {};
+    if (!state.semanas[k][idDia]) state.semanas[k][idDia] = { data: dateOfDay(sem, idDia), obs: "", ex: {} };
+    return state.semanas[k][idDia];
+  }
+
+  function readSlot(sem, idDia) {
+    var s = state.semanas[String(sem)];
+    return (s && s[idDia]) || null;
+  }
+
+  function hasContent(d) {
+    if (!d || !d.sets) return false;
+    return d.sets.some(function (x) { return x && (x.c || x.r); });
+  }
+
+  function weekHasRecord(sem) {
+    var s = state.semanas[String(sem)];
+    if (!s) return false;
+    for (var d in s) {
+      var ex = s[d].ex || {};
+      for (var i in ex) { if (hasContent(ex[i])) return true; }
+    }
+    return false;
+  }
+
+  function exerciseSlot(sem, idDia, i, n) {
+    var s = slot(sem, idDia);
+    if (!s.ex[i] || !s.ex[i].sets) s.ex[i] = { sets: [] };
+    while (s.ex[i].sets.length < n) s.ex[i].sets.push({ c: "", r: "" });
+    return s.ex[i];
+  }
+
+  function previousWeek(sem, idDia, iEx) {
+    for (var w = sem - 1; w >= 1; w--) {
+      var s = readSlot(w, idDia);
+      if (s && s.ex[iEx] && hasContent(s.ex[iEx])) return { sets: s.ex[iEx].sets, semana: w };
+    }
+    return null;
+  }
+
+  function setsSummary(sets, f) {
+    return (sets || []).filter(function (x) { return x && (x.c || x.r); })
+      .map(function (x) {
+        if (f === "tempo") return (x.r || "?") + " s";
+        if (f === "pc") return (x.c ? "PC+" + x.c : "PC") + "×" + (x.r || "?");
+        return (x.c || "?") + "×" + (x.r || "?");
+      })
+      .join(" · ");
+  }
+
+  function migrate(o) {
+    if (!o || !o.semanas) return o;
+    for (var w in o.semanas) {
+      for (var d in o.semanas[w]) {
+        var ex = o.semanas[w][d].ex || {};
+        for (var i in ex) {
+          var e = ex[i];
+          if (e && !e.sets) {
+            var reps = e.reps || [];
+            var n = Math.max(reps.length, e.carga ? 1 : 0);
+            var sets = [];
+            for (var k = 0; k < n; k++) sets.push({ c: e.carga || "", r: reps[k] || "" });
+            ex[i] = { sets: sets };
+          }
+        }
+      }
+    }
+    return o;
+  }
+
+  /* ============ indicador de salvamento ============ */
+
+  var flag = document.getElementById("flag");
+  var flagtxt = document.getElementById("flagtxt");
+
+  function setFlag(state, txt) {
+    flag.dataset.state = state;
+    flagtxt.textContent = txt;
+  }
+
+  function applyMode() {
+    var b = document.getElementById("save");
+    b.textContent = modo === "html" ? "Save and reload" : "Save";
+  }
+
+  function markDirty() {
+    dirty = true;
+    state.savedAt = new Date().toISOString();
+    writeLocal();
+    setFlag("dirty", "unsaved");
+    scheduleSave();
+  }
+
+  var tempo = null;
+  function scheduleSave() {
+    if (modo !== "files") return;   // no modo html o salvamento recarrega: só no clique
+    if (tempo) clearTimeout(tempo);
+    tempo = setTimeout(save, 3000);
+  }
+
+  function docWithState(json) {
+    var escaped = json.replace(/</g, "\\u003c");
+    return htmlSource.replace(
+      /(<script id="initial-state"[^>]*>)[\s\S]*?(<\/script>)/,
+      function (whole, open, close) { return open + escaped + close; }
+    );
+  }
+
+  function publish(json) {
+    if (modo === "files") {
+      return artifactApi.publish({ "dados/log.json": json });
+    }
+    if (modo === "html" && htmlSource) {
+      try {
+        window.sessionStorage.setItem("fitcoach-pos", JSON.stringify({ s: activeWeek, d: activeDay }));
+      } catch (e) {}
+      return artifactApi.publish(docWithState(json));
+    }
+    return Promise.reject({ code: "unavailable", message: "no save route available" });
+  }
+
+  function save(retry) {
+    if (tempo) { clearTimeout(tempo); tempo = null; }
+    if (!artifactApi || !modo) { writeLocal(); setFlag("local", "this device only"); return; }
+    if (!dirty && !retry) { setFlag("saved", "saved"); return; }
+
+    setFlag("saving", "saving…");
+    state.savedAt = new Date().toISOString();
+    var json = JSON.stringify(state);
+    writeLocal();
+
+    publish(json).then(function () {
+      dirty = false;
+      writeLocal();
+      setFlag("saved", "saved");
+    }).catch(function (err) {
+      var code = (err && err.code) || "desconhecido";
+      writeLocal();
+
+      if (code === "conflict") { setFlag("dirty", "reloading"); return; }
+
+      if (code === "rate_limited") {
+        setFlag("dirty", "waiting");
+        setTimeout(function () { save(true); }, 15000);
+        return;
+      }
+
+      // a via sem recarregar não está disponível aqui — cai para o documento inteiro
+      var switchable = ["capability_disabled", "capability_removed", "transform_error",
+                      "invalid_content", "read_only_path", "unavailable"];
+      if (modo === "files" && switchable.indexOf(code) > -1 && htmlSource) {
+        modo = "html";
+        applyMode();
+        notice("<strong>Manual mode in this view.</strong> Everything you type is stored on this phone immediately. Tap <strong>Save and reload</strong> when the session ends to commit it — the page returns exactly where you were.", false);
+        save(true);
+        return;
+      }
+
+      modo = null;
+      setFlag("local", "this device only");
+      notice("Could not save to the page (<strong>" + code + "</strong>). Your record is stored on this device — export the .md before closing.", true);
+    });
+  }
+
+  function notice(html, alerta) {
+    var n = document.getElementById("note");
+    n.innerHTML = html;
+    n.classList.toggle("alerta", alerta !== false);
+    n.hidden = false;
+  }
+
+  /* ============ render ============ */
+
+  var elWeeks = document.getElementById("weeks");
+  var elPhase = document.getElementById("phase");
+  var elTabs = document.getElementById("tabs");
+  var elDay = document.getElementById("day");
+
+  function renderWeeks() {
+    elWeeks.textContent = "";
+    for (var w = 1; w <= TOTAL_WEEKS; w++) {
+      (function (w) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "wk";
+        b.setAttribute("aria-pressed", String(w === activeWeek));
+        b.innerHTML = '<span class="w">Sem</span><span class="n">' + w + "</span>";
+        if (weekHasRecord(w)) {
+          var dm = document.createElement("span");
+          dm.className = "dotmark";
+          b.appendChild(dm);
+        }
+        b.addEventListener("click", function () {
+          activeWeek = w;
+          renderTudo();
+          window.scrollTo({ top: 0 });
+        });
+        elWeeks.appendChild(b);
+      })(w);
+    }
+  }
+
+  function renderPhase() {
+    var f = phase(activeWeek);
+    elPhase.innerHTML =
+      '<span class="tag ' + f.k + '">' + f.k + "</span>" +
+      "<span>" + f.txt + "</span>" +
+      '<span class="dates">' + weekRange(activeWeek) + "</span>";
+  }
+
+  function renderTabs() {
+    elTabs.textContent = "";
+    PROGRAM.forEach(function (d, i) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "tab";
+      b.setAttribute("role", "tab");
+      b.setAttribute("aria-selected", String(i === activeDay));
+      b.innerHTML = '<span class="d">' + d.dia + '</span><span class="n">' + d.nome + "</span>";
+      b.addEventListener("click", function () {
+        activeDay = i;
+        renderTabs();
+        renderDay();
+      });
+      elTabs.appendChild(b);
+    });
+  }
+
+  function renderDay() {
+    var dia = PROGRAM[activeDay];
+    var reg = readSlot(activeWeek, dia.id);
+    var totalSets = dia.ex.reduce(function (a, e) { return a + setsFor(e.s, activeWeek); }, 0);
+
+    elDay.textContent = "";
+
+    var bar = document.createElement("div");
+    bar.className = "day-bar";
+    bar.innerHTML =
+      '<span class="focus">' + dia.foco + "</span>" +
+      '<span class="datefield"><span>data</span><input type="date" id="dtfield" value="' +
+      ((reg && reg.data) || dateOfDay(activeWeek, dia.id)) + '"></span>';
+    elDay.appendChild(bar);
+
+    var cnt = document.createElement("div");
+    cnt.className = "day-bar";
+    cnt.style.paddingTop = "0";
+    cnt.innerHTML = "<span>" + totalSets + " sets prescribed this week</span>";
+    elDay.appendChild(cnt);
+
+    var list = document.createElement("div");
+    list.className = "list";
+
+    dia.ex.forEach(function (ex, i) {
+      var nSets = setsFor(ex.s, activeWeek);
+      var dados = (reg && reg.ex[i]) || { sets: [] };
+
+      var card = document.createElement("article");
+      card.className = "ex";
+      if (hasContent(dados)) card.classList.add("filled");
+
+      var rotulo = ex.ss ? (i === 6 ? "7a" : "7b") : String(i + 1);
+      var rir = rirFor(ex, activeWeek);
+
+      var html =
+        '<div class="ex-head"><span class="idx">' + rotulo + "</span><h3>" + ex.n +
+        (ex.ss ? '<span class="ss">SS</span>' : "") + "</h3></div>" +
+        '<div class="ex-data">' +
+          '<span class="prescr"><b>' + nSets + "</b>×" + ex.r +
+          (ex.side ? ' <span class="side">' + ex.side + "</span>" : "") + "</span>" +
+          (rir ? '<span class="rir rir-' + ex.t + '">RIR ' + rir + "</span>" : "") +
+          '<button class="rest" type="button" data-rest="' + ex.d + '">' + ex.dl + "</button>" +
+        "</div>";
+
+      card.innerHTML = html;
+
+      // linhas por série — carga e reps em cada uma
+      var log = document.createElement("div");
+      log.className = "log";
+
+      var f = ex.f || "";   // "" = carga+reps · "pc" = peso corporal · "tempo" = isometria
+
+      var cab = document.createElement("div");
+      cab.className = "setshead" + (f === "tempo" ? " tempo" : "");
+      cab.innerHTML = f === "tempo"
+        ? "<span></span><span>Seconds</span>"
+        : "<span></span><span>" + (f === "pc" ? "Added load" : "Load") + "</span><span></span><span>Reps</span>";
+      log.appendChild(cab);
+
+      var sets = document.createElement("div");
+      sets.className = "sets";
+      var guardados = dados.sets || [];
+      var campos = [];
+
+      for (var k = 0; k < nSets; k++) {
+        (function (k) {
+          var row = document.createElement("div");
+          row.className = "setrow" + (f === "tempo" ? " tempo" : "");
+
+          var sn = document.createElement("span");
+          sn.className = "sn";
+          sn.textContent = String(k + 1);
+          row.appendChild(sn);
+
+          var cin = null;
+
+          if (f !== "tempo") {
+            cin = document.createElement("input");
+            cin.className = "cin";
+            cin.type = "text";
+            cin.inputMode = "decimal";
+            cin.placeholder = f === "pc" ? "+kg" : "kg";
+            cin.setAttribute("aria-label", (f === "pc" ? "Added load" : "Load") + " of set " + (k + 1));
+            cin.value = (guardados[k] && guardados[k].c) || "";
+
+            cin.addEventListener("input", function () {
+              var e = exerciseSlot(activeWeek, dia.id, i, nSets);
+              e.sets[k].c = cin.value.trim();
+              for (var j = k + 1; j < nSets; j++) {
+                if (campos[j] && campos[j].c && !campos[j].c.value) {
+                  campos[j].c.value = cin.value;
+                  e.sets[j].c = cin.value.trim();
+                }
+              }
+              card.classList.add("filled");
+              markDirty();
+            });
+
+            var xs = document.createElement("span");
+            xs.className = "xs";
+            xs.textContent = "×";
+
+            row.appendChild(cin);
+            row.appendChild(xs);
+          }
+
+          var rin = document.createElement("input");
+          rin.className = f === "tempo" ? "cin" : "rin";
+          rin.type = "text";
+          rin.inputMode = "numeric";
+          rin.placeholder = f === "tempo" ? "s" : "—";
+          rin.setAttribute("aria-label", (f === "tempo" ? "Seconds" : "Reps") + " of set " + (k + 1));
+          rin.value = (guardados[k] && guardados[k].r) || "";
+
+          rin.addEventListener("input", function () {
+            var e = exerciseSlot(activeWeek, dia.id, i, nSets);
+            e.sets[k].r = rin.value.trim();
+            if (f === "tempo") {   // isometria: repete o tempo nas séries seguintes ainda vazias
+              for (var j = k + 1; j < nSets; j++) {
+                if (campos[j] && !campos[j].r.value) {
+                  campos[j].r.value = rin.value;
+                  e.sets[j].r = rin.value.trim();
+                }
+              }
+            }
+            card.classList.add("filled");
+            markDirty();
+          });
+
+          row.appendChild(rin);
+          sets.appendChild(row);
+          campos[k] = { c: cin, r: rin };
+        })(k);
+      }
+
+      log.appendChild(sets);
+
+      var ant = previousWeek(activeWeek, dia.id, i);
+      if (ant) {
+        var pv = document.createElement("p");
+        pv.className = "prev";
+        pv.innerHTML = "Week " + ant.semana + ": <b>" + setsSummary(ant.sets, f) + "</b>";
+        log.appendChild(pv);
+      }
+
+      card.appendChild(log);
+
+      if (ex.cue) {
+        var c = document.createElement("p");
+        c.className = "cue";
+        c.innerHTML = ex.cue;
+        card.appendChild(c);
+      }
+
+      list.appendChild(card);
+    });
+
+    elDay.appendChild(list);
+
+    var obs = document.createElement("textarea");
+    obs.className = "obs-in";
+    obs.placeholder = "Session notes — energy, pain, what stalled, what went up…";
+    obs.value = (reg && reg.obs) || "";
+    obs.addEventListener("input", function () {
+      slot(activeWeek, dia.id).obs = obs.value;
+      markDirty();
+    });
+    elDay.appendChild(obs);
+
+    document.getElementById("dtfield").addEventListener("change", function () {
+      slot(activeWeek, dia.id).data = this.value;
+      markDirty();
+    });
+
+    ligarCronometros();
+  }
+
+  function renderTudo() {
+    renderWeeks();
+    renderPhase();
+    renderTabs();
+    renderDay();
+  }
+
+  /* ============ cronômetro ============ */
+
+  var timer = null, ativo = null;
+
+  function pararTimer() {
+    if (timer) { clearInterval(timer); timer = null; }
+    if (ativo) { ativo.classList.remove("running"); ativo.textContent = ativo.dataset.label; ativo = null; }
+  }
+
+  function ligarCronometros() {
+    document.querySelectorAll(".rest").forEach(function (btn) {
+      btn.dataset.label = btn.textContent;
+      var secs = parseInt(btn.dataset.rest, 10);
+      if (!secs) { btn.classList.add("estatico"); return; }
+
+      btn.addEventListener("click", function () {
+        var era = ativo === btn;
+        pararTimer();
+        if (era) return;
+
+        var falta = secs;
+        ativo = btn;
+        btn.classList.remove("done");
+        btn.classList.add("running");
+
+        function tick() {
+          btn.textContent = Math.floor(falta / 60) + ":" + pad(falta % 60);
+          if (falta <= 0) {
+            clearInterval(timer); timer = null; ativo = null;
+            btn.classList.remove("running");
+            btn.classList.add("done");
+            btn.textContent = "vai";
+            setTimeout(function () {
+              btn.classList.remove("done");
+              btn.textContent = btn.dataset.label;
+            }, 8000);
+            return;
+          }
+          falta--;
+        }
+        tick();
+        timer = setInterval(tick, 1000);
+      });
+    });
+  }
+
+  /* ============ exportação markdown ============ */
+
+  function buildMarkdown() {
+    var hoje = new Date();
+    var L = [];
+    /* {{EXPORT_HEADER}} — what the trainer needs to see alongside the log.
+       Fill in CLIENT and CLIENT_SUMMARY; without them the log analysis has no context. */
+    L.push("# Training Log — Carlos Mendes");
+    L.push("");
+    L.push("> Export from the training diary. The full program, the profile and the adjustment rules");
+    L.push("> live in the client's file. **Read them before analyzing** — without them the analysis comes out generic.");
+    L.push("");
+    L.push("| | |");
+    L.push("| :--- | :--- |");
+    L.push("| **Client** | Male, 42 anos, 86.8 kg · Iniciante/Intermediário · Recomposição Corporal · Pré-diabetes & Cardio Zona 2 |");
+    L.push("| **Block** | Full Body 3x + 150 min Cardio Z2 · Bloco de 8 Semanas · started " + shortDate(START) + " |");
+    L.push("| **Phases** | introduction through week " + INTRO_UNTIL + " · deload in week " + DELOAD_WEEK + " · " + TOTAL_WEEKS + " weeks total |");
+    L.push("| **Exported on** | " + pad(hoje.getDate()) + "/" + pad(hoje.getMonth() + 1) + "/" + hoje.getFullYear() + " |");
+    L.push("");
+    L.push("Each set appears as `load × reps`, in the order performed. Load in kg.");
+    L.push("`BW` = bodyweight · `BW+5` = bodyweight plus 5 kg · `45 s` = isometric hold.");
+    L.push("");
+
+    var any = false;
+
+    for (var w = 1; w <= TOTAL_WEEKS; w++) {
+      if (!weekHasRecord(w)) continue;
+      any = true;
+      var f = phase(w);
+      L.push("---");
+      L.push("");
+      L.push("## Week " + w + " · " + weekRange(w) + " · " + f.k);
+      L.push("");
+      L.push("_" + f.txt + "_");
+      L.push("");
+
+      PROGRAM.forEach(function (dia) {
+        var reg = readSlot(w, dia.id);
+        if (!reg) return;
+        var linhas = [];
+
+        dia.ex.forEach(function (ex, i) {
+          var d = reg.ex[i];
+          if (!hasContent(d)) return;
+          linhas.push("| " + ex.n +
+            " | " + setsFor(ex.s, w) + "×" + ex.r + (ex.side ? " " + ex.side : "") +
+            " | " + (rirFor(ex, w) || "—") +
+            " | " + setsSummary(d.sets, ex.f) + " |");
+        });
+
+        if (!linhas.length && !reg.obs) return;
+
+        L.push("### " + dia.dia + " · " + dia.nome + (reg.data ? " — " + shortDate(reg.data) : ""));
+        L.push("");
+        if (linhas.length) {
+          L.push("| Exercise | Prescribed | RIR | Sets performed · load × reps |");
+          L.push("| :--- | :-: | :-: | :--- |");
+          linhas.forEach(function (l) { L.push(l); });
+          L.push("");
+        }
+        if (reg.obs) { L.push("**Notes:** " + reg.obs); L.push(""); }
+      });
+    }
+
+    if (!any) {
+      L.push("_No sessions logged yet._");
+      L.push("");
+    }
+
+    L.push("---");
+    L.push("");
+    L.push("## How to analyze this log");
+    L.push("");
+    L.push("1. **Adherence** — how many of the scheduled sessions happened each week. A missed session explains more stagnation than any training variable.");
+    L.push("2. **Load progression** per exercise, week over week, comparing the same exercise on the same day.");
+    L.push("3. **Progression left on the table** — hit the top of the rep range on every set at the target RIR and the load did *not* go up the following week. The most common error.");
+    L.push("4. **Drop-off between first and last set.** If the gap narrows across weeks at the same load, work capacity is improving.");
+    L.push("5. **Exercises stalled for 2+ weeks** → progression ladder: load → rep range or tempo → sets → new exercise. In that order.");
+    L.push("6. **Consistency with the phase** — introduction weeks should show one set fewer; the deload week runs at RIR 3-4.");
+    L.push("");
+    L.push("Deliver a diagnosis and a specific adjustment, not generic praise.");
+    L.push("");
+
+    return L.join("\n");
+  }
+
+  document.getElementById("export").addEventListener("click", function () {
+    var md = buildMarkdown();
+    var nome = "training-log.md";
+
+    if (!baixar) {
+      notice("Download is unavailable in this view. The .md is in the box below — select it and copy.");
+      showBackup(md);
+      return;
+    }
+
+    baixar({ filename: nome, data: md }).catch(function (err) {
+      var code = (err && err.code) || "";
+      if (code === "declined") return;
+      notice("Could not deliver the file (" + (code || "erro") + ").");
+    });
+  });
+
+
+  /* ============ backup ============ */
+
+  // The record lives in localStorage, which the browser can clear without
+  // warning and which does not travel between devices. A copyable blob of text
+  // is the one export route that works in every browser, including a phone
+  // with no download support.
+
+  var elBackupPanel = document.getElementById("backup-panel");
+  var elBackupText = document.getElementById("backup-text");
+
+  function showBackup(text) {
+    elBackupPanel.hidden = false;
+    elBackupPanel.open = true;
+    elBackupText.value = text;
+    elBackupText.focus();
+    elBackupText.setSelectionRange(0, 0);
+    elBackupPanel.scrollIntoView({ block: "nearest" });
+  }
+
+  document.getElementById("backup").addEventListener("click", function () {
+    writeLocal();
+    showBackup(JSON.stringify(state));
+  });
+
+  document.getElementById("backup-copy").addEventListener("click", function () {
+    elBackupText.select();
+    var done = function () {
+      var b = document.getElementById("backup-copy");
+      var was = b.textContent;
+      b.textContent = "copied";
+      setTimeout(function () { b.textContent = was; }, 1500);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(elBackupText.value).then(done, function () {
+        try { document.execCommand("copy"); done(); } catch (e) {}
+      });
+    } else {
+      try { document.execCommand("copy"); done(); } catch (e) {}
+    }
+  });
+
+  document.getElementById("backup-restore").addEventListener("click", function () {
+    var raw = (elBackupText.value || "").trim();
+    var parsed;
+    try {
+      parsed = JSON.parse(raw);
+    } catch (e) {
+      notice("That text is not a valid backup.");
+      return;
+    }
+    if (!parsed || typeof parsed !== "object" || !parsed.semanas) {
+      notice("That text is not a valid backup.");
+      return;
+    }
+    if (!window.confirm("Replace the record on this device with the pasted backup?")) return;
+    state = migrate(parsed);
+    writeLocal();
+    notice("Record restored. Reloading.", false);
+    setTimeout(function () { window.location.reload(); }, 800);
+  });
+
+  document.getElementById("save").addEventListener("click", function () { save(); });
+
+  window.addEventListener("beforeunload", function (e) {
+    if (!dirty) return;
+    writeLocal();
+    if (modo === "html") {   // no modo manual, sair sem save deixa o registro só no celular
+      e.preventDefault();
+      e.returnValue = "";
+      return "";
+    }
+  });
+
+  /* ============ boot ============ */
+
+  function carregarFonte() {
+    var alvos = ["index.html", window.location.pathname];
+    var i = 0;
+    (function tentar() {
+      if (i >= alvos.length) return;
+      var alvo = alvos[i++];
+      fetch(alvo, { cache: "no-store" })
+        .then(function (r) { return r.ok ? r.text() : null; })
+        .then(function (txt) {
+          if (txt && /^\s*<!doctype/i.test(txt) && txt.indexOf('id="initial-state"') > -1) htmlSource = txt;
+          else tentar();
+        })
+        .catch(tentar);
+    })();
+  }
+
+  state = migrate(newerOf(readEmbedded() || state, migrate(readLocal())) || state);
+  renderTudo();
+  applyMode();
+
+  fetch("dados/log.json", { cache: "no-store" })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (o) {
+      if (o && o.semanas) {
+        var novo = newerOf(state, migrate(o));
+        if (novo !== state) { state = novo; writeLocal(); renderTudo(); }
+      }
+    })
+    .catch(function () {});
+
+  carregarFonte();
+
+  if (window.claude && typeof window.claude.use === "function") {
+    window.claude.use("artifact").then(function (api) {
+      if (!api || typeof api.publish !== "function") { setFlag("local", "this device only"); return; }
+      artifactApi = api;
+      modo = "files";
+      applyMode();
+      setFlag(dirty ? "dirty" : "saved", dirty ? "unsaved" : "saved");
+      if (dirty) scheduleSave();
+    }).catch(function () { setFlag("local", "this device only"); });
+
+    window.claude.use("downloads").then(function (api) {
+      if (api && typeof api.save === "function") baixar = api.save;
+    }).catch(function () {});
+  } else {
+    setFlag("local", "this device only");
+  }
+})();
+</script>

@@ -1,0 +1,97 @@
+{"type": "body_comp", "ts": "2026-08-01T07:00:00+00:00", "weight_kg": 67.2, "fat_mass_kg": 14.8, "ffm_kg": 52.4, "method": "bioimpedance", "protocol_ok": true}
+{"type": "weight", "ts": "2026-08-01T07:15:00+00:00", "kg": 67.11, "source": "scale"}
+{"type": "steps", "ts": "2026-08-01T22:00:00+00:00", "count": 8000, "source": "smartwatch"}
+{"type": "sleep", "ts": "2026-08-01T07:00:00+00:00", "hours": 6.2, "source": "smartwatch"}
+{"type": "weight", "ts": "2026-08-02T07:15:00+00:00", "kg": 67.16, "source": "scale"}
+{"type": "steps", "ts": "2026-08-02T22:00:00+00:00", "count": 8037, "source": "smartwatch"}
+{"type": "sleep", "ts": "2026-08-02T07:00:00+00:00", "hours": 6.6, "source": "smartwatch"}
+{"type": "weight", "ts": "2026-08-03T07:15:00+00:00", "kg": 67.03, "source": "scale"}
+{"type": "steps", "ts": "2026-08-03T22:00:00+00:00", "count": 8074, "source": "smartwatch"}
+{"type": "sleep", "ts": "2026-08-03T07:00:00+00:00", "hours": 7.0, "source": "smartwatch"}
+{"type": "session", "ts": "2026-08-03T19:30:00+00:00", "session_id": "sess-2026-08-03", "duration_min": 50, "exercises": [{"name": "Leg press 45", "sets": [{"load_kg": 40.0, "reps": 10, "rir": 2}, {"load_kg": 40.0, "reps": 10, "rir": 2}, {"load_kg": 40.0, "reps": 10, "rir": 2}]}, {"name": "Leg extension", "sets": [{"load_kg": 15.0, "reps": 10, "rir": 2}, {"load_kg": 15.0, "reps": 10, "rir": 2}, {"load_kg": 15.0, "reps": 10, "rir": 2}]}, {"name": "Romanian deadlift (dumbbells)", "sets": [{"load_kg": 15.0, "reps": 10, "rir": 2}, {"load_kg": 15.0, "reps": 10, "rir": 2}, {"load_kg": 15.0, "reps": 10, "rir": 2}]}, {"name": "Lat pulldown", "sets": [{"load_kg": 15.0, "reps": 10, "rir": 2}, {"load_kg": 15.0, "reps": 10, "rir": 2}, {"load_kg": 15.0, "reps": 10, "rir": 2}]}, {"name": "Seated dumbbell shoulder press", "sets": [{"load_kg": 40.0, "reps": 10, "rir": 2}, {"load_kg": 40.0, "reps": 10, "rir": 2}, {"load_kg": 40.0, "reps": 10, "rir": 2}]}]}
+{"type": "weight", "ts": "2026-08-04T07:15:00+00:00", "kg": 67.08, "source": "scale"}
+{"type": "steps", "ts": "2026-08-04T22:00:00+00:00", "count": 8111, "source": "smartwatch"}
+{"type": "sleep", "ts": "2026-08-04T07:00:00+00:00", "hours": 7.4, "source": "smartwatch"}
+{"type": "weight", "ts": "2026-08-05T07:15:00+00:00", "kg": 66.95, "source": "scale"}
+{"type": "steps", "ts": "2026-08-05T22:00:00+00:00", "count": 8148, "source": "smartwatch"}
+{"type": "sleep", "ts": "2026-08-05T07:00:00+00:00", "hours": 7.8, "source": "smartwatch"}
+{"type": "session", "ts": "2026-08-05T19:30:00+00:00", "session_id": "sess-2026-08-05", "duration_min": 50, "exercises": [{"name": "Leg press 45", "sets": [{"load_kg": 40.0, "reps": 10, "rir": 2}, {"load_kg": 40.0, "reps": 10, "rir": 2}, {"load_kg": 40.0, "reps": 10, "rir": 2}]}, {"name": "Leg extension", "sets": [{"load_kg": 15.0, "reps": 10, "rir": 2}, {"load_kg": 15.0, "reps": 10, "rir": 2}, {"load_kg": 15.0, "reps": 10, "rir": 2}]}, {"name": "Romanian deadlift (dumbbells)", "sets": [{"load_kg": 15.0, "reps": 10, "rir": 2}, {"load_kg": 15.0, "reps": 10, "rir": 2}, {"load_kg": 15.0, "reps": 10, "rir": 2}]}, {"name": "Lat pulldown", "sets": [{"load_kg": 15.0, "reps": 10, "rir": 2}, {"load_kg": 15.0, "reps": 10, "rir": 2}, {"load_kg": 15.0, "reps": 10, "rir": 2}]}, {"name": "Seated dumbbell shoulder press", "sets": [{"load_kg": 40.0, "reps": 10, "rir": 2}, {"load_kg": 40.0, "reps": 10, "rir": 2}, {"load_kg": 40.0, "reps": 10, "rir": 2}]}]}
+{"type": "weight", "ts": "2026-08-06T07:15:00+00:00", "kg": 67.0, "source": "scale"}
+{"type": "steps", "ts": "2026-08-06T22:00:00+00:00", "count": 8185, "source": "smartwatch"}
+{"type": "sleep", "ts": "2026-08-06T07:00:00+00:00", "hours": 6.2, "source": "smartwatch"}
+{"type": "weight", "ts": "2026-08-07T07:15:00+00:00", "kg": 66.87, "source": "scale"}
+{"type": "steps", "ts": "2026-08-07T22:00:00+00:00", "count": 8222, "source": "smartwatch"}
+{"type": "sleep", "ts": "2026-08-07T07:00:00+00:00", "hours": 6.6, "source": "smartwatch"}
+{"type": "session", "ts": "2026-08-07T19:30:00+00:00", "session_id": "sess-2026-08-07", "duration_min": 50, "exercises": [{"name": "Leg press 45", "sets": [{"load_kg": 40.0, "reps": 10, "rir": 2}, {"load_kg": 40.0, "reps": 10, "rir": 2}, {"load_kg": 40.0, "reps": 10, "rir": 2}]}, {"name": "Leg extension", "sets": [{"load_kg": 15.0, "reps": 10, "rir": 2}, {"load_kg": 15.0, "reps": 10, "rir": 2}, {"load_kg": 15.0, "reps": 10, "rir": 2}]}, {"name": "Romanian deadlift (dumbbells)", "sets": [{"load_kg": 15.0, "reps": 10, "rir": 2}, {"load_kg": 15.0, "reps": 10, "rir": 2}, {"load_kg": 15.0, "reps": 10, "rir": 2}]}, {"name": "Lat pulldown", "sets": [{"load_kg": 15.0, "reps": 10, "rir": 2}, {"load_kg": 15.0, "reps": 10, "rir": 2}, {"load_kg": 15.0, "reps": 10, "rir": 2}]}, {"name": "Seated dumbbell shoulder press", "sets": [{"load_kg": 40.0, "reps": 10, "rir": 2}, {"load_kg": 40.0, "reps": 10, "rir": 2}, {"load_kg": 40.0, "reps": 10, "rir": 2}]}]}
+{"type": "weight", "ts": "2026-08-08T07:15:00+00:00", "kg": 66.92, "source": "scale"}
+{"type": "steps", "ts": "2026-08-08T22:00:00+00:00", "count": 8259, "source": "smartwatch"}
+{"type": "sleep", "ts": "2026-08-08T07:00:00+00:00", "hours": 7.0, "source": "smartwatch"}
+{"type": "weight", "ts": "2026-08-09T07:15:00+00:00", "kg": 66.79, "source": "scale"}
+{"type": "steps", "ts": "2026-08-09T22:00:00+00:00", "count": 8296, "source": "smartwatch"}
+{"type": "sleep", "ts": "2026-08-09T07:00:00+00:00", "hours": 7.4, "source": "smartwatch"}
+{"type": "weight", "ts": "2026-08-10T07:15:00+00:00", "kg": 66.84, "source": "scale"}
+{"type": "steps", "ts": "2026-08-10T22:00:00+00:00", "count": 8333, "source": "smartwatch"}
+{"type": "sleep", "ts": "2026-08-10T07:00:00+00:00", "hours": 7.8, "source": "smartwatch"}
+{"type": "session", "ts": "2026-08-10T19:30:00+00:00", "session_id": "sess-2026-08-10", "duration_min": 50, "exercises": [{"name": "Leg press 45", "sets": [{"load_kg": 42.5, "reps": 10, "rir": 2}, {"load_kg": 42.5, "reps": 10, "rir": 2}, {"load_kg": 42.5, "reps": 10, "rir": 2}]}, {"name": "Leg extension", "sets": [{"load_kg": 17.5, "reps": 10, "rir": 2}, {"load_kg": 17.5, "reps": 10, "rir": 2}, {"load_kg": 17.5, "reps": 10, "rir": 2}]}, {"name": "Romanian deadlift (dumbbells)", "sets": [{"load_kg": 17.5, "reps": 10, "rir": 2}, {"load_kg": 17.5, "reps": 10, "rir": 2}, {"load_kg": 17.5, "reps": 10, "rir": 2}]}, {"name": "Lat pulldown", "sets": [{"load_kg": 17.5, "reps": 10, "rir": 2}, {"load_kg": 17.5, "reps": 10, "rir": 2}, {"load_kg": 17.5, "reps": 10, "rir": 2}]}, {"name": "Seated dumbbell shoulder press", "sets": [{"load_kg": 42.5, "reps": 10, "rir": 2}, {"load_kg": 42.5, "reps": 10, "rir": 2}, {"load_kg": 42.5, "reps": 10, "rir": 2}]}]}
+{"type": "weight", "ts": "2026-08-11T07:15:00+00:00", "kg": 66.71, "source": "scale"}
+{"type": "steps", "ts": "2026-08-11T22:00:00+00:00", "count": 8370, "source": "smartwatch"}
+{"type": "sleep", "ts": "2026-08-11T07:00:00+00:00", "hours": 6.2, "source": "smartwatch"}
+{"type": "weight", "ts": "2026-08-12T07:15:00+00:00", "kg": 66.76, "source": "scale"}
+{"type": "steps", "ts": "2026-08-12T22:00:00+00:00", "count": 8407, "source": "smartwatch"}
+{"type": "sleep", "ts": "2026-08-12T07:00:00+00:00", "hours": 6.6, "source": "smartwatch"}
+{"type": "session", "ts": "2026-08-12T19:30:00+00:00", "session_id": "sess-2026-08-12", "duration_min": 50, "exercises": [{"name": "Leg press 45", "sets": [{"load_kg": 42.5, "reps": 10, "rir": 2}, {"load_kg": 42.5, "reps": 10, "rir": 2}, {"load_kg": 42.5, "reps": 10, "rir": 2}]}, {"name": "Leg extension", "sets": [{"load_kg": 17.5, "reps": 10, "rir": 2}, {"load_kg": 17.5, "reps": 10, "rir": 2}, {"load_kg": 17.5, "reps": 10, "rir": 2}]}, {"name": "Romanian deadlift (dumbbells)", "sets": [{"load_kg": 17.5, "reps": 10, "rir": 2}, {"load_kg": 17.5, "reps": 10, "rir": 2}, {"load_kg": 17.5, "reps": 10, "rir": 2}]}, {"name": "Lat pulldown", "sets": [{"load_kg": 17.5, "reps": 10, "rir": 2}, {"load_kg": 17.5, "reps": 10, "rir": 2}, {"load_kg": 17.5, "reps": 10, "rir": 2}]}, {"name": "Seated dumbbell shoulder press", "sets": [{"load_kg": 42.5, "reps": 10, "rir": 2}, {"load_kg": 42.5, "reps": 10, "rir": 2}, {"load_kg": 42.5, "reps": 10, "rir": 2}]}]}
+{"type": "weight", "ts": "2026-08-13T07:15:00+00:00", "kg": 66.63, "source": "scale"}
+{"type": "steps", "ts": "2026-08-13T22:00:00+00:00", "count": 8444, "source": "smartwatch"}
+{"type": "sleep", "ts": "2026-08-13T07:00:00+00:00", "hours": 7.0, "source": "smartwatch"}
+{"type": "weight", "ts": "2026-08-14T07:15:00+00:00", "kg": 66.68, "source": "scale"}
+{"type": "steps", "ts": "2026-08-14T22:00:00+00:00", "count": 8481, "source": "smartwatch"}
+{"type": "sleep", "ts": "2026-08-14T07:00:00+00:00", "hours": 7.4, "source": "smartwatch"}
+{"type": "session", "ts": "2026-08-14T19:30:00+00:00", "session_id": "sess-2026-08-14", "duration_min": 50, "exercises": [{"name": "Leg press 45", "sets": [{"load_kg": 42.5, "reps": 10, "rir": 2}, {"load_kg": 42.5, "reps": 10, "rir": 2}, {"load_kg": 42.5, "reps": 10, "rir": 2}]}, {"name": "Leg extension", "sets": [{"load_kg": 17.5, "reps": 10, "rir": 2}, {"load_kg": 17.5, "reps": 10, "rir": 2}, {"load_kg": 17.5, "reps": 10, "rir": 2}]}, {"name": "Romanian deadlift (dumbbells)", "sets": [{"load_kg": 17.5, "reps": 10, "rir": 2}, {"load_kg": 17.5, "reps": 10, "rir": 2}, {"load_kg": 17.5, "reps": 10, "rir": 2}]}, {"name": "Lat pulldown", "sets": [{"load_kg": 17.5, "reps": 10, "rir": 2}, {"load_kg": 17.5, "reps": 10, "rir": 2}, {"load_kg": 17.5, "reps": 10, "rir": 2}]}, {"name": "Seated dumbbell shoulder press", "sets": [{"load_kg": 42.5, "reps": 10, "rir": 2}, {"load_kg": 42.5, "reps": 10, "rir": 2}, {"load_kg": 42.5, "reps": 10, "rir": 2}]}]}
+{"type": "weight", "ts": "2026-08-15T07:15:00+00:00", "kg": 66.55, "source": "scale"}
+{"type": "steps", "ts": "2026-08-15T22:00:00+00:00", "count": 8518, "source": "smartwatch"}
+{"type": "sleep", "ts": "2026-08-15T07:00:00+00:00", "hours": 7.8, "source": "smartwatch"}
+{"type": "weight", "ts": "2026-08-16T07:15:00+00:00", "kg": 66.6, "source": "scale"}
+{"type": "steps", "ts": "2026-08-16T22:00:00+00:00", "count": 8555, "source": "smartwatch"}
+{"type": "sleep", "ts": "2026-08-16T07:00:00+00:00", "hours": 6.2, "source": "smartwatch"}
+{"type": "weight", "ts": "2026-08-17T07:15:00+00:00", "kg": 66.47, "source": "scale"}
+{"type": "steps", "ts": "2026-08-17T22:00:00+00:00", "count": 8592, "source": "smartwatch"}
+{"type": "sleep", "ts": "2026-08-17T07:00:00+00:00", "hours": 6.6, "source": "smartwatch"}
+{"type": "session", "ts": "2026-08-17T19:30:00+00:00", "session_id": "sess-2026-08-17", "duration_min": 50, "exercises": [{"name": "Leg press 45", "sets": [{"load_kg": 45.0, "reps": 10, "rir": 2}, {"load_kg": 45.0, "reps": 10, "rir": 2}, {"load_kg": 45.0, "reps": 10, "rir": 2}]}, {"name": "Leg extension", "sets": [{"load_kg": 20.0, "reps": 10, "rir": 2}, {"load_kg": 20.0, "reps": 10, "rir": 2}, {"load_kg": 20.0, "reps": 10, "rir": 2}]}, {"name": "Romanian deadlift (dumbbells)", "sets": [{"load_kg": 20.0, "reps": 10, "rir": 2}, {"load_kg": 20.0, "reps": 10, "rir": 2}, {"load_kg": 20.0, "reps": 10, "rir": 2}]}, {"name": "Lat pulldown", "sets": [{"load_kg": 20.0, "reps": 10, "rir": 2}, {"load_kg": 20.0, "reps": 10, "rir": 2}, {"load_kg": 20.0, "reps": 10, "rir": 2}]}, {"name": "Seated dumbbell shoulder press", "sets": [{"load_kg": 45.0, "reps": 10, "rir": 2}, {"load_kg": 45.0, "reps": 10, "rir": 2}, {"load_kg": 45.0, "reps": 10, "rir": 2}]}]}
+{"type": "weight", "ts": "2026-08-18T07:15:00+00:00", "kg": 66.52, "source": "scale"}
+{"type": "steps", "ts": "2026-08-18T22:00:00+00:00", "count": 8629, "source": "smartwatch"}
+{"type": "sleep", "ts": "2026-08-18T07:00:00+00:00", "hours": 7.0, "source": "smartwatch"}
+{"type": "weight", "ts": "2026-08-19T07:15:00+00:00", "kg": 66.39, "source": "scale"}
+{"type": "steps", "ts": "2026-08-19T22:00:00+00:00", "count": 8666, "source": "smartwatch"}
+{"type": "sleep", "ts": "2026-08-19T07:00:00+00:00", "hours": 7.4, "source": "smartwatch"}
+{"type": "session", "ts": "2026-08-19T19:30:00+00:00", "session_id": "sess-2026-08-19", "duration_min": 50, "exercises": [{"name": "Leg press 45", "sets": [{"load_kg": 45.0, "reps": 10, "rir": 2}, {"load_kg": 45.0, "reps": 10, "rir": 2}, {"load_kg": 45.0, "reps": 10, "rir": 2}]}, {"name": "Leg extension", "sets": [{"load_kg": 20.0, "reps": 10, "rir": 2}, {"load_kg": 20.0, "reps": 10, "rir": 2}, {"load_kg": 20.0, "reps": 10, "rir": 2}]}, {"name": "Romanian deadlift (dumbbells)", "sets": [{"load_kg": 20.0, "reps": 10, "rir": 2}, {"load_kg": 20.0, "reps": 10, "rir": 2}, {"load_kg": 20.0, "reps": 10, "rir": 2}]}, {"name": "Lat pulldown", "sets": [{"load_kg": 20.0, "reps": 10, "rir": 2}, {"load_kg": 20.0, "reps": 10, "rir": 2}, {"load_kg": 20.0, "reps": 10, "rir": 2}]}, {"name": "Seated dumbbell shoulder press", "sets": [{"load_kg": 45.0, "reps": 10, "rir": 2}, {"load_kg": 45.0, "reps": 10, "rir": 2}, {"load_kg": 45.0, "reps": 10, "rir": 2}]}]}
+{"type": "weight", "ts": "2026-08-20T07:15:00+00:00", "kg": 66.44, "source": "scale"}
+{"type": "steps", "ts": "2026-08-20T22:00:00+00:00", "count": 8703, "source": "smartwatch"}
+{"type": "sleep", "ts": "2026-08-20T07:00:00+00:00", "hours": 7.8, "source": "smartwatch"}
+{"type": "weight", "ts": "2026-08-21T07:15:00+00:00", "kg": 66.31, "source": "scale"}
+{"type": "steps", "ts": "2026-08-21T22:00:00+00:00", "count": 8740, "source": "smartwatch"}
+{"type": "sleep", "ts": "2026-08-21T07:00:00+00:00", "hours": 6.2, "source": "smartwatch"}
+{"type": "session", "ts": "2026-08-21T19:30:00+00:00", "session_id": "sess-2026-08-21", "duration_min": 50, "exercises": [{"name": "Leg press 45", "sets": [{"load_kg": 45.0, "reps": 10, "rir": 2}, {"load_kg": 45.0, "reps": 10, "rir": 2}, {"load_kg": 45.0, "reps": 10, "rir": 2}]}, {"name": "Leg extension", "sets": [{"load_kg": 20.0, "reps": 10, "rir": 2}, {"load_kg": 20.0, "reps": 10, "rir": 2}, {"load_kg": 20.0, "reps": 10, "rir": 2}]}, {"name": "Romanian deadlift (dumbbells)", "sets": [{"load_kg": 20.0, "reps": 10, "rir": 2}, {"load_kg": 20.0, "reps": 10, "rir": 2}, {"load_kg": 20.0, "reps": 10, "rir": 2}]}, {"name": "Lat pulldown", "sets": [{"load_kg": 20.0, "reps": 10, "rir": 2}, {"load_kg": 20.0, "reps": 10, "rir": 2}, {"load_kg": 20.0, "reps": 10, "rir": 2}]}, {"name": "Seated dumbbell shoulder press", "sets": [{"load_kg": 45.0, "reps": 10, "rir": 2}, {"load_kg": 45.0, "reps": 10, "rir": 2}, {"load_kg": 45.0, "reps": 10, "rir": 2}]}]}
+{"type": "weight", "ts": "2026-08-22T07:15:00+00:00", "kg": 66.36, "source": "scale"}
+{"type": "steps", "ts": "2026-08-22T22:00:00+00:00", "count": 8777, "source": "smartwatch"}
+{"type": "sleep", "ts": "2026-08-22T07:00:00+00:00", "hours": 6.6, "source": "smartwatch"}
+{"type": "weight", "ts": "2026-08-23T07:15:00+00:00", "kg": 66.23, "source": "scale"}
+{"type": "steps", "ts": "2026-08-23T22:00:00+00:00", "count": 8814, "source": "smartwatch"}
+{"type": "sleep", "ts": "2026-08-23T07:00:00+00:00", "hours": 7.0, "source": "smartwatch"}
+{"type": "weight", "ts": "2026-08-24T07:15:00+00:00", "kg": 66.28, "source": "scale"}
+{"type": "steps", "ts": "2026-08-24T22:00:00+00:00", "count": 8851, "source": "smartwatch"}
+{"type": "sleep", "ts": "2026-08-24T07:00:00+00:00", "hours": 7.4, "source": "smartwatch"}
+{"type": "session", "ts": "2026-08-24T19:30:00+00:00", "session_id": "sess-2026-08-24", "duration_min": 50, "exercises": [{"name": "Leg press 45", "sets": [{"load_kg": 47.5, "reps": 10, "rir": 2}, {"load_kg": 47.5, "reps": 10, "rir": 2}, {"load_kg": 47.5, "reps": 10, "rir": 2}]}, {"name": "Leg extension", "sets": [{"load_kg": 22.5, "reps": 10, "rir": 2}, {"load_kg": 22.5, "reps": 10, "rir": 2}, {"load_kg": 22.5, "reps": 10, "rir": 2}]}, {"name": "Romanian deadlift (dumbbells)", "sets": [{"load_kg": 22.5, "reps": 10, "rir": 2}, {"load_kg": 22.5, "reps": 10, "rir": 2}, {"load_kg": 22.5, "reps": 10, "rir": 2}]}, {"name": "Lat pulldown", "sets": [{"load_kg": 22.5, "reps": 10, "rir": 2}, {"load_kg": 22.5, "reps": 10, "rir": 2}, {"load_kg": 22.5, "reps": 10, "rir": 2}]}, {"name": "Seated dumbbell shoulder press", "sets": [{"load_kg": 47.5, "reps": 10, "rir": 2}, {"load_kg": 47.5, "reps": 10, "rir": 2}, {"load_kg": 47.5, "reps": 10, "rir": 2}]}]}
+{"type": "weight", "ts": "2026-08-25T07:15:00+00:00", "kg": 66.15, "source": "scale"}
+{"type": "steps", "ts": "2026-08-25T22:00:00+00:00", "count": 8888, "source": "smartwatch"}
+{"type": "sleep", "ts": "2026-08-25T07:00:00+00:00", "hours": 7.8, "source": "smartwatch"}
+{"type": "weight", "ts": "2026-08-26T07:15:00+00:00", "kg": 66.2, "source": "scale"}
+{"type": "steps", "ts": "2026-08-26T22:00:00+00:00", "count": 8925, "source": "smartwatch"}
+{"type": "sleep", "ts": "2026-08-26T07:00:00+00:00", "hours": 6.2, "source": "smartwatch"}
+{"type": "session", "ts": "2026-08-26T19:30:00+00:00", "session_id": "sess-2026-08-26", "duration_min": 50, "exercises": [{"name": "Leg press 45", "sets": [{"load_kg": 47.5, "reps": 10, "rir": 2}, {"load_kg": 47.5, "reps": 10, "rir": 2}, {"load_kg": 47.5, "reps": 10, "rir": 2}]}, {"name": "Leg extension", "sets": [{"load_kg": 22.5, "reps": 10, "rir": 2}, {"load_kg": 22.5, "reps": 10, "rir": 2}, {"load_kg": 22.5, "reps": 10, "rir": 2}]}, {"name": "Romanian deadlift (dumbbells)", "sets": [{"load_kg": 22.5, "reps": 10, "rir": 2}, {"load_kg": 22.5, "reps": 10, "rir": 2}, {"load_kg": 22.5, "reps": 10, "rir": 2}]}, {"name": "Lat pulldown", "sets": [{"load_kg": 22.5, "reps": 10, "rir": 2}, {"load_kg": 22.5, "reps": 10, "rir": 2}, {"load_kg": 22.5, "reps": 10, "rir": 2}]}, {"name": "Seated dumbbell shoulder press", "sets": [{"load_kg": 47.5, "reps": 10, "rir": 2}, {"load_kg": 47.5, "reps": 10, "rir": 2}, {"load_kg": 47.5, "reps": 10, "rir": 2}]}]}
+{"type": "weight", "ts": "2026-08-27T07:15:00+00:00", "kg": 66.07, "source": "scale"}
+{"type": "steps", "ts": "2026-08-27T22:00:00+00:00", "count": 8962, "source": "smartwatch"}
+{"type": "sleep", "ts": "2026-08-27T07:00:00+00:00", "hours": 6.6, "source": "smartwatch"}
+{"type": "weight", "ts": "2026-08-28T07:15:00+00:00", "kg": 66.12, "source": "scale"}
+{"type": "steps", "ts": "2026-08-28T22:00:00+00:00", "count": 8999, "source": "smartwatch"}
+{"type": "sleep", "ts": "2026-08-28T07:00:00+00:00", "hours": 7.0, "source": "smartwatch"}
+{"type": "session", "ts": "2026-08-28T19:30:00+00:00", "session_id": "sess-2026-08-28", "duration_min": 50, "exercises": [{"name": "Leg press 45", "sets": [{"load_kg": 47.5, "reps": 10, "rir": 2}, {"load_kg": 47.5, "reps": 10, "rir": 2}, {"load_kg": 47.5, "reps": 10, "rir": 2}]}, {"name": "Leg extension", "sets": [{"load_kg": 22.5, "reps": 10, "rir": 2}, {"load_kg": 22.5, "reps": 10, "rir": 2}, {"load_kg": 22.5, "reps": 10, "rir": 2}]}, {"name": "Romanian deadlift (dumbbells)", "sets": [{"load_kg": 22.5, "reps": 10, "rir": 2}, {"load_kg": 22.5, "reps": 10, "rir": 2}, {"load_kg": 22.5, "reps": 10, "rir": 2}]}, {"name": "Lat pulldown", "sets": [{"load_kg": 22.5, "reps": 10, "rir": 2}, {"load_kg": 22.5, "reps": 10, "rir": 2}, {"load_kg": 22.5, "reps": 10, "rir": 2}]}, {"name": "Seated dumbbell shoulder press", "sets": [{"load_kg": 47.5, "reps": 10, "rir": 2}, {"load_kg": 47.5, "reps": 10, "rir": 2}, {"load_kg": 47.5, "reps": 10, "rir": 2}]}]}

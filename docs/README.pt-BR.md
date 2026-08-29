@@ -7,6 +7,9 @@
 >
 > 💼 **Quer ver a proposta de valor para seus alunos e consultoria?**
 > **[Leia a Apresentação Comercial & Pitch](APRESENTACAO-COMERCIAL.md)** — copy de vendas, comparativo de mercado e scripts prontos de WhatsApp e Instagram.
+>
+> 🧪 **Quer ver 10 alunos reais funcionando na prática?**
+> **[Acesse o Showcase com 10 Alunos](DEMONSTRACAO-10-ALUNOS.md)** — casos clínicos, fichas no celular, dashboards e simulação de check-ins semanais.
 
 ---
 

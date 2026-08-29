@@ -3,7 +3,7 @@
 ### *A Engenharia de Prescrição que Coloca a sua Consultoria 5 Anos à Frente do Mercado*
 
 **Para quem nunca instalou nada parecido e quer atender melhor seus alunos.** Não presume que você saiba o que é terminal, programação ou linha de comando. Você vai usar a **interface de chat normal** do Claude ou ChatGPT.
-* [Apresentação Comercial & Pitch de Vendas](APRESENTACAO-COMERCIAL.md) | English version: [`TRAINER-GUIDE.md`](TRAINER-GUIDE.md)
+* [Apresentação Comercial & Pitch de Vendas](APRESENTACAO-COMERCIAL.md) | [🧪 Ver 10 Alunos de Exemplo na Prática](DEMONSTRACAO-10-ALUNOS.md) | English version: [`TRAINER-GUIDE.md`](TRAINER-GUIDE.md)
 
 ---
 

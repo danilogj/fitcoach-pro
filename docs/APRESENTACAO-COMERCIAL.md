@@ -62,6 +62,35 @@ Seu aluno travou no peso? Teve semana corrida? Em segundos, o sistema lê o log,
 
 ---
 
+## 📱 "Mas eu já uso um Aplicativo de Treino (MFIT, Nexur, Tecnofit, Trainerize)... Por que preciso do FitCoach Pro?"
+
+Esta é a dúvida mais comum — e a resposta é simples: **o seu aplicativo atual é apenas uma prancheta digital. Ele entrega o treino, mas NÃO PENSA por você.**
+
+### A Grande Diferença: A Plataforma de Entrega vs. O Motor de Inteligência
+
+```
+┌─────────────────────────────────────────────────┬─────────────────────────────────────────────────┐
+│ 📱 APLICATIVOS DE TREINO (MFIT / NEXUR / ETC.)   │ 🧠 FITCOACH PRO (O COPILOTO DE INTELIGÊNCIA)    │
+├─────────────────────────────────────────────────┼─────────────────────────────────────────────────┤
+│ É um banco de dados com vídeos e formulários    │ É o laboratório que projeta e calcula o treino  │
+│ Não sabe se 18 séries é excesso ou falta        │ Audita séries semanais contra MEV, MAV e MRV    │
+│ Não avalia estresse na coluna ou carga axial    │ Substitui exercícios por estabilidade articular │
+│ Não calcula gasto calórico real ou TDEE dinâmico│ Matemática metabólica determinística (sem chute)│
+│ Não diagnostica o check-in semanal              │ Lê o log e diz o ajuste exato (+200kcal, deload)│
+│ Você ainda gasta 40 minutos montando no papel   │ Gera a prescrição auditada em 2 minutos         │
+└─────────────────────────────────────────────────┴─────────────────────────────────────────────────┘
+```
+
+### Como você usa na sua rotina (2 Opções):
+
+1. **Opção 1: Usar COM o seu Aplicativo Atual (Acelerador de Prescrição):**
+   * Você continua usando o MFIT, Nexur ou Tecnofit para o aluno ver os vídeos e pagar.
+   * Mas, em vez de passar 40 minutos quebrando a cabeça para montar o treino, você usa o FitCoach Pro para **gerar a prescrição perfeita, auditada e segura em 2 minutos**. Depois, é só colar no seu app.
+2. **Opção 2: Eliminar Mensalidades de Plataformas (Independência Total):**
+   * Em vez de pagar R$ 100, R$ 200 ou R$ 400 todo mês para plataformas de terceiros, você entrega a ficha interativa do FitCoach Pro (`sheet.html`) direto no WhatsApp do aluno. Ela abre no celular dele como um app moderno, funciona offline e tem **custo zero de mensalidade para sempre**.
+
+---
+
 ## 📊 O Dashboard Visual e a Ficha Interativa
 
 ![Painel de Volume e Diário no Celular](assets/dashboard-mobile-preview.jpg)

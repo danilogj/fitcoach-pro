@@ -25,6 +25,9 @@ Three things it starts doing that an ordinary chat never does:
 
 It is not the responsible professional. **You prescribe.** It does not diagnose, read lab work, clear anyone to train, or replace a dietitian. And despite everything above, **it can still be wrong** — which is why you review everything before it reaches a client. Read [`DISCLAIMER.md`](../DISCLAIMER.md) once, properly.
 
+> 💡 **Already using a coaching app (Trainerize, TrueCoach, Everfit)?**  
+> FitCoach Pro is the **prescribing brain**, while your app is the delivery vehicle. Use FitCoach Pro to calculate volume landmarks and biomechanical safety in 2 minutes — then paste the audited plan straight into your app (or use our bundled pocket web sheet to eliminate platform subscription fees).
+
 ---
 
 ## 2. Pick your path

@@ -33,6 +33,9 @@ Três coisas que ele faz direto no seu chat:
 2. **Cálculos matemáticos sem alucinação:** Calorias, macros, soma de séries válidas e progressão vêm de algoritmos testados, não de "chutes" da IA.
 3. **Auditoria de volume e dor articular:** Avisa se o peitoral está abaixo da Dose Mínima Efetiva (MEV) ou se a carga na coluna está excessiva, sugerindo substituições biomecânicas imediatas.
 
+> 💡 **Você já usa um aplicativo como MFIT, Nexur ou Tecnofit?**  
+> O FitCoach Pro é o **cérebro da prescrição**, enquanto o app é apenas a prancheta de entrega. Use o FitCoach Pro para calcular, dosar o volume e fazer a auditoria biomecânica em 2 minutos — depois, é só colar o treino pronto no seu aplicativo habitual (ou usar a nossa ficha de celular inclusa e economizar as mensalidades da plataforma).
+
 ---
 
 ## 2. Escolha o seu caminho

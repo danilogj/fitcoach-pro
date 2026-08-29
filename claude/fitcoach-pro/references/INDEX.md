@@ -51,5 +51,6 @@ Do not pre-read these files. Match the question to a line below and open only wh
 | Progress report | `08-deliverables.md` | §3 |
 | Scientific papers, citations, evidence base, meta-analyses | `09-scientific-evidence.md` | whole file |
 | Competitive athlete, daily training, 2-a-day, high-flux nutrition, REDs, intra-workout carbs | `10-high-performance-athletes.md` | whole file |
+| Enhanced lifter, AAS, TRT, harm reduction, tendon rupture risk, lipid/cardio health | `11-enhanced-and-harm-reduction.md` | whole file |
 
 **Any risk signal — symptom, injury, aggressive target, very low intake — goes to `02-intake-screening.md` Block 1 first, before any programming answer.**

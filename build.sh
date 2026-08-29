@@ -10,7 +10,7 @@ build_gpt() {
   local src="$1" dest="$2" label="$3"
   rm -rf "$dest"; mkdir -p "$dest"
   cp "$src"/references/*.md "$dest/"
-  cp "$src"/assets/*.md "$dest/"
+  cat "$src"/assets/template-*.md > "$dest/templates.md"
   cp "$src"/tools/*.py "$dest/"
   cp "$src"/data/exercises.json "$dest/"
   rm -f "$dest/__init__.py"

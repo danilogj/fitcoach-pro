@@ -89,4 +89,16 @@ A program 20% worse that the client executes 90% of weeks delivers more than the
 
 If any answer is no, the plan is wrong — however correct the physiology.
 
+---
+
+## 7. The BMAD Multi-Agent Quality Pipeline & Adversarial QA Gate
+
+To eliminate hallucinations, arithmetic drift, and missed safety restrictions, every prescription executes through the **BMAD 5-Agent Pipeline**:
+
+1. **Intake Analyst (`@intake`):** Validates PAR-Q+, injury history, gym equipment, and hormonal/AAS status. Pauses if data is missing.
+2. **Movement Architect (`@biomechanics`):** Maps movement patterns, enforces long-muscle-length (LML) selection, and manages axial load.
+3. **Metabolic Engine (`@metabolism`):** Computes deterministic BMR, TDEE, surplus/deficit, and macro partitioning using tested algorithms.
+4. **Adversarial QA Auditor (`@qa-linter`):** Runs the deterministic test battery (gym inventory match, volume within MEV–MRV, tendon safety on AAS, axial safety on herniations, ACWR load limits).
+5. **Delivery Packager (`@delivery`):** Produces the offline interactive pocket sheet (`sheet.html`) and drafts empathetic, clear WhatsApp messaging.
+
 **There is no such thing as a make-up session.** A missed session is gone. Stacking two in one day or training three days straight to compensate trades one lost day for a compromised week.

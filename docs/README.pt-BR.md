@@ -10,6 +10,9 @@
 >
 > 🧪 **Quer ver 10 alunos reais funcionando na prática?**
 > **[Acesse o Showcase com 10 Alunos](DEMONSTRACAO-10-ALUNOS.md)** — casos clínicos, fichas no celular, dashboards e simulação de check-ins semanais.
+>
+> 🏛️ **Quer entender a engenharia por trás do sistema?**
+> **[Conheça a Metodologia BMAD no FitCoach](ARQUITETURA-BMAD.md)** — pipeline de 5 agentes virtuais e auditoria adversarial de qualidade.
 
 ---
 

@@ -10,6 +10,9 @@
 >
 > 💼 **Looking for the commercial value proposition?**
 > **[Read the Commercial Presentation & Pitch](docs/COMMERCIAL-PRESENTATION.md)** (em português: **[Apresentação Comercial](docs/APRESENTACAO-COMERCIAL.md)**).
+>
+> 🏛️ **Want to understand the engineering behind the system?**
+> **[Explore the BMAD Methodology](docs/BMAD-ARCHITECTURE.md)** (em português: **[Metodologia BMAD](docs/ARQUITETURA-BMAD.md)**) — 5-agent virtual board and adversarial QA linter.
 
 ---
 

@@ -66,9 +66,17 @@ Only after the patterns are closed do you pick exercises — and you pick from w
 | Shoulder hurts on barbell bench | Dumbbell press (neutral or 45° grip), or light incline. Range of motion to where it stops hurting. |
 | Shoulder hurts pressing overhead | Angled press (bench at 60°), lateral raise, or remove the vertical push from the block. |
 | Knee hurts on squats | Bulgarian split squat, box squat, leg press with high foot placement, partial-range leg extension. |
-| Low back hurts on deadlift or squat | Hip thrust, lying leg curl, light goblet squat. Zero axial load until it resolves. |
+| Low back hurts on deadlift or squat | Hip thrust, seated/lying leg curl, light goblet squat. Zero axial load until it resolves. |
 | Wrist hurts on the barbell | Dumbbells with a neutral grip. |
 | Cannot complete 6 pull-ups | Negatives — jump up, lower over 4 s — or lat pulldown until they get there. Past 12 clean reps, add load. |
+
+### Biomechanical Optimization & Long Muscle Length (LML)
+
+When equipment permits, prioritize variations that load muscles at longer lengths (higher passive tension and longitudinal hypertrophy):
+
+* **Hamstrings (Maeo et al. 2021):** Prefer **Seated Leg Curl** over prone/lying leg curl — hip flexion stretches the biarticular hamstrings, producing ~55% greater hypertrophy (+14% vs +9%).
+* **Triceps Long Head (Maeo et al. 2023):** Include at least one **Overhead Extension** (cable or dumbbell) alongside neutral pushdowns to ensure maximal long-head development (+28.5% vs +19.6%).
+* **Lengthened & Past-Failure Partials (Wolf 2025, Larsen 2025):** On low-fatigue isolation lifts (calves, lateral raises, leg curls), completing partial reps in the stretched position after reaching momentary failure provides potent hypertrophic stimulus without spinal or central fatigue.
 
 ---
 

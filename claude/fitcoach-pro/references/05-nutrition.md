@@ -69,7 +69,7 @@ Order of definition: **protein → fat → carbohydrate fills the rest.**
 | **Fiber** | 25 to 38 g/day | Satiety and transit. Almost always forgotten in deficit plans. |
 | **Water** | 30 to 40 ml/kg | More in heat and at high training volume. |
 
-**Protein distribution:** 3 to 5 meals at 0.3-0.4 g/kg each stimulates protein synthesis better than two large meals. This is second-order optimization — total daily intake drives most of the result.
+**Protein distribution & meal frequency:** While 3 to 5 meals hitting the leucine threshold (~2.5–3.0 g leucine per meal) provides optimal meal-by-meal muscle protein synthesis peaks, recent human tracer trials (Trommelen et al. 2023, *Cell Rep Med*) demonstrate that large protein boluses (up to 100 g+) sustain elevated amino acid availability and muscle protein synthesis for >12 hours without upper anabolic ceilings or excessive oxidation. Therefore, total daily protein intake (1.6–2.2 g/kg) is the primary driver of results, allowing flexible meal structures (2 to 5 meals) based on client schedule and adherence.
 
 **Pre- and post-workout:** the 30-minute "anabolic window" does not survive the data. What matters is daily intake and not training after a prolonged fast when volume is high. Carbohydrate 1-2 h before improves session performance, and session performance is what creates the stimulus.
 
@@ -166,6 +166,13 @@ Supplements are the last lever on the list, after training, food, sleep and adhe
 5. **On reaching the weight goal** → maintenance rose along with the new mass. Recalculate before deciding whether to hold or continue.
 
 **Always 200 kcal at a time, always waiting 3 weeks.** A large adjustment produces swings you cannot interpret at the next check-in.
+
+### Diet Breaks & Refeeds (Peos et al. 2021)
+
+During prolonged fat loss phases (>8–12 weeks), scheduled **1-week Diet Breaks at predicted maintenance calories** (increasing carbohydrate intake while keeping protein constant) provide validated physiological and behavioral benefits:
+* **Performance:** Restores lower-body muscular work capacity and leg endurance (+15%).
+* **Metabolism & Satiety:** Restores resting energy expenditure (+200 kJ/day) and increases satiety hormones (Peptide YY) while reducing hunger and irritability.
+* **Prescription rule:** Coordinate diet breaks with heavy deload weeks or when appetite starts threatening dietary adherence.
 
 ---
 

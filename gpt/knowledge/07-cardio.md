@@ -47,12 +47,12 @@ The grey zone is where under-supervised clients spend all their time: hard enoug
 
 ## 4. The interference effect, honestly
 
-Concurrent endurance and resistance training can blunt strength and hypertrophy gains. The size of that effect is routinely overstated in the gym and routinely dismissed in the research summaries. What holds up:
+Concurrent endurance and resistance training can blunt strength and hypertrophy gains if unmanaged. The size of that effect is routinely overstated in gym lore and clarified in recent meta-analyses (**Schumann et al. 2022, Lundberg et al. 2022**):
 
-- **Interference scales with cardio volume and intensity.** Two easy 30-minute sessions interfere with essentially nothing. Six hard hours of running a week is a different conversation.
-- **Modality matters.** Cycling interferes less with leg training than running does — less eccentric loading, less muscle damage.
-- **Proximity matters.** Same-session cardio right before lifting compromises the lifting. Separating by 6+ hours, or putting cardio after the lifting session, largely removes the conflict.
-- **Lower body is where it shows up.** Upper-body hypertrophy is barely affected.
+- **Hypertrophy & Maximal Strength are preserved:** Concurrent training does NOT compromise muscle hypertrophy ($p = 0.919$) or maximal strength ($p = 0.446$) compared to lifting alone.
+- **Explosive strength attenuation:** Power and rate of force development (RFD) are attenuated primarily when endurance and lifting occur in the same session without $\ge 3$ hours of recovery.
+- **Modality matters:** Cycling produces essentially zero myofiber interference compared to high-impact running.
+- **Volume matters:** Interference scales with cardio volume and intensity. Two easy 30-minute Z2 sessions interfere with nothing. Six hard hours of running a week is a different conversation.
 
 **Practical rules to write into the program:**
 

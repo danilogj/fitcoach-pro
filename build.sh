@@ -16,8 +16,8 @@ build_gpt() {
   rm -f "$dest/__init__.py"
   # dashboard.py, sheet.py and cohort.py stay out: the GPT Builder caps
   # knowledge at 20 files, and all three walk the local filesystem — work the
-  # machine holding the client folders does, not a chat sandbox.
-  rm -f "$dest/dashboard.py" "$dest/sheet.py" "$dest/cohort.py"
+  # machine holding the client folders does, not a chat sandbox. INDEX.md is a Claude-only router.
+  rm -f "$dest/dashboard.py" "$dest/sheet.py" "$dest/cohort.py" "$dest/INDEX.md"
   local n; n=$(ls -1 "$dest" | wc -l)
   echo "$label: $n files"
   [ "$n" -le 20 ] || echo "WARNING: the GPT Builder accepts at most 20 knowledge files — trim before uploading."

@@ -49,7 +49,7 @@ Do not pre-read these files. Match the question to a line below and open only wh
 | Building the client's sheet | `08-deliverables.md` | §1 |
 | The HTML dashboard | `08-deliverables.md` | §2, and `cli.py dashboard` |
 | Progress report | `08-deliverables.md` | §3 |
-| Messaging a client who went quiet | `08-deliverables.md` | §4 |
 | Scientific papers, citations, evidence base, meta-analyses | `09-scientific-evidence.md` | whole file |
+| Competitive athlete, daily training, 2-a-day, high-flux nutrition, REDs, intra-workout carbs | `10-high-performance-athletes.md` | whole file |
 
 **Any risk signal — symptom, injury, aggressive target, very low intake — goes to `02-intake-screening.md` Block 1 first, before any programming answer.**

@@ -234,7 +234,33 @@ It gives you a diagnosis and **one specific adjustment** — not a list of sugge
 
 ---
 
-## 10. Why it sometimes refuses to answer
+## 10. Practical Testing with 10 Ready-to-Use Fictitious Clients (Showcase)
+
+To test the system immediately without making up dummy data, we included **10 realistic fictitious clients** in `examples/carteira-10-alunos/`.
+
+Full showcase guide: **[`DEMONSTRACAO-10-ALUNOS.md`](DEMONSTRACAO-10-ALUNOS.md)**.
+
+### The 10 Ready-to-Test Profiles:
+1. **`joao-silva/`**: Fat Loss · L4-L5 disc herniation (Zero axial spine load).
+2. **`maria-santos/`**: Glute Hypertrophy · ER Physician (Dense 45-min sessions).
+3. **`carlos-mendes/`**: Recomposition · Pre-diabetes & Zone 2 Cardio (GLUT4).
+4. **`fernanda-lima/`**: Hypertrophy · Complete Beginner · Basic Apartment Gym (Dumbbells & Pulley).
+5. **`rodrigo-alves/`**: Bench Press Plateau Breaker · Advanced · Upper / Lower 4x.
+6. **`juliana-costa/`**: Menopause/Osteopenia · Patellofemoral Chondromalacia (Knee Protection).
+7. **`lucas-pereira/`**: Amateur Marathoner · Concurrent Training & Running Economy.
+8. **`beatriz-rocha/`**: Post-Partum (6 months) · Diastasis Recti & Pelvic Floor Rebuilding.
+9. **`gabriel-souza/`**: Controlled Hypertension · Visceral Fat · RIR >= 2 (No Valsalva).
+10. **`camila-martins/`**: Ex-Crossfitter · Shoulder Impingement/Bursitis (No overhead pressing).
+
+### How to Test in Chat in 1 Minute:
+1. Open a new chat in Claude or ChatGPT.
+2. Attach the `estado.md` file from any client (e.g. `examples/carteira-10-alunos/joao-silva/estado.md`).
+3. Type: *"Analyze John's progress in Week 4 and provide the weekly adjustment and WhatsApp message."*
+4. Watch the AI respond with surgical biomechanical precision and a copy-paste client message!
+
+---
+
+## 11. Why it sometimes refuses to answer
 
 You will run into replies like:
 
@@ -248,7 +274,7 @@ When it happens, the right move is to log a few more days, or work from the esti
 
 ---
 
-## 11. When something goes wrong
+## 12. When something goes wrong
 
 | What happens | What to do |
 | :--- | :--- |
@@ -261,7 +287,7 @@ When it happens, the right move is to log a few more days, or work from the esti
 
 ---
 
-## 12. Words that will come up
+## 13. Words that will come up
 
 | Term | What it means |
 | :--- | :--- |
@@ -281,7 +307,7 @@ When it happens, the right move is to log a few more days, or work from the esti
 
 ---
 
-## 13. Before anything reaches a client
+## 14. Before anything reaches a client
 
 One last time, because it is what matters:
 

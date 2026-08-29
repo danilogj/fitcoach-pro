@@ -242,7 +242,33 @@ Ele devolve diagnóstico e **um ajuste específico** — não uma lista de suges
 
 ---
 
-## 10. Por que ele às vezes se recusa a responder
+## 10. Teste na Prática com os 10 Alunos Prontos (Showcase)
+
+Para você não precisar inventar dados ao testar o sistema pela primeira vez, incluímos uma **carteira de 10 alunos fictícios realistas** na pasta `examples/carteira-10-alunos/`.
+
+Consulte o guia completo: **[`DEMONSTRACAO-10-ALUNOS.md`](DEMONSTRACAO-10-ALUNOS.md)**.
+
+### Os 10 Perfis Prontos para Testar:
+1. **`joao-silva/`**: Emagrecimento · Hérnia de disco L4-L5 (Zero carga axial).
+2. **`maria-santos/`**: Hipertrofia de Glúteos · Médica Plantonista (Sessões de 45 min).
+3. **`carlos-mendes/`**: Recomposição · Pré-diabetes & Cardio Zona 2 (GLUT4).
+4. **`fernanda-lima/`**: Hipertrofia · Iniciante Total · Academia de Prédio (Só halteres e polia).
+5. **`rodrigo-alves/`**: Quebra de Platô em Supino · Avançado · Upper / Lower 4x.
+6. **`juliana-costa/`**: Menopausa/Osteopenia · Condromalácia Patelar Grau 2 (Proteção de Joelho).
+7. **`lucas-pereira/`**: Maratonista Amador · Treinamento Concorrente & Economia de Corrida.
+8. **`beatriz-rocha/`**: Pós-Parto (6 meses) · Diástase Abdominal & Assoalho Pélvico.
+9. **`gabriel-souza/`**: Hipertenso Controlado · Gordura Visceral · RIR >= 2 (Sem Valsalva).
+10. **`camila-martins/`**: Ex-Crossfit · Bursite/Impacto de Ombro (Sem overhead press).
+
+### Como Testar no seu Chat em 1 Minuto:
+1. Abra um chat novo no Claude ou ChatGPT.
+2. Anexe o arquivo `estado.md` de qualquer um desses alunos (ex: `examples/carteira-10-alunos/joao-silva/estado.md`).
+3. Escreva: *"Analise o progresso do João na Semana 4 e me dê o ajuste e a mensagem para enviar no WhatsApp."*
+4. Veja a IA responder com precisão biomecânica imediata e a mensagem pronta para envio!
+
+---
+
+## 11. Por que ele às vezes se recusa a responder
 
 Você vai encontrar respostas assim:
 
@@ -256,7 +282,7 @@ Quando aparecer, a resposta certa é: registrar mais alguns dias, ou trabalhar c
 
 ---
 
-## 11. Quando der problema
+## 12. Quando der problema
 
 | O que acontece | O que fazer |
 | :--- | :--- |
@@ -269,7 +295,7 @@ Quando aparecer, a resposta certa é: registrar mais alguns dias, ou trabalhar c
 
 ---
 
-## 12. Palavras que vão aparecer
+## 13. Palavras que vão aparecer
 
 | Termo | O que quer dizer |
 | :--- | :--- |
@@ -289,7 +315,7 @@ Quando aparecer, a resposta certa é: registrar mais alguns dias, ou trabalhar c
 
 ---
 
-## 13. Antes de mandar qualquer coisa para o aluno
+## 14. Antes de mandar qualquer coisa para o aluno
 
 Uma última vez, porque é o que importa:
 

@@ -197,7 +197,37 @@ Toda análise gera um bloco formatado para você apenas copiar e mandar:
 
 ---
 
-## 8. A rotina de cada semana
+## 8. Como funciona a memória dos alunos (Persistência e Limite de Contexto)
+
+Se você atender 20 alunos num único chat por 6 meses, a conversa vai ficar lenta, a IA vai consumir a memória e começará a esquecer detalhes antigos.
+
+Para resolver isso de forma simples e profissional no chat normal, o FitCoach Pro separa a **conversa** do **armazenamento dos dados**:
+
+```
+ 📱 NO CELULAR DO ALUNO (sheet.html)
+    └─> Grava cada série e carga na memória local do navegador (localStorage).
+    └─> Funciona offline e nunca apaga o histórico do aluno.
+            │
+            ▼ (Aluno exporta a semana no WhatsApp)
+ 💬 NO SEU CHAT (Claude / ChatGPT)
+    ├─> A IA analisa o resumo da semana em 3 segundos.
+    └─> Entrega o ARQUIVO DE ESTADO (.md) atualizado do aluno.
+```
+
+### Os 3 Níveis de Persistência (Escolha o seu):
+
+1. **O "Arquivo de Estado" do Aluno (Mais simples e universal):**
+   * A IA mantém um arquivo leve chamado `joao-silva.md` (< 3 KB) com o histórico consolidado (restrições, bloco atual, evolução de peso e cargas semanais).
+   * **Vantagem:** Em qualquer chat novo, basta você arrastar o `joao-silva.md` e a IA recupera **100% da vida do aluno** instantaneamente, consumindo menos de 1% do limite de contexto!
+2. **Projetos do Claude (*Claude Projects* - O padrão ouro):**
+   * Se você usa o plano Pro/Team do Claude, crie um Projeto chamado *"Alunos de Consultoria"*.
+   * Guarde os arquivos `aluno.md` dentro do projeto. O Claude lembrará de todos os alunos em qualquer conversa aberta ali dentro.
+3. **Memória no Celular do Aluno:**
+   * O arquivo `ficha-aluno.html` que o aluno abre no celular guarda tudo sozinho. Você só precisa receber dele a mensagem de texto com o resumo semanal.
+
+---
+
+## 9. A rotina de cada semana
 
 **Uma vez por semana, por aluno:**
 
@@ -213,7 +243,7 @@ Ele devolve diagnóstico e **um ajuste específico** — não uma lista de suges
 
 ---
 
-## 9. Por que ele às vezes se recusa a responder
+## 10. Por que ele às vezes se recusa a responder
 
 Você vai encontrar respostas assim:
 
@@ -227,7 +257,7 @@ Quando aparecer, a resposta certa é: registrar mais alguns dias, ou trabalhar c
 
 ---
 
-## 10. Quando der problema
+## 11. Quando der problema
 
 | O que acontece | O que fazer |
 | :--- | :--- |
@@ -240,7 +270,7 @@ Quando aparecer, a resposta certa é: registrar mais alguns dias, ou trabalhar c
 
 ---
 
-## 11. Palavras que vão aparecer
+## 12. Palavras que vão aparecer
 
 | Termo | O que quer dizer |
 | :--- | :--- |
@@ -260,7 +290,7 @@ Quando aparecer, a resposta certa é: registrar mais alguns dias, ou trabalhar c
 
 ---
 
-## 12. Antes de mandar qualquer coisa para o aluno
+## 13. Antes de mandar qualquer coisa para o aluno
 
 Uma última vez, porque é o que importa:
 

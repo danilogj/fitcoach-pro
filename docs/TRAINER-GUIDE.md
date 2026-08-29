@@ -189,7 +189,37 @@ Every analysis ends with a formatted message ready to forward to your client:
 
 ---
 
-## 8. The weekly routine
+## 8. How client memory and context limits work (No-Code State Management)
+
+If you manage 20 clients in a single chat thread for 6 months, the conversation will slow down, consume memory, and the AI will begin forgetting earlier instructions.
+
+To solve this cleanly in everyday chat interfaces, FitCoach Pro separates the **conversation space** from the **data storage**:
+
+```
+ 📱 ON CLIENT'S PHONE (sheet.html)
+    └─> Saves every set, load and rest timer in browser memory (localStorage).
+    └─> Works offline and never loses client history.
+            │
+            ▼ (Client sends weekly summary via WhatsApp/Text)
+ 💬 IN YOUR CHAT (Claude / ChatGPT)
+    ├─> AI analyzes weekly progress in 3 seconds.
+    └─> Returns the updated STATE FILE (.md) for that client.
+```
+
+### The 3 Levels of Persistence (Choose what fits you best):
+
+1. **The Client "State File" (Universal & Simplest):**
+   * The AI maintains a compact Markdown file named `john-doe.md` (< 3 KB) with the client's history (restrictions, current block, weekly weights and load progression).
+   * **Advantage:** When starting any fresh chat, simply attach `john-doe.md` and the AI recovers **100% of the client's profile** instantly, taking up less than 1% of the context window!
+2. **Claude Projects (The Gold Standard):**
+   * If you use Claude Pro/Team, create a Project named *"Personal Training Clients"*.
+   * Drop each client's `.md` file in the project's knowledge. Claude remembers every client across any conversation inside that project.
+3. **On-Phone Client Storage:**
+   * The `sheet.html` pocket web app handles day-to-day logging on the client's phone. You only receive the clean weekly export.
+
+---
+
+## 9. The weekly routine
 
 **Once a week, per client:**
 
@@ -205,7 +235,7 @@ It gives you a diagnosis and **one specific adjustment** — not a list of sugge
 
 ---
 
-## 9. Why it sometimes refuses to answer
+## 10. Why it sometimes refuses to answer
 
 You will run into replies like:
 
@@ -219,7 +249,7 @@ When it happens, the right move is to log a few more days, or work from the esti
 
 ---
 
-## 10. When something goes wrong
+## 11. When something goes wrong
 
 | What happens | What to do |
 | :--- | :--- |
@@ -232,7 +262,7 @@ When it happens, the right move is to log a few more days, or work from the esti
 
 ---
 
-## 11. Words that will come up
+## 12. Words that will come up
 
 | Term | What it means |
 | :--- | :--- |
@@ -252,7 +282,7 @@ When it happens, the right move is to log a few more days, or work from the esti
 
 ---
 
-## 12. Before anything reaches a client
+## 13. Before anything reaches a client
 
 One last time, because it is what matters:
 

@@ -78,6 +78,22 @@ When equipment permits, prioritize variations that load muscles at longer length
 * **Triceps Long Head (Maeo et al. 2023):** Include at least one **Overhead Extension** (cable or dumbbell) alongside neutral pushdowns to ensure maximal long-head development (+28.5% vs +19.6%).
 * **Lengthened & Past-Failure Partials (Wolf 2025, Larsen 2025):** On low-fatigue isolation lifts (calves, lateral raises, leg curls), completing partial reps in the stretched position after reaching momentary failure provides potent hypertrophic stimulus without spinal or central fatigue.
 
+### Prescription Guardrails for Enhanced / AAS / TRT Clients
+
+When a client is classified as **Enhanced / AAS / TRT**, the prescription logic automatically adjusts across four domains:
+
+1. **Tendon Rupture Prevention (The Muscle-Tendon Mismatch):**
+   * Muscle contractility increases 4x faster than tendon tensile strength.
+   * **Rule:** Eliminate sub-5 RM maximal grinding sets on free-weight bench press, heavy squats, and barbell curls. Shift working compound rep ranges to **8–12 reps** (or 10–15 reps).
+   * **Controlled Eccentrics:** Mandate a 3–4 second controlled lowering tempo on all heavy compound movements to stimulate tendon collagen cross-linking.
+   * **Preferred Implements:** Favor chest-supported converging machines, dual pulleys, and hack squats over free-weight barbell maxes to eliminate ballistic joint shear.
+2. **Volume & Frequency Shift:**
+   * Baseline weekly volume expands to **16 to 24+ sets/group/week** with higher frequency (2x to 3x/week per muscle) and greater training density due to elevated 24/7 muscle protein synthesis.
+3. **Mandatory Cardiovascular Protection:**
+   * Automatically schedule **150 to 200 min/week of Zone 2 cardio** to mitigate androgen-induced dyslipidemia (HDL suppression) and concentric left ventricular hypertrophy.
+4. **Blood Pressure Screening:**
+   * If resting systolic blood pressure exceeds 140 mmHg, eliminate heavy Valsalva maneuvers and high-axial compounds immediately.
+
 ---
 
 ## 3. Sets, reps, rest

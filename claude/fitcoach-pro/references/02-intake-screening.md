@@ -60,6 +60,7 @@ This sets the starting volume and the expected rate of progression.
 - Current loads on the main patterns, if you know them (squat, bench, deadlift, pulldown).
 - Have you been injured training? Where, when, did it resolve?
 - What have you already tried that did not work — and why?
+- **Hormonal / Pharmacological status:** Are you currently using medical TRT, anabolic steroids (AAS), or performance-enhancing compounds? (Confidential — essential for setting safe volume thresholds, tendon rupture protection, and cardiovascular cardio targets).
 
 ### Classification, and what it changes
 
@@ -68,7 +69,8 @@ This sets the starting volume and the expected rate of progression.
 | **Beginner** | Under 6 months of consistent training | 8-12 sets/group/week | Load climbs almost weekly. Linear progression works. |
 | **Intermediate** | 6 months to 2-3 years, technique settled | 12-18 sets/group/week | Load climbs every 2-4 weeks per exercise. Needs the double-progression criterion. |
 | **Detrained intermediate** | Years of training, but stopped or at low volume for months | Starts like a beginner and climbs fast | Muscle memory: accelerated gains for the first 6-8 weeks. Do not calibrate expectations on that stretch. |
-| **Advanced** | 3+ years, near their potential | 14-20 sets/group/week | Gains in months, not weeks. Needs deliberate periodization and variation. |
+| **Advanced** | 3+ years, near their natural potential | 14-20 sets/group/week | Gains in months, not weeks. Needs deliberate periodization and variation. |
+| **Enhanced / AAS / TRT** | Active use of exogenous androgens | **16-24+ sets/group/week** | Elevated volume tolerance, but **mandatory tendon protection** (no <5RM grinding) and mandatory Zone 2 cardio. |
 
 Record the profile in the intake — every other file references this classification.
 

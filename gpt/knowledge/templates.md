@@ -29,7 +29,8 @@
 | Stated goal | |
 | Operable goal | |
 | Deadline and success criterion | |
-| **Training profile** | ☐ beginner ☐ intermediate ☐ detrained intermediate ☐ advanced |
+| **Training profile** | ☐ beginner ☐ intermediate ☐ detrained intermediate ☐ advanced ☐ enhanced / AAS / TRT |
+| **Hormonal / Ergogenic status** | ☐ natural ☐ medical TRT ☐ enhanced / AAS (for volume & safety targets) |
 
 ## History
 

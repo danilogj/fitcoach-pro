@@ -1,8 +1,7 @@
 # Trainer's guide
 
 **For people who have never installed anything like this.** It does not assume you know what a terminal, a `.zip` file or a command line is. If you get stuck anywhere, the guide is at fault, not you — open an issue saying where.
-
-Versão em português: [`GUIA-DO-PERSONAL.md`](GUIA-DO-PERSONAL.md)
+* [Commercial Presentation & Pitch](COMMERCIAL-PRESENTATION.md) | Versão em português: [`GUIA-DO-PERSONAL.md`](GUIA-DO-PERSONAL.md)
 
 ---
 

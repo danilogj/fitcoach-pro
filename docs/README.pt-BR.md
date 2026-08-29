@@ -4,6 +4,9 @@
 
 >  ### 👋 Não é programador?
 > **[Leia o guia do personal trainer](GUIA-DO-PERSONAL.md)** — instalação sem terminal, uma conversa real do primeiro aluno até a ficha pronta, e um glossário. Escrito para quem nunca instalou nada parecido.
+>
+> 💼 **Quer ver a proposta de valor para seus alunos e consultoria?**
+> **[Leia a Apresentação Comercial & Pitch](APRESENTACAO-COMERCIAL.md)** — copy de vendas, comparativo de mercado e scripts prontos de WhatsApp e Instagram.
 
 ---
 

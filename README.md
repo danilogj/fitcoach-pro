@@ -7,6 +7,9 @@
 > ### 👋 Not a developer?
 > **[Read the trainer's guide](docs/TRAINER-GUIDE.md)** — installation with no terminal, a real conversation from first client to finished sheet, and a glossary. Written for people who have never installed anything like this.
 > Em português: **[Guia do personal trainer](docs/GUIA-DO-PERSONAL.md)**.
+>
+> 💼 **Looking for the commercial value proposition?**
+> **[Read the Commercial Presentation & Pitch](docs/COMMERCIAL-PRESENTATION.md)** (em português: **[Apresentação Comercial](docs/APRESENTACAO-COMERCIAL.md)**).
 
 ---
 

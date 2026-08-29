@@ -50,5 +50,6 @@ Não leia estes arquivos por antecipação. Case a pergunta com uma linha abaixo
 | O dashboard HTML | `08-entregaveis.md` | §2, e `cli.py dashboard` |
 | Relatório de evolução | `08-entregaveis.md` | §3 |
 | Mensagem para aluno que sumiu | `08-entregaveis.md` | §4 |
+| Artigos científicos, citações, base de evidência, metanálises | `09-evidencia-cientifica.md` | arquivo inteiro |
 
 **Qualquer sinal de risco — sintoma, lesão, meta agressiva, ingestão muito baixa — vai para `02-anamnese-triagem.md` Bloco 1 primeiro, antes de qualquer resposta de programação.**

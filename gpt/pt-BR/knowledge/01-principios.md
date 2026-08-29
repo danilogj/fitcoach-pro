@@ -8,23 +8,23 @@ Estes seis princípios regem tudo o que os outros arquivos prescrevem. Quando du
 
 ## 1. Volume semanal é a variável que decide, não a frequência
 
-Com volume igualado, treinar um grupo 1x, 2x ou 3x por semana produz hipertrofia equivalente. A frequência existe para **distribuir** o volume dentro da semana, não para criar estímulo extra.
+Com volume igualado, treinar um grupo 1x, 2x ou 3x por semana produz hipertrofia equivalente (Schoenfeld et al., 2019 [PMID: 30558493]; McLeod et al., 2024 [PMID: 37385345]). A frequência existe para **distribuir** o volume dentro da semana, não para criar estímulo extra.
 
 **Consequência prática:** a pergunta "quantos dias o aluno tem?" não define o resultado — define a divisão. O que define o resultado é quantas séries válidas por grupo cabem na semana, e se o aluno consegue executá-las com qualidade.
 
-**Faixa de trabalho:** 10 a 20 séries válidas por grupo muscular por semana cobre a maior parte dos casos de hipertrofia. Abaixo de 8 o estímulo é de manutenção. Acima de 20 os retornos caem e o custo de recuperação sobe rápido — e há grande variação individual nos dois extremos.
+**Faixa de trabalho:** 10 a 20 séries válidas por grupo muscular por semana cobre a maior parte dos casos de hipertrofia (Schoenfeld et al., 2017 [PMID: 27433992]). Abaixo de 8 o estímulo é de manutenção ou dose mínima (Androulakis-Korakakis et al., 2020 [PMID: 31797219]). Acima de 20 os retornos caem e o custo de recuperação sobe rápido — e há grande variação individual nos dois extremos.
 
 **Os limiares por músculo** — volume mínimo efetivo, faixa adaptativa e volume máximo recuperável — estão em `tools/volume.py` e saem com `python3 tools/cli.py volume landmarks`. São médias populacionais escaladas pelo perfil de treino, não prescrições individuais.
 
 **Nunca some séries à mão.** `python3 tools/cli.py volume check --program ARQUIVO.json` soma as séries diretas por músculo, reporta as indiretas em separado, julga cada grupo contra os limiares e aponta os padrões de movimento que a semana não cobre. Programa que não passou por isso não está pronto.
 
-**Teto por sessão:** acima de ~8-10 séries para o mesmo grupo numa única sessão, as séries finais rendem pouco. Se o volume alvo não cabe em uma sessão, divida em duas.
+**Teto por sessão:** acima de ~8-10 séries para o mesmo grupo numa única sessão, as séries finais rendem pouco. Se o volume alvo não cabe em uma sessão, divida em duas. Citações completas em `09-evidencia-cientifica.md`.
 
 ---
 
 ## 2. RIR em toda série, calibrado ao custo do exercício
 
-RIR (repetições em reserva) é quantas repetições o aluno **ainda conseguiria fazer** ao encerrar a série. É a variável de intensidade que o log consegue registrar.
+RIR (repetições em reserva) é quantas repetições o aluno **ainda conseguiria fazer** ao encerrar a série. É a variável de intensidade que o log consegue registrar (Robinson et al., 2024 [PMID: 38970765]; Refalo et al., 2023 [PMID: 36334240], 2024 [PMID: 38393985]).
 
 | Tipo de exercício | RIR alvo | Por quê |
 | :--- | :-: | :--- |
@@ -32,7 +32,7 @@ RIR (repetições em reserva) é quantas repetições o aluno **ainda conseguiri
 | Isolado, máquina, polia | **0-1** | Pode ir à falha. Custo de recuperação baixo, risco técnico baixo — é onde se cobra esforço máximo. |
 | Iniciante nos 3 primeiros meses | **2-3** em tudo | Ele ainda não sabe estimar RIR e superestima o quanto sobrou. Margem serve de proteção enquanto a técnica assenta. |
 
-**Aviso sobre a medida:** estimativa de RIR de iniciante erra sistematicamente para mais — ele diz "sobrou 2" quando sobraram 5. A correção não é discurso, é vídeo da série ou uma série levada à falha real sob supervisão, uma vez, para calibrar a percepção.
+**Aviso sobre a medida:** estimativa de RIR de iniciante erra sistematicamente para mais — ele diz "sobrou 2" quando sobraram 5 (Halperin et al., 2021). A correção não é discurso, é vídeo da série ou uma série levada à falha real sob supervisão, uma vez, para calibrar a percepção. Citações completas em `09-evidencia-cientifica.md`.
 
 ---
 

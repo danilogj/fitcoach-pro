@@ -8,23 +8,23 @@ These six principles govern everything the other files prescribe. When two rules
 
 ## 1. Weekly volume is the variable that decides, not frequency
 
-With volume equated, training a muscle group once, twice or three times a week produces equivalent hypertrophy. Frequency exists to **distribute** volume across the week, not to create extra stimulus.
+With volume equated, training a muscle group once, twice or three times a week produces equivalent hypertrophy (Schoenfeld et al., 2019 [PMID: 30558493]; McLeod et al., 2024 [PMID: 37385345]). Frequency exists to **distribute** volume across the week, not to create extra stimulus.
 
 **Practical consequence:** "how many days does the client have?" does not determine the outcome — it determines the split. What determines the outcome is how many hard sets per muscle group fit in the week, and whether the client can execute them with quality.
 
-**Working range:** 10 to 20 hard sets per muscle group per week covers most hypertrophy cases. Below 8, the stimulus is maintenance. Above 20, returns fall off and the recovery cost climbs fast — with wide individual variation at both ends.
+**Working range:** 10 to 20 hard sets per muscle group per week covers most hypertrophy cases (Schoenfeld et al., 2017 [PMID: 27433992]). Below 8, the stimulus is maintenance or minimum dose (Androulakis-Korakakis et al., 2020 [PMID: 31797219]). Above 20, returns fall off and the recovery cost climbs fast — with wide individual variation at both ends.
 
 **Per-muscle landmarks** — minimum effective volume, the adaptive range, and maximum recoverable volume — are in `tools/volume.py` and printable with `python3 tools/cli.py volume landmarks`. They are population averages scaled by training profile, not personal prescriptions.
 
 **Never total sets by hand.** `python3 tools/cli.py volume check --program FILE.json` sums direct sets per muscle, reports indirect separately, judges each group against its landmarks, and flags movement patterns the week does not cover. A program that has not been through it is not finished.
 
-**Per-session ceiling:** past roughly 8-10 sets for the same muscle group in a single session, the final sets contribute little. If the target volume does not fit in one session, split it across two.
+**Per-session ceiling:** past roughly 8-10 sets for the same muscle group in a single session, the final sets contribute little. If the target volume does not fit in one session, split it across two. Full citations in `09-scientific-evidence.md`.
 
 ---
 
 ## 2. RIR on every set, calibrated to the cost of the exercise
 
-RIR (reps in reserve) is how many reps the client **could still perform** when they end the set. It is the intensity variable a log can actually record.
+RIR (reps in reserve) is how many reps the client **could still perform** when they end the set. It is the intensity variable a log can actually record (Robinson et al., 2024 [PMID: 38970765]; Refalo et al., 2023 [PMID: 36334240], 2024 [PMID: 38393985]).
 
 | Exercise type | Target RIR | Why |
 | :--- | :-: | :--- |
@@ -32,7 +32,7 @@ RIR (reps in reserve) is how many reps the client **could still perform** when t
 | Isolation, machines, cables | **0-1** | Failure is fine. Low recovery cost, low technical risk — this is where maximal effort is worth collecting. |
 | Beginner, first three months | **2-3** everywhere | They cannot estimate RIR yet and overestimate what is left in the tank. The margin protects them while technique settles. |
 
-**Caveat about the measurement:** beginners' RIR estimates are systematically off in one direction — they say "two left" when five were left. The fix is not a lecture: it is filming the set, or taking one set to genuine failure under supervision to calibrate perception.
+**Caveat about the measurement:** beginners' RIR estimates are systematically off in one direction — they say "two left" when five were left (Halperin et al., 2021). The fix is not a lecture: it is filming the set, or taking one set to genuine failure under supervision to calibrate perception. Full citations in `09-scientific-evidence.md`.
 
 ---
 

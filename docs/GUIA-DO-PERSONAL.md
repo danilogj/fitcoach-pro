@@ -62,12 +62,11 @@ Você vai ver uma pasta chamada `fitcoach-pro-main` com várias pastas dentro. A
 
 ```
 claude/
-   fitcoach-pro-pt-BR/    ← a versão em português
-gpt/
-   pt-BR/                 ← para o ChatGPT, em português
+   fitcoach-pro/          ← a skill oficial
+gpt/                      ← arquivos para o ChatGPT (instructions.md e knowledge)
 ```
 
-Não precisa entender o resto.
+> **Nota:** As instruções internas e cálculos da skill são estruturados em inglês para que o modelo de inteligência artificial execute o raciocínio matemático e biomecânico com máxima precisão. Mas **a IA conversa com você 100% em português** automaticamente.
 
 ---
 
@@ -76,7 +75,7 @@ Não precisa entender o resto.
 1. Entre em **claude.ai** e faça login
 2. Clique na sua foto (canto inferior esquerdo) e vá em **Settings** → procure por **Capabilities** ou **Skills**
 3. Procure a opção de **enviar uma skill** (*Upload skill*)
-4. Ele pede um arquivo `.zip`. Você precisa compactar **a pasta `fitcoach-pro-pt-BR`** (aquela de dentro da pasta `claude`):
+4. Ele pede um arquivo `.zip`. Você precisa compactar **a pasta `fitcoach-pro`** (aquela de dentro da pasta `claude`):
    - **Windows:** clique com o botão direito na pasta → *Enviar para* → *Pasta compactada*
    - **Mac:** clique com o botão direito na pasta → *Comprimir*
 5. Envie o `.zip` que apareceu
@@ -106,12 +105,12 @@ Aqui você vai montar um "GPT personalizado" — é uma versão do ChatGPT com a
    - **Name:** `FitCoach Pro`
    - **Description:** `Assistente técnico de prescrição de treino e nutrição`
 5. **Instructions** — este é o passo mais importante:
-   - Na pasta que você baixou, abra `gpt` → `pt-BR` → `instructions.md`
+   - Na pasta que você baixou, abra `gpt` → `instructions.md`
    - Abra o arquivo com o Bloco de Notas (Windows) ou TextEdit (Mac)
    - Selecione tudo (Ctrl+A ou Cmd+A), copie (Ctrl+C ou Cmd+C)
    - Cole no campo **Instructions**
-6. **Conversation starters** — abra `conversation-starters.md` da mesma pasta e copie as quatro linhas, uma em cada campo
-7. **Knowledge** — clique em *Upload files* e envie **todos os arquivos** de dentro de `gpt/pt-BR/knowledge/`. São 19 arquivos; selecione todos de uma vez
+6. **Conversation starters** — abra `conversation-starters.md` da mesma pasta `gpt` e copie as quatro linhas, uma em cada campo
+7. **Knowledge** — clique em *Upload files* e envie **todos os arquivos** de dentro de `gpt/knowledge/`. Selecione todos de uma vez
 8. **Capabilities** — deixe marcado apenas **Code Interpreter & Data Analysis**. Desmarque navegação na web e geração de imagem: aqui elas só atrapalham
 9. Clique em **Create** / **Salvar** e escolha se fica só para você
 

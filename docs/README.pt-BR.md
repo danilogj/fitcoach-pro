@@ -93,37 +93,38 @@ Não se sente à vontade com terminal? Use o **[guia do personal trainer](GUIA-D
 
 ```bash
 git clone https://github.com/danilogj/fitcoach-pro.git
-cp -r fitcoach-pro/claude/fitcoach-pro-pt-BR ~/.claude/skills/
+cp -r fitcoach-pro/claude/fitcoach-pro ~/.claude/skills/
 ```
 
 A skill carrega sozinha quando o assunto for aluno, ficha, prescrição, carga, RIR, volume, check-in, macros ou bioimpedância.
 
 ### App do Claude
 
-Configurações → Capabilities → Skills → Upload, com `claude/fitcoach-pro-pt-BR` compactado em `.zip`.
+Configurações → Capabilities → Skills → Upload, com `claude/fitcoach-pro` compactado em `.zip`.
 
 ### ChatGPT
 
 1. Explore GPTs → Create → Configure
-2. **Instructions:** cole [`../gpt/pt-BR/instructions.md`](../gpt/pt-BR/instructions.md)
-3. **Conversation starters:** as quatro linhas de [`../gpt/pt-BR/conversation-starters.md`](../gpt/pt-BR/conversation-starters.md)
-4. **Knowledge:** envie os 10 arquivos de [`../gpt/pt-BR/knowledge/`](../gpt/pt-BR/knowledge)
+2. **Instructions:** cole [`../gpt/instructions.md`](../gpt/instructions.md)
+3. **Conversation starters:** as quatro linhas de [`../gpt/conversation-starters.md`](../gpt/conversation-starters.md)
+4. **Knowledge:** envie os arquivos de [`../gpt/knowledge/`](../gpt/knowledge)
 5. **Capabilities:** só Code Interpreter — navegação e geração de imagem não servem aqui
 
 **Confira a instalação** pedindo uma anamnese para aluno novo. Deve começar pelas sete perguntas de triagem, não por um plano de treino.
 
 ## O que tem dentro
 
-| | |
+| Arquivo de Referência | Conteúdo |
 | :--- | :--- |
-| `01-principios.md` | Os seis princípios que regem todas as outras regras |
-| `02-anamnese-triagem.md` | PAR-Q+ adaptado, red flags, classificação de perfil, restrições |
-| `03-prescricao-treino.md` | Divisões por dias, seleção por equipamento, auditoria de volume, periodização |
-| `04-progressao-e-ajuste.md` | Duplo critério, escada, análise de log, check-in, platô |
-| `05-nutricao.md` | Estimativa metabólica, macros, suplementação, regras de ajuste |
-| `06-avaliacao-corporal.md` | Bioimpedância desmontada, protocolo, circunferências |
+| `01-principles.md` | Os seis princípios que regem todas as outras regras |
+| `02-intake-screening.md` | PAR-Q+ adaptado, red flags, classificação de perfil, restrições |
+| `03-program-design.md` | Divisões por dias, seleção por equipamento, auditoria de volume, periodização |
+| `04-progression-adjustment.md` | Duplo critério, escada, análise de log, check-in, platô |
+| `05-nutrition.md` | Estimativa metabólica, macros, suplementação, regras de ajuste |
+| `06-body-assessment.md` | Bioimpedância desmontada, protocolo, circunferências |
 | `07-cardio.md` | Zonas, distribuição de intensidade, efeito interferente, passos e NEAT |
-| `08-entregaveis.md` | Ficha, relatório de evolução, mensagens ao aluno |
+| `08-deliverables.md` | Ficha, relatório de evolução, mensagens ao aluno |
+| `09-scientific-evidence.md` | Compêndio com todas as metanálises e referências com links e PMIDs |
 
 O `INDEX.md` roteia a pergunta para o arquivo e a seção certos, para o modelo carregar o que precisa em vez de tudo.
 

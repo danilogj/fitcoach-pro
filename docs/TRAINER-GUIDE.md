@@ -30,20 +30,17 @@ It is not the responsible professional. **You prescribe.** It does not diagnose,
 
 ## 2. Pick your path
 
-There are three ways to use this. Pick one — you do not need all three.
+Use it directly in your favourite app or browser:
 
-| | **ChatGPT** | **Claude** | **Claude Code** |
-| :--- | :--- | :--- | :--- |
-| Difficulty | Easy | Easy | Needs a terminal |
-| Install software? | No | No | Yes |
-| Paid plan needed? | Yes | Yes | Yes |
-| Runs the calculations itself? | Sometimes | Almost always | Always |
-| Stores client data | You attach the files | You attach the files | On your computer, automatically |
-| Generates the chart dashboard | No | No | Yes |
+| | **Claude.ai (Recommended)** | **ChatGPT (Custom GPT)** |
+| :--- | :--- | :--- |
+| **Difficulty** | Super Easy (Normal Chat) | Super Easy (Normal Chat) |
+| **Requires terminal?** | **NO** | **NO** |
+| **Charts and Dashboard** | **Yes** (Interactive Artifacts and in-chat bars) | **Yes** (Code Interpreter plots and in-chat bars) |
+| **Client Pocket Sheet** | **Yes** (Generates `.html` app ready to send) | **Yes** (Generates download file) |
+| **Client Messages** | **Yes** (Ready-to-copy WhatsApp cards) | **Yes** (Ready-to-copy WhatsApp cards) |
 
-**Honest recommendation:** start with **Claude**. It is where the instructions were written and where the most works without effort. If you already pay for ChatGPT and would rather not switch, the ChatGPT path covers most of it.
-
-**Claude Code** is for people comfortable typing commands. It is the only one that does everything, including the dashboard and guaranteed calculation. If you know someone who "is good with computers", this is where they can help you in twenty minutes.
+> 💡 **Recommendation:** If you use Claude, the **Artifacts** feature is ideal because it renders the interactive training app right beside your chat for one-click downloading. If you use ChatGPT Plus, the Custom GPT path works just as well.
 
 ---
 
@@ -164,9 +161,35 @@ You get the finished sheet.
 
 ---
 
-## 7. The weekly routine
+## 7. Viewing charts and delivering the pocket sheet (100% in Chat)
 
 ![Volume Dashboard and Mobile Workout App](assets/dashboard-mobile-preview.jpg)
+
+You never need a terminal or code to view charts or deliver the web app to your client:
+
+### 1. In-Chat Visual Volume Audit
+Ask *"audit John's weekly volume"* and the AI renders visual bars right inside the chat window for instant 3-second diagnosis:
+
+```text
+📊 WEEKLY VOLUME AUDIT — JOHN
+Chest:      ████████████░░░░  12/16 sets  [✅ Optimal MAV]
+Back:       ██████████████░░  14/18 sets  [✅ Optimal MAV]
+Hamstrings: ████████░░░░░░░░   8/14 sets  [🟡 Low MEV]
+```
+
+### 2. Download and Send the Pocket Sheet
+* **On Claude:** When you ask for the sheet, Claude opens an interactive side panel (**Artifact**) with the completed web app. Click the **Download** button to save `john-sheet.html` and drag it into WhatsApp or email it to your client. They open it on their phone with an active rest timer, RIR badges, and set logging (100% offline).
+* **On ChatGPT:** ChatGPT generates the file for one-click download.
+
+### 3. Ready-to-Copy Client Messages
+Every analysis ends with a formatted message ready to forward to your client:
+
+> 📲 **Copy & paste to your client:**
+> *"Hey John! Your new training block is ready with extra focus on chest and back. Check your interactive sheet and let me know if you have any questions on the starting loads. Let's get to work! 💪"*
+
+---
+
+## 8. The weekly routine
 
 **Once a week, per client:**
 
@@ -182,7 +205,7 @@ It gives you a diagnosis and **one specific adjustment** — not a list of sugge
 
 ---
 
-## 8. Why it sometimes refuses to answer
+## 9. Why it sometimes refuses to answer
 
 You will run into replies like:
 
@@ -196,7 +219,7 @@ When it happens, the right move is to log a few more days, or work from the esti
 
 ---
 
-## 9. When something goes wrong
+## 10. When something goes wrong
 
 | What happens | What to do |
 | :--- | :--- |
@@ -209,7 +232,7 @@ When it happens, the right move is to log a few more days, or work from the esti
 
 ---
 
-## 10. Words that will come up
+## 11. Words that will come up
 
 | Term | What it means |
 | :--- | :--- |
@@ -229,7 +252,7 @@ When it happens, the right move is to log a few more days, or work from the esti
 
 ---
 
-## 11. Before anything reaches a client
+## 12. Before anything reaches a client
 
 One last time, because it is what matters:
 

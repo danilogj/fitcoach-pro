@@ -75,15 +75,16 @@ re-running this import is a no-op.
 
 Reimportar o mesmo arquivo não duplica nada. Quando um export não casar, `ingest --inspect` mostra os nomes reais das colunas e `--map 'weight_kg=Massa (kg)'` resolve numa flag.
 
-## O dashboard
+## O dashboard e a Ficha no Celular (Direto no Chat)
 
 ![Painel de Volume e Diário no Celular](assets/dashboard-mobile-preview.jpg)
 
-O `dashboard` renderiza o log num único HTML autocontido — SVG inline, sem CDN, sem JavaScript, abre offline.
+Você não precisa de terminal para ter acesso a tudo isso:
+- **No Chat do Claude ou ChatGPT:** Peça a auditoria e receba o gráfico de barras visuais na própria conversa.
+- **Ficha Interativa no Celular:** O assistente gera o arquivo HTML autocontido com cronômetro de descanso e registro de cargas. Baixe com 1 clique e envie no WhatsApp do aluno.
+- **Gráfico de Séries vs Limiares:** Mostra as **séries diretas por músculo contra os limiares daquele músculo (MEV, MAV, MRV)**, destacando qualquer grupamento em déficit ou excesso.
 
-O gráfico que justifica a existência dele é o de **séries diretas por músculo contra os limiares daquele músculo**. Um total de 60 séries na semana pode ser quatro músculos ou doze; só ele diz qual, e destaca o grupo zerado que um total saudável esconde.
-
-Nada é inventado: o que não puder ser calculado vai para um bloco "Not shown yet" nomeando o dado que falta.
+Nada é inventado: o que não puder ser calculado vai para um bloco "Ainda não exibido" nomeando o dado que falta.
 
 ## Instalar
 

@@ -1,49 +1,54 @@
-# Guia do personal trainer
+# Guia do Personal Trainer — FitCoach Pro
 
-**Para quem nunca instalou nada parecido.** Não presume que você saiba o que é terminal, arquivo `.zip` ou linha de comando. Se em algum ponto você travar, o problema é este guia, não você — abra uma issue dizendo onde travou.
+### *A Engenharia de Prescrição que Coloca a sua Consultoria 5 Anos à Frente do Mercado*
+
+**Para quem nunca instalou nada parecido e quer atender melhor seus alunos.** Não presume que você saiba o que é terminal, programação ou linha de comando. Você vai usar a **interface de chat normal** do Claude ou ChatGPT.
 
 English version: [`TRAINER-GUIDE.md`](TRAINER-GUIDE.md)
 
 ---
 
-## 1. O que é isto, em uma página
+## 1. O que é isto e por que você precisa disso
 
-Você já deve ter pedido um treino ao ChatGPT ou ao Claude. Provavelmente veio uma lista de doze exercícios, quatro séries cada, sem perguntar em que academia o aluno treina, quantos dias ele tem, ou se o ombro dele dói. Bonito de ler, inútil de aplicar.
+Enquanto 95% dos personais perdem horas no Excel somando séries de cabeça ou entregam PDFs genéricos de IA que qualquer aluno percebe... você passa a prescrever com **precisão biomecânica cirúrgica, cálculo metabólico determinístico e entrega digital de elite**.
 
 ![IA Genérica vs FitCoach Pro](assets/ai-vs-fitcoach.jpg)
 
-Isto aqui muda o comportamento do assistente. É um conjunto de instruções e ferramentas que você instala uma vez e que faz a inteligência artificial trabalhar do seu jeito: **perguntar antes de prescrever, escolher exercício pelo equipamento que existe de verdade, conferir o volume por grupo muscular, e admitir quando não sabe.**
+### O que o FitCoach Pro faz por você na prática:
 
-Três coisas que ele passa a fazer e que nenhum chat comum faz:
+```
+┌─────────────────────────────────────────────────┬─────────────────────────────────────────────────┐
+│ ❌ O PERSONAL TRADICIONAL                       │ ✅ VOCÊ COM FITCOACH PRO                        │
+├─────────────────────────────────────────────────┼─────────────────────────────────────────────────┤
+│ 40 minutos somando séries e calorias no papel   │ Prescrição e auditoria de volume em 2 minutos   │
+│ Ficha em PDF estático que o aluno esquece       │ Diário interativo no celular com cronômetro     │
+│ Chuta calorias e percentuais mágicos            │ Matemática determinística baseada na literatura │
+│ Não sabe se o volume está em excesso ou falta   │ Auditoria em tempo real de MEV / MAV / MRV      │
+│ Dificuldade para cobrar mais na consultoria     │ Consultoria de Alto Valor Percebido             │
+└─────────────────────────────────────────────────┴─────────────────────────────────────────────────┘
+```
 
-**Ele se recusa a prescrever sem anamnese.** Peça um programa sem informar dias, equipamento, histórico e lesões, e ele pergunta primeiro. Chato? É. É também o motivo de o plano servir para o aluno real em vez de para um aluno imaginário.
+Três coisas que ele faz direto no seu chat:
 
-**Ele não faz as contas de cabeça.** Calorias, macros, soma de séries — tudo isso vem de programas de computador testados que vêm junto, não da "cabeça" da IA. Isso importa porque **inteligência artificial erra conta com uma cara de quem acertou**, e você não tem como perceber olhando.
-
-**Ele diz quando não tem dado suficiente.** Em vez de inventar um número, ele responde coisas como: *"ainda não dá para calcular seu gasto real — são 6 dias de alimentação registrada e o cálculo precisa de 10."* Parece limitação. É o contrário: é a única forma de você confiar nos números que ele dá.
-
-### O que ele nunca faz
-
-Ele não é o responsável técnico. **Quem prescreve é você.** Ele não diagnostica, não lê exame, não libera ninguém para treinar e não substitui nutricionista. E, apesar de tudo acima, **ele ainda pode errar** — por isso você confere tudo antes de mandar para o aluno. Leia o [`DISCLAIMER.pt-BR.md`](DISCLAIMER.pt-BR.md) uma vez, com calma.
+1. **Recusa-se a prescrever sem anamnese:** Exige triagem de saúde, rotina, lesões e inventário real da academia do aluno.
+2. **Cálculos matemáticos sem alucinação:** Calorias, macros, soma de séries válidas e progressão vêm de algoritmos testados, não de "chutes" da IA.
+3. **Auditoria de volume e dor articular:** Avisa se o peitoral está abaixo da Dose Mínima Efetiva (MEV) ou se a carga na coluna está excessiva, sugerindo substituições biomecânicas imediatas.
 
 ---
 
 ## 2. Escolha o seu caminho
 
-Existem três formas de usar. Escolha uma — não precisa das três.
+Você usa direto no seu aplicativo ou navegador favorito:
 
-| | **ChatGPT** | **Claude** | **Claude Code** |
-| :--- | :--- | :--- | :--- |
-| Dificuldade | Fácil | Fácil | Precisa de terminal |
-| Precisa instalar programa? | Não | Não | Sim |
-| Precisa de plano pago? | Sim | Sim | Sim |
-| Faz as contas sozinho? | Às vezes | Quase sempre | Sempre |
-| Guarda os dados do aluno | Você anexa os arquivos | Você anexa os arquivos | No seu computador, sozinho |
-| Gera o painel de gráficos | Não | Não | Sim |
+| | **Claude.ai (Recomendado)** | **ChatGPT (Custom GPT)** |
+| :--- | :--- | :--- |
+| **Dificuldade** | Super Fácil (Chat normal) | Super Fácil (Chat normal) |
+| **Precisa de terminal?** | **NÃO** | **NÃO** |
+| **Gráficos e Painel** | **Sim** (Artifacts interativos e barras no chat) | **Sim** (Imagens via Code Interpreter e barras) |
+| **Ficha para o Aluno** | **Sim** (Gera o app `.html` para mandar no WhatsApp) | **Sim** (Gera o arquivo para download) |
+| **Mensagens prontas** | **Sim** (Bloco pronto para copiar para o WhatsApp) | **Sim** (Bloco pronto para copiar para o WhatsApp) |
 
-**Recomendação honesta:** comece pelo **Claude**. É onde as instruções foram escritas e onde mais coisa funciona sem esforço. Se você já paga ChatGPT e não quer trocar, o caminho do ChatGPT resolve a maior parte.
-
-**Claude Code** é para quem se sente confortável digitando comandos. Ele é o único que faz tudo — incluindo o painel de gráficos e o cálculo garantido. Se você tem um sobrinho que "mexe com computador", é aí que ele ajuda em vinte minutos.
+> 💡 **Recomendação:** Se você já usa o Claude, a experiência com **Artifacts** é perfeita porque ele abre a ficha interativa ao lado do chat para você baixar e mandar para o aluno. Se você usa o ChatGPT Plus, o Custom GPT funciona tão bem quanto.
 
 ---
 
@@ -164,9 +169,35 @@ Você recebe a ficha pronta.
 
 ---
 
-## 7. A rotina de cada semana
+## 7. Como você visualiza o painel e entrega a ficha ao aluno (100% no Chat)
 
 ![Painel de Volume e Diário no Celular](assets/dashboard-mobile-preview.jpg)
+
+Você não precisa de terminal nem de programação para ver gráficos ou entregar o aplicativo ao aluno:
+
+### 1. Auditoria Visual no Próprio Chat
+Quando você pede *"audite o volume do João"*, a IA desenha barras visuais diretamente na conversa para você bater o olho e diagnosticar em 3 segundos:
+
+```text
+📊 AUDITORIA DE VOLUME — JOÃO
+Peitoral:      ████████████░░░░  12/16 séries  [✅ MAV Ótimo]
+Dorsal:        ██████████████░░  14/18 séries  [✅ MAV Ótimo]
+Isquiotibiais: ████████░░░░░░░░   8/14 séries  [🟡 MEV Baixo]
+```
+
+### 2. Baixar e Enviar a Ficha pelo WhatsApp
+* **No Claude:** Ao pedir a ficha, o Claude abre a janela lateral (**Artifact**) com o app pronto. Clique no botão de **Download** (baixa o arquivo `ficha-joao.html`) e arraste no WhatsApp do aluno. O aluno toca no arquivo e ele abre no celular como um app offline com cronômetro e histórico.
+* **No ChatGPT:** O ChatGPT gera o arquivo para download direto na conversa.
+
+### 3. Mensagem Pronta para o Aluno
+Toda análise gera um bloco formatado para você apenas copiar e mandar:
+
+> 📲 **Copie e cole no WhatsApp do aluno:**
+> *"Fala João! Seu treino do novo bloco está pronto com foco em dorsal e peitoral. Dá uma olhada na ficha e me avisa qualquer dúvida nas cargas iniciais. Bora pra cima! 💪"*
+
+---
+
+## 8. A rotina de cada semana
 
 **Uma vez por semana, por aluno:**
 
@@ -182,7 +213,7 @@ Ele devolve diagnóstico e **um ajuste específico** — não uma lista de suges
 
 ---
 
-## 8. Por que ele às vezes se recusa a responder
+## 9. Por que ele às vezes se recusa a responder
 
 Você vai encontrar respostas assim:
 
@@ -196,7 +227,7 @@ Quando aparecer, a resposta certa é: registrar mais alguns dias, ou trabalhar c
 
 ---
 
-## 9. Quando der problema
+## 10. Quando der problema
 
 | O que acontece | O que fazer |
 | :--- | :--- |
@@ -209,7 +240,7 @@ Quando aparecer, a resposta certa é: registrar mais alguns dias, ou trabalhar c
 
 ---
 
-## 10. Palavras que vão aparecer
+## 11. Palavras que vão aparecer
 
 | Termo | O que quer dizer |
 | :--- | :--- |
@@ -229,7 +260,7 @@ Quando aparecer, a resposta certa é: registrar mais alguns dias, ou trabalhar c
 
 ---
 
-## 11. Antes de mandar qualquer coisa para o aluno
+## 12. Antes de mandar qualquer coisa para o aluno
 
 Uma última vez, porque é o que importa:
 

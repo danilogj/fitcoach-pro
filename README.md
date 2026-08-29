@@ -105,8 +105,6 @@ cp -r fitcoach-pro/claude/fitcoach-pro ~/.claude/skills/
 
 The skill loads on its own when the topic is a client, a sheet, a prescription, load, RIR, volume, a check-in, macros or body composition. Force it with `/fitcoach-pro`.
 
-For the Portuguese version, copy `claude/fitcoach-pro-pt-BR` instead.
-
 ### Claude app
 
 Settings → Capabilities → Skills → Upload, with `claude/fitcoach-pro` zipped.
@@ -114,18 +112,16 @@ Settings → Capabilities → Skills → Upload, with `claude/fitcoach-pro` zipp
 ### ChatGPT
 
 1. Explore GPTs → Create → Configure
-2. **Instructions:** paste [`gpt/instructions.md`](gpt/instructions.md) (6.9k of the 8k character limit)
+2. **Instructions:** paste [`gpt/instructions.md`](gpt/instructions.md)
 3. **Conversation starters:** the four lines in [`gpt/conversation-starters.md`](gpt/conversation-starters.md)
-4. **Knowledge:** upload the 10 files in [`gpt/knowledge/`](gpt/knowledge)
+4. **Knowledge:** upload the files in [`gpt/knowledge/`](gpt/knowledge)
 5. **Capabilities:** Code Interpreter only — browsing and image generation add nothing here
-
-Portuguese equivalents live in [`gpt/pt-BR/`](gpt/pt-BR).
 
 **Verify the install** by asking for an intake for a new client. It should open with seven screening questions, not with a training plan.
 
 ## What is inside
 
-| | |
+| Reference file | What it contains |
 | :--- | :--- |
 | [`01-principles.md`](claude/fitcoach-pro/references/01-principles.md) | The six principles that govern every other rule |
 | [`02-intake-screening.md`](claude/fitcoach-pro/references/02-intake-screening.md) | Adapted PAR-Q+, red flags, profile classification, constraints |
@@ -134,7 +130,8 @@ Portuguese equivalents live in [`gpt/pt-BR/`](gpt/pt-BR).
 | [`05-nutrition.md`](claude/fitcoach-pro/references/05-nutrition.md) | Metabolic estimate, macro targets, supplements, adjustment rules |
 | [`06-body-assessment.md`](claude/fitcoach-pro/references/06-body-assessment.md) | Bioimpedance taken apart, protocol, circumferences, wearables, imports |
 | [`07-cardio.md`](claude/fitcoach-pro/references/07-cardio.md) | Zones, intensity distribution, the interference effect, steps and NEAT |
-| [`08-deliverables.md`](claude/fitcoach-pro/references/08-deliverables.md) | Sheet, progress report, client messaging |
+| [`08-deliverables.md`](claude/fitcoach-pro/references/08-deliverables.md) | The sheet, progress report, client messages |
+| [`09-scientific-evidence.md`](claude/fitcoach-pro/references/09-scientific-evidence.md) | Complete peer-reviewed evidence compendium with PMIDs and links |
 
 [`INDEX.md`](claude/fitcoach-pro/references/INDEX.md) routes a question to the right file and section, so the model loads what it needs instead of everything.
 
